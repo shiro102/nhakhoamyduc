@@ -11,19 +11,6 @@ import { createTodo as createNoteMutation, deleteTodo as deleteNoteMutation } fr
 
 Amplify.configure(awsExports);
 const initialFormState = { name: '', description: '' }
-// const aws = require('aws-sdk');
-// aws.config.update({
-//     //maxRetries: 3,
-//     //httpOptions: {timeout: 1, connectTimeout: 1},
-//     region: 'us-east-1',
-//     accessKeyId: 'AKIA2FLUXPHPXAIJSD7Q',
-//     secretAccessKey: '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',
-// });
-//
-// const s3 = new aws.S3();
-// const params = {Bucket: 'nhakhoamyducweb13bb192891a2b4afc8959ad872273d8785758-staging', Key: 'private/myduclogo.jpg'};
-// const url = s3.getSignedUrl('getObject', params);
-
 
 const components = {
     Header() {
