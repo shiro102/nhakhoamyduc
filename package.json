@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
-    "aws-amplify": "^4.3.28"
+    "aws-amplify": "^4.3.28",
+    "react-router-dom": "^6.3.0"
   }
 }

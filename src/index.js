@@ -5,12 +5,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Amplify from 'aws-amplify';
 import config from './aws-exports';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+import Admin from "./components/Admin";
+import LandingPage from "./components/LandingPage";
+
 Amplify.configure(config);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<App />}/>
+              <Route path="admin" element={<Admin />} />
+          </Routes>
+      </BrowserRouter>
   </React.StrictMode>
 );
 
