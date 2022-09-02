@@ -2,20 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import {Link} from "react-router-dom";
 
-import awsExports from './aws-exports';
-import awsmobile from './aws-exports';
-import {Amplify} from 'aws-amplify';
-import {API} from 'aws-amplify';
-import {Authenticator, Button, Heading, Image, Text, useAuthenticator, useTheme, View} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import {listTodos} from './graphql/queries';
-import {createTodo as createNoteMutation, deleteTodo as deleteNoteMutation} from './graphql/mutations';
 import useScript from "./components/useScript";
-
-Amplify.configure(awsExports);
-
-const initialFormState = {name: '', description: ''}
-
 
 function App() {
     // Add script for index file
@@ -112,7 +100,7 @@ function App() {
                                     Help & FAQs
                                 </Link>
 
-                                <Link to="/" className="flex-c-m trans-04 p-lr-25">
+                                <Link to="/admin" className="flex-c-m trans-04 p-lr-25">
                                     My Account (In develop)
                                 </Link>
 
