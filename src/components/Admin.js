@@ -1,13 +1,25 @@
 import awsExports from '../aws-exports';
 import awsmobile from '../aws-exports';
 import React, { useState, useEffect } from 'react';
-import '../App.css';
 import { Amplify } from 'aws-amplify';
 import { API } from 'aws-amplify';
-import {Authenticator, Button, Heading, Image, Text, useAuthenticator, useTheme, View} from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+import {Link} from "react-router-dom";
+
+import {
+    Authenticator,
+    Button,
+    CheckboxField,
+    Heading,
+    Image, PhoneNumberField, Radio, SelectField,
+    Text,
+    useAuthenticator,
+    useTheme,
+    View
+} from '@aws-amplify/ui-react';
 import { listTodos } from '../graphql/queries';
 import { createTodo as createNoteMutation, deleteTodo as deleteNoteMutation } from '../graphql/mutations';
+import useScript from "./useScript";
+import useLink from "./useLink";
 
 Amplify.configure(awsExports);
 const initialFormState = { name: '', description: '' }
@@ -17,13 +29,16 @@ const components = {
         const { tokens } = useTheme();
 
         return (
-
+            <div>
+                <Link to={"/"}>Go back to main page</Link>
             <View textAlign="center" padding={tokens.space.large}>
+
                 <Image style={{"pointerEvents": "none"}}
                        alt="Amplify logo"
                        src= "https://nhakhoamyducweb13bb192891a2b4afc8959ad872273d8785758-staging.s3.amazonaws.com/private/myduclogo.jpg"
                 />
             </View>
+                </div>
         );
     },
 
@@ -99,149 +114,102 @@ const components = {
                 </View>
             );
         },
-    },
-    ConfirmSignUp: {
-        Header() {
-            const { tokens } = useTheme();
+        FormFields() {
+            const {validationErrors} = useAuthenticator();
             return (
-                <Heading
-                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-                    level={3}
-                >
-                    Enter Information:
-                </Heading>
+                <>
+                    {/* Re-use default `Authenticator.SignUp.FormFields` */}
+                    <Authenticator.SignUp.FormFields/>
+                    <SelectField options={["Male", "Female"]} placeholder={"Choose your gender"} label={"Gender"} name={"gender"}></SelectField>
+                    <PhoneNumberField defaultCountryCode={"+84"} label={"Phone Number"} name={"phone_number"}/>
+
+                    {/* Append & require Terms & Conditions field to sign up  */}
+                    <CheckboxField
+                        errorMessage={validationErrors.acknowledgement }
+                        hasError={!!validationErrors.acknowledgement}
+                        name="acknowledgement"
+                        value="yes"
+                        label="I agree with the Terms & Conditions"
+                    />
+                </>
             );
-        },
-        Footer() {
-            return <Text>Footer Information</Text>;
-        },
-    },
-    SetupTOTP: {
-        Header() {
-            const { tokens } = useTheme();
-            return (
-                <Heading
-                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-                    level={3}
-                >
-                    Enter Information:
-                </Heading>
-            );
-        },
-        Footer() {
-            return <Text>Footer Information</Text>;
-        },
-    },
-    ConfirmSignIn: {
-        Header() {
-            const { tokens } = useTheme();
-            return (
-                <Heading
-                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-                    level={3}
-                >
-                    Enter Information:
-                </Heading>
-            );
-        },
-        Footer() {
-            return <Text>Footer Information</Text>;
-        },
+        }
     },
     ResetPassword: {
         Header() {
             const { tokens } = useTheme();
             return (
                 <Heading
-                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
                     level={3}
                 >
-                    Enter Information:
+                    Reset Password
                 </Heading>
             );
-        },
-    },
-    ConfirmResetPassword: {
-        Header() {
-            const { tokens } = useTheme();
-            return (
-                <Heading
-                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-                    level={3}
-                >
-                    Enter Information:
-                </Heading>
-            );
-        },
-        Footer() {
-            return <Text>Footer Information</Text>;
         },
     },
 };
 
+
 const formFields = {
     signIn: {
-        username: {
+        password: {
             labelHidden: false,
-            placeholder: 'Enter your email',
+            isRequired: true,
+            placeholder: 'Enter your password',
         },
     },
     signUp: {
+        "custom:username":{
+            label: "Username",
+            labelHidden: false,
+            placeholder: 'Enter your username',
+            isRequired: true,
+        },
+        username: {
+            label: 'Email',
+            labelHidden: false,
+            placeholder: 'Enter your email',
+            isRequired: true,
+        },
         password: {
             labelHidden: false,
-            label: 'Password:',
-            placeholder: 'Enter your Password:',
-            isRequired: false,
-            order: 2,
+            placeholder: 'Enter your password',
+            isRequired: true,
+        },
+        email: {
+            hidden: true,
         },
         confirm_password: {
             labelHidden: false,
-            label: 'Confirm Password:',
-            order: 1,
+            label: 'Confirm password',
+        },
+        given_name: {
+            label: 'First name',
+            labelHidden: false,
+            placeholder: 'Enter your first name',
+        },
+        family_name: {
+            label: 'Last name',
+            labelHidden: false,
+            placeholder: 'Enter your last name',
+        },
+        birthdate: {
+            label: 'Date of birth',
+            type: "datetime",
+            labelHidden: false,
+            placeholder: 'Enter your birthdate',
         },
     },
     forceNewPassword: {
         password: {
             labelHidden: false,
-            placeholder: 'Enter your Password:',
+            placeholder: 'Enter your password:',
         },
     },
     resetPassword: {
         username: {
             labelHidden: false,
-            placeholder: 'Enter your email:',
-        },
-    },
-    confirmResetPassword: {
-        confirmation_code: {
-            labelHidden: false,
-            placeholder: 'Enter your Confirmation Code:',
-            label: 'New Label',
-            isRequired: false,
-        },
-        confirm_password: {
-            labelHidden: false,
-            placeholder: 'Enter your Password Please:',
-        },
-    },
-    setupTOTP: {
-        QR: {
-            totpIssuer: 'test issuer',
-            totpUsername: 'amplify_qr_test_user',
-        },
-        confirmation_code: {
-            labelHidden: false,
-            label: 'New Label',
-            placeholder: 'Enter your Confirmation Code:',
-            isRequired: false,
-        },
-    },
-    confirmSignIn: {
-        confirmation_code: {
-            labelHidden: false,
-            label: 'New Label',
-            placeholder: 'Enter your Confirmation Code:',
-            isRequired: false,
+            placeholder: 'Enter your username',
         },
     },
 };
@@ -254,6 +222,7 @@ function Admin() {
         fetchNotes();
     }, []);
 
+    // Function for retrieving data
     async function fetchNotes() {
         const apiData = await API.graphql({ query: listTodos });
         setNotes(apiData.data.listTodos.items);
@@ -272,8 +241,23 @@ function Admin() {
         await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
     }
 
+    // Set script
+
+    useLink("css/App.css", "admin")
+
+
     return (
-        <Authenticator components={components}>
+        <Authenticator  components= {components} formFields={formFields}
+                        services={{
+                            async validateCustomSignUp(formData) {
+                                if (!formData.acknowledgement) {
+                                    return {
+                                        acknowledgement: 'You must agree to the Terms & Conditions',
+                                    };
+                                }
+                            },
+                        }}
+        >
             {({ signOut, user }) => (
                 <div className="App">
                     <h1>{user.username}'s Notes App</h1>

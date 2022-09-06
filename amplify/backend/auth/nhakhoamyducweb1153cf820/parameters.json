@@ -1,0 +1,29 @@
+{
+  "authSelections": "userPoolOnly",
+  "resourceName": "nhakhoamyducweb1153cf820",
+  "serviceType": "imported",
+  "region": "us-east-1",
+  "usernameAttributes": [
+    "email"
+  ],
+  "requiredAttributes": [
+    "given_name",
+    "family_name",
+    "email",
+    "gender",
+    "birthdate",
+    "phone_number"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers",
+    "Requires Symbols"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}

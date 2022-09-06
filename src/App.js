@@ -4,8 +4,14 @@ import {Link} from "react-router-dom";
 
 import '@aws-amplify/ui-react/styles.css';
 import useScript from "./components/useScript";
+import useLink from "./components/useLink";
 
-function App() {
+const App = props => {
+
+    useEffect(() => {
+        // Update the document title using the browser API
+        document.title = `You clicked times`;
+    }, []);
     // Add script for index file
     useScript("vendor/jquery/jquery-3.2.1.min.js", "");
     useScript("vendor/animsition/js/animsition.min.js", "");
@@ -84,6 +90,7 @@ function App() {
         "      });");
     useScript("js/main.js", "");
 
+    useLink("css/util.css", "app")
 
     return (
         <div>
@@ -258,9 +265,9 @@ function App() {
 
             {/*    <div className="header-cart flex-col-l p-l-65 p-r-25">*/}
             {/*        <div className="header-cart-title flex-w flex-sb-m p-b-8">*/}
-			{/*	<span className="mtext-103 cl2">*/}
-			{/*		Your Cart*/}
-			{/*	</span>*/}
+            {/*	<span className="mtext-103 cl2">*/}
+            {/*		Your Cart*/}
+            {/*	</span>*/}
 
             {/*            <div className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">*/}
             {/*                <i className="zmdi zmdi-close"></i>*/}
@@ -280,8 +287,8 @@ function App() {
             {/*                        </a>*/}
 
             {/*                        <span className="header-cart-item-info">*/}
-			{/*					1 x $19.00*/}
-			{/*				</span>*/}
+            {/*					1 x $19.00*/}
+            {/*				</span>*/}
             {/*                    </div>*/}
             {/*                </li>*/}
 
@@ -296,8 +303,8 @@ function App() {
             {/*                        </a>*/}
 
             {/*                        <span className="header-cart-item-info">*/}
-			{/*					1 x $39.00*/}
-			{/*				</span>*/}
+            {/*					1 x $39.00*/}
+            {/*				</span>*/}
             {/*                    </div>*/}
             {/*                </li>*/}
 
@@ -312,8 +319,8 @@ function App() {
             {/*                        </a>*/}
 
             {/*                        <span className="header-cart-item-info">*/}
-			{/*					1 x $17.00*/}
-			{/*				</span>*/}
+            {/*					1 x $17.00*/}
+            {/*				</span>*/}
             {/*                    </div>*/}
             {/*                </li>*/}
             {/*            </ul>*/}
@@ -371,7 +378,8 @@ function App() {
                             </div>
                         </div>
 
-                        <div className="item-slick1" style={{backgroundImage: "url(images/dentist1-1.jpg)", backgroundSize:"50%"}}>
+                        <div className="item-slick1"
+                             style={{backgroundImage: "url(images/dentist1-1.jpg)", backgroundSize: "50%"}}>
                             <div className="container h-full">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rollIn"
@@ -440,13 +448,13 @@ function App() {
             {/*                        <a href="product.html"*/}
             {/*                           className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">*/}
             {/*                            <div className="block1-txt-child1 flex-col-l">*/}
-			{/*					<span className="block1-name ltext-102 trans-04 p-b-8">*/}
-			{/*						Women*/}
-			{/*					</span>*/}
+            {/*					<span className="block1-name ltext-102 trans-04 p-b-8">*/}
+            {/*						Women*/}
+            {/*					</span>*/}
 
             {/*                                <span className="block1-info stext-102 trans-04">*/}
-			{/*						Spring 2018*/}
-			{/*					</span>*/}
+            {/*						Spring 2018*/}
+            {/*					</span>*/}
             {/*                            </div>*/}
 
             {/*                            <div className="block1-txt-child2 p-b-4 trans-05">*/}
@@ -465,13 +473,13 @@ function App() {
             {/*                        <a href="product.html"*/}
             {/*                           className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">*/}
             {/*                            <div className="block1-txt-child1 flex-col-l">*/}
-			{/*					<span className="block1-name ltext-102 trans-04 p-b-8">*/}
-			{/*						Men*/}
-			{/*					</span>*/}
+            {/*					<span className="block1-name ltext-102 trans-04 p-b-8">*/}
+            {/*						Men*/}
+            {/*					</span>*/}
 
             {/*                                <span className="block1-info stext-102 trans-04">*/}
-			{/*						Spring 2018*/}
-			{/*					</span>*/}
+            {/*						Spring 2018*/}
+            {/*					</span>*/}
             {/*                            </div>*/}
 
             {/*                            <div className="block1-txt-child2 p-b-4 trans-05">*/}
@@ -490,13 +498,13 @@ function App() {
             {/*                        <a href="product.html"*/}
             {/*                           className="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">*/}
             {/*                            <div className="block1-txt-child1 flex-col-l">*/}
-			{/*					<span className="block1-name ltext-102 trans-04 p-b-8">*/}
-			{/*						Accessories*/}
-			{/*					</span>*/}
+            {/*					<span className="block1-name ltext-102 trans-04 p-b-8">*/}
+            {/*						Accessories*/}
+            {/*					</span>*/}
 
             {/*                                <span className="block1-info stext-102 trans-04">*/}
-			{/*						New Trend*/}
-			{/*					</span>*/}
+            {/*						New Trend*/}
+            {/*					</span>*/}
             {/*                            </div>*/}
 
             {/*                            <div className="block1-txt-child2 p-b-4 trans-05">*/}
@@ -671,9 +679,9 @@ function App() {
 
             {/*                        <ul>*/}
             {/*                            <li className="p-b-6">*/}
-			{/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#222"}}>*/}
-			{/*							<i className="zmdi zmdi-circle"></i>*/}
-			{/*						</span>*/}
+            {/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#222"}}>*/}
+            {/*							<i className="zmdi zmdi-circle"></i>*/}
+            {/*						</span>*/}
 
             {/*                                <a href="#" className="filter-link stext-106 trans-04">*/}
             {/*                                    Black*/}
@@ -681,9 +689,9 @@ function App() {
             {/*                            </li>*/}
 
             {/*                            <li className="p-b-6">*/}
-			{/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#4272d7"}}>*/}
-			{/*							<i className="zmdi zmdi-circle"></i>*/}
-			{/*						</span>*/}
+            {/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#4272d7"}}>*/}
+            {/*							<i className="zmdi zmdi-circle"></i>*/}
+            {/*						</span>*/}
 
             {/*                                <a href="#" className="filter-link stext-106 trans-04 filter-link-active">*/}
             {/*                                    Blue*/}
@@ -691,9 +699,9 @@ function App() {
             {/*                            </li>*/}
 
             {/*                            <li className="p-b-6">*/}
-			{/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#b3b3b3"}}>*/}
-			{/*							<i className="zmdi zmdi-circle"></i>*/}
-			{/*						</span>*/}
+            {/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#b3b3b3"}}>*/}
+            {/*							<i className="zmdi zmdi-circle"></i>*/}
+            {/*						</span>*/}
 
             {/*                                <a href="#" className="filter-link stext-106 trans-04">*/}
             {/*                                    Grey*/}
@@ -701,9 +709,9 @@ function App() {
             {/*                            </li>*/}
 
             {/*                            <li className="p-b-6">*/}
-			{/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#00ad5f"}}>*/}
-			{/*							<i className="zmdi zmdi-circle"></i>*/}
-			{/*						</span>*/}
+            {/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#00ad5f"}}>*/}
+            {/*							<i className="zmdi zmdi-circle"></i>*/}
+            {/*						</span>*/}
 
             {/*                                <a href="#" className="filter-link stext-106 trans-04">*/}
             {/*                                    Green*/}
@@ -711,9 +719,9 @@ function App() {
             {/*                            </li>*/}
 
             {/*                            <li className="p-b-6">*/}
-			{/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#fa4251"}}>*/}
-			{/*							<i className="zmdi zmdi-circle"></i>*/}
-			{/*						</span>*/}
+            {/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#fa4251"}}>*/}
+            {/*							<i className="zmdi zmdi-circle"></i>*/}
+            {/*						</span>*/}
 
             {/*                                <a href="#" className="filter-link stext-106 trans-04">*/}
             {/*                                    Red*/}
@@ -721,9 +729,9 @@ function App() {
             {/*                            </li>*/}
 
             {/*                            <li className="p-b-6">*/}
-			{/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#aaa"}}>*/}
-			{/*							<i className="zmdi zmdi-circle-o"></i>*/}
-			{/*						</span>*/}
+            {/*						<span className="fs-15 lh-12 m-r-6" style={{color: "#aaa"}}>*/}
+            {/*							<i className="zmdi zmdi-circle-o"></i>*/}
+            {/*						</span>*/}
 
             {/*                                <a href="#" className="filter-link stext-106 trans-04">*/}
             {/*                                    White*/}
@@ -788,8 +796,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$16.64*/}
-			{/*					</span>*/}
+            {/*						$16.64*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -823,8 +831,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$35.31*/}
-			{/*					</span>*/}
+            {/*						$35.31*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -858,8 +866,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$25.50*/}
-			{/*					</span>*/}
+            {/*						$25.50*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -893,8 +901,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$75.00*/}
-			{/*					</span>*/}
+            {/*						$75.00*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -928,8 +936,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$34.75*/}
-			{/*					</span>*/}
+            {/*						$34.75*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -963,8 +971,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$93.20*/}
-			{/*					</span>*/}
+            {/*						$93.20*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -998,8 +1006,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$52.66*/}
-			{/*					</span>*/}
+            {/*						$52.66*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1033,8 +1041,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$18.96*/}
-			{/*					</span>*/}
+            {/*						$18.96*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1068,8 +1076,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$75.00*/}
-			{/*					</span>*/}
+            {/*						$75.00*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1103,8 +1111,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$25.85*/}
-			{/*					</span>*/}
+            {/*						$25.85*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1138,8 +1146,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$63.16*/}
-			{/*					</span>*/}
+            {/*						$63.16*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1173,8 +1181,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$63.15*/}
-			{/*					</span>*/}
+            {/*						$63.15*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1208,8 +1216,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$18.49*/}
-			{/*					</span>*/}
+            {/*						$18.49*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1243,8 +1251,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$54.79*/}
-			{/*					</span>*/}
+            {/*						$54.79*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1278,8 +1286,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$86.85*/}
-			{/*					</span>*/}
+            {/*						$86.85*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1313,8 +1321,8 @@ function App() {
             {/*                            </a>*/}
 
             {/*                            <span className="stext-105 cl3">*/}
-			{/*						$29.64*/}
-			{/*					</span>*/}
+            {/*						$29.64*/}
+            {/*					</span>*/}
             {/*                        </div>*/}
 
             {/*                        <div className="block2-txt-child2 flex-r p-t-3">*/}
@@ -1372,37 +1380,42 @@ function App() {
                                 </li>
                             </ul>
                         </div>
-
                         <div className="col-sm-6 col-lg-3 p-b-50">
-                            <h4 className="stext-301 cl0 p-b-30">
-                                Help
-                            </h4>
-
-                            <ul>
-                                <li className="p-b-10">
-                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                        Track Order
-                                    </a>
-                                </li>
-
-                                <li className="p-b-10">
-                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                        Returns
-                                    </a>
-                                </li>
-
-                                <li className="p-b-10">
-                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                        Shipping
-                                    </a>
-                                </li>
-
-                                <li className="p-b-10">
-                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                        FAQs
-                                    </a>
-                                </li>
-                            </ul>
+                            <h5 className="stext-301 cl0 p-l-22  p-b-10">Thời gian làm việc</h5>
+                            <div>
+                                <table style={{borderCollapse: "separate", borderSpacing:"2em 0em"}}>
+                                    <tbody>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 2</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 3</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 4</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 5</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 6</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 7</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Chủ Nhật</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">Nghỉ</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div className="col-sm-6 col-lg-3 p-b-50">
@@ -1411,7 +1424,8 @@ function App() {
                             </h4>
 
                             <p className="stext-107 cl7 size-201">
-                                Mọi thắc mắc xin vui lòng liên hệ số 0913895695 hoặc gặp trực tiếp bác sĩ tại 204 Thống Nhất
+                                Mọi thắc mắc xin vui lòng liên hệ số 0913895695 hoặc gặp trực tiếp bác sĩ tại 204 Thống
+                                Nhất
                                 P.11 Q.Gò Vấp để được tư vấn miễn phí
 
                             </p>
@@ -1452,6 +1466,7 @@ function App() {
                             </form>
                         </div>
                     </div>
+
 
                     <div className="p-t-40">
                         <div className="flex-c-m flex-w p-b-18">
@@ -1514,10 +1529,10 @@ function App() {
                                                 <div className="wrap-pic-w pos-relative">
                                                     <img src="images/product-detail-01.jpg" alt="IMG-PRODUCT"/>
 
-                                                        <a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                                           href="images/product-detail-01.jpg">
-                                                            <i className="fa fa-expand"></i>
-                                                        </a>
+                                                    <a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                                       href="images/product-detail-01.jpg">
+                                                        <i className="fa fa-expand"></i>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -1525,10 +1540,10 @@ function App() {
                                                 <div className="wrap-pic-w pos-relative">
                                                     <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT"/>
 
-                                                        <a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                                           href="images/product-detail-02.jpg">
-                                                            <i className="fa fa-expand"></i>
-                                                        </a>
+                                                    <a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                                       href="images/product-detail-02.jpg">
+                                                        <i className="fa fa-expand"></i>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -1536,10 +1551,10 @@ function App() {
                                                 <div className="wrap-pic-w pos-relative">
                                                     <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT"/>
 
-                                                        <a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                                           href="images/product-detail-03.jpg">
-                                                            <i className="fa fa-expand"></i>
-                                                        </a>
+                                                    <a className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                                       href="images/product-detail-03.jpg">
+                                                        <i className="fa fa-expand"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1612,10 +1627,10 @@ function App() {
                                                     <input className="mtext-104 cl3 txt-center num-product"
                                                            type="number" name="num-product" value="1"/>
 
-                                                        <div
-                                                            className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                            <i className="fs-16 zmdi zmdi-plus"></i>
-                                                        </div>
+                                                    <div
+                                                        className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                        <i className="fs-16 zmdi zmdi-plus"></i>
+                                                    </div>
                                                 </div>
 
                                                 <button

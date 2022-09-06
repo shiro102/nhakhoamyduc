@@ -13,8 +13,6 @@ const useScript = (url, text) => {
         script.async = false;
 
         document.body.appendChild(script);
-        console.log(document.body)
-
         return () => {
             document.body.removeChild(script);
         }

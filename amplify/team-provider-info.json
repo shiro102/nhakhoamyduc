@@ -13,7 +13,30 @@
     },
     "categories": {
       "auth": {
-        "nhakhoamyducweb1bbc338ab": {}
+        "nhakhoamyducweb19a2f6eb2": {
+          "userPoolId": "us-east-1_qGN3ENmAs",
+          "userPoolName": "nhakhoamyducusers",
+          "webClientId": "25okaukvd54n748u6pqnth4gvs",
+          "nativeClientId": "25okaukvd54n748u6pqnth4gvs"
+        },
+        "nhakhoamyducweb106442665": {
+          "userPoolId": "us-east-1_qGN3ENmAs",
+          "userPoolName": "nhakhoamyducusers",
+          "webClientId": "25okaukvd54n748u6pqnth4gvs",
+          "nativeClientId": "25okaukvd54n748u6pqnth4gvs"
+        },
+        "nhakhoamyducweb108c7f92a": {
+          "userPoolId": "us-east-1_qGN3ENmAs",
+          "userPoolName": "nhakhoamyducusers",
+          "webClientId": "25okaukvd54n748u6pqnth4gvs",
+          "nativeClientId": "25okaukvd54n748u6pqnth4gvs"
+        },
+        "nhakhoamyducweb1153cf820": {
+          "userPoolId": "us-east-1_ncSpgRCJo",
+          "userPoolName": "nhakhoamyducusers2",
+          "webClientId": "1na98ntag8e3tc8f7espug5k3i",
+          "nativeClientId": "1na98ntag8e3tc8f7espug5k3i"
+        }
       }
     }
   }
