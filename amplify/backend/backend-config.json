@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "nhakhoamyduc19337ef2f": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
