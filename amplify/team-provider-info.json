@@ -1,4 +1,34 @@
 {
+  "testing": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nhakhoamyduc1-testing-210612-authRole",
+      "UnauthRoleArn": "arn:aws:iam::698713864671:role/amplify-nhakhoamyduc1-testing-210612-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::698713864671:role/amplify-nhakhoamyduc1-testing-210612-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-nhakhoamyduc1-testing-210612-deployment",
+      "UnauthRoleName": "amplify-nhakhoamyduc1-testing-210612-unauthRole",
+      "StackName": "amplify-nhakhoamyduc1-testing-210612",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:698713864671:stack/amplify-nhakhoamyduc1-testing-210612/e76d6b90-2ef0-11ed-9c40-0a11cca4f376",
+      "AmplifyAppId": "d1oa3aicm14zeg"
+    },
+    "categories": {
+      "auth": {
+        "nhakhoamyduc18a859fe8": {
+          "userPoolId": "ap-southeast-1_eucMWE9kR",
+          "userPoolName": "nhakhoamyducusers",
+          "webClientId": "7nc0ksngp21tdqihbisc6c868f",
+          "nativeClientId": "7nc0ksngp21tdqihbisc6c868f",
+          "identityPoolId": "ap-southeast-1:10555350-ce3f-4f6b-b278-6aee825bd8fd",
+          "identityPoolName": "nhakhoamyducidentitypool",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::698713864671:role/Cognito_nhakhoamyducidentitypoolAuth_Role",
+          "authRoleName": "Cognito_nhakhoamyducidentitypoolAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::698713864671:role/Cognito_nhakhoamyducidentitypoolUnauth_Role",
+          "unauthRoleName": "Cognito_nhakhoamyducidentitypoolUnauth_Role"
+        }
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify642f34fa93844-staging-192729-authRole",
@@ -13,6 +43,19 @@
     },
     "categories": {
       "auth": {
+        "nhakhoamyduc145f88cfd": {
+          "userPoolId": "ap-southeast-1_eucMWE9kR",
+          "userPoolName": "nhakhoamyducusers",
+          "webClientId": "7nc0ksngp21tdqihbisc6c868f",
+          "nativeClientId": "7nc0ksngp21tdqihbisc6c868f",
+          "identityPoolId": "ap-southeast-1:10555350-ce3f-4f6b-b278-6aee825bd8fd",
+          "identityPoolName": "nhakhoamyducidentitypool",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::698713864671:role/Cognito_nhakhoamyducidentitypoolAuth_Role",
+          "authRoleName": "Cognito_nhakhoamyducidentitypoolAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::698713864671:role/Cognito_nhakhoamyducidentitypoolUnauth_Role",
+          "unauthRoleName": "Cognito_nhakhoamyducidentitypoolUnauth_Role"
+        },
         "nhakhoamyduc19337ef2f": {
           "userPoolId": "ap-southeast-1_eucMWE9kR",
           "userPoolName": "nhakhoamyducusers",

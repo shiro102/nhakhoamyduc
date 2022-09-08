@@ -1,6 +1,6 @@
 {
-  "authSelections": "userPoolOnly",
-  "resourceName": "nhakhoamyduc19337ef2f",
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "nhakhoamyduc18a859fe8",
   "serviceType": "imported",
   "region": "ap-southeast-1",
   "usernameAttributes": [
