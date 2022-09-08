@@ -1,11 +1,18 @@
 {
   "auth": {
-    "nhakhoamyduc19337ef2f": {
+    "nhakhoamyduc18a859fe8": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false
+    }
+  },
+  "storage": {
+    "myducstorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }

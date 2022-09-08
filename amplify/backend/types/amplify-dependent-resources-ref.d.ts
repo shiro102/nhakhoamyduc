@@ -1,1 +1,8 @@
-export type AmplifyDependentResourcesAttributes = {}
+export type AmplifyDependentResourcesAttributes = {
+    "storage": {
+        "myducstorage": {
+            "BucketName": "string",
+            "Region": "string"
+        }
+    }
+}

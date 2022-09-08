@@ -1,0 +1,16 @@
+{
+  "resourceName": "myducstorage",
+  "policyUUID": "0c4e2113",
+  "bucketName": "myducbucket",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
