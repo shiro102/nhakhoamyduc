@@ -48,7 +48,7 @@ const components = {
         return (
             <View textAlign="center" padding={tokens.space.large}>
                 <Text color={tokens.colors.neutral[80]}>
-                    &copy; All Rights Reserved
+                    Nha Khoa Mỹ Đức &copy; All Rights Reserved
                 </Text>
             </View>
         );
@@ -150,6 +150,11 @@ const components = {
 
 const formFields = {
     signIn: {
+        username: {
+            labelHidden: false,
+            placeholder: 'Enter your email',
+            isRequired: true,
+        },
         password: {
             labelHidden: false,
             isRequired: true,
