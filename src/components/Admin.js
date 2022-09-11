@@ -120,7 +120,7 @@ const components = {
                 <>
                     {/* Re-use default `Authenticator.SignUp.FormFields` */}
                     <Authenticator.SignUp.FormFields/>
-                    <SelectField options={["Male", "Female"]} placeholder={"Choose your gender"} label={"Gender"} name={"gender"}></SelectField>
+                    <SelectField options={["Male", "Female", "Transgender", "Non-binary/non-conforming", "Prefer not to respond"]} placeholder={"Choose your gender"} label={"Gender"} name={"gender"}></SelectField>
                     {/* Append & require Terms & Conditions field to sign up  */}
                     <CheckboxField
                         errorMessage={validationErrors.acknowledgement }
@@ -157,33 +157,43 @@ const formFields = {
         },
     },
     signUp: {
+        email: {
+            labelHidden: false,
+            placeholder: 'Enter your email',
+            isRequired: true,
+        },
         password: {
-            labelHidden: true,
+            labelHidden: false,
             placeholder: 'Enter your password',
             isRequired: true,
         },
         confirm_password: {
             labelHidden: false,
+            isRequired: true,
             label: 'Confirm password',
         },
         given_name: {
             label: 'First Name',
             labelHidden: false,
+            isRequired: true,
             placeholder: 'Enter your first name',
         },
         family_name: {
             label: 'Last Name',
             labelHidden: false,
+            isRequired: true,
             placeholder: 'Enter your last name',
         },
         phone_number: {
             label: 'Phone Number',
             labelHidden: false,
+            isRequired: true,
             placeholder: 'Enter your phone number',
             defaultCountryCode: "+84"
         },
         birthdate:{
             label: 'BirthDate',
+            isRequired: true,
             labelHidden: false,
         }
     },
