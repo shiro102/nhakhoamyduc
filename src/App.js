@@ -10,14 +10,14 @@ import {
     Button,
     CheckboxField,
     Heading,
-    Image, PhoneNumberField, Radio, SelectField,
-    Text,
+    Image, PasswordField, PhoneNumberField, Radio, SelectField,
+    Text, TextField,
     useAuthenticator,
     useTheme,
     View
 } from '@aws-amplify/ui-react';
-import { listTodos } from './graphql/queries';
-import { createTodo as createNoteMutation, deleteTodo as deleteNoteMutation } from './graphql/mutations';
+import { listNotes } from './graphql/queries';
+import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
 // import useScript from "./useScript";
 // import useLink from "./useLink";
 
@@ -121,8 +121,6 @@ const components = {
                     {/* Re-use default `Authenticator.SignUp.FormFields` */}
                     <Authenticator.SignUp.FormFields/>
                     <SelectField options={["Male", "Female"]} placeholder={"Choose your gender"} label={"Gender"} name={"gender"}></SelectField>
-                    <PhoneNumberField defaultCountryCode={"+84"} label={"Phone Number"} name={"phone_number"}/>
-
                     {/* Append & require Terms & Conditions field to sign up  */}
                     <CheckboxField
                         errorMessage={validationErrors.acknowledgement }
@@ -159,46 +157,35 @@ const formFields = {
         },
     },
     signUp: {
-        "custom:username":{
-            label: "Username",
-            labelHidden: false,
-            placeholder: 'Enter your username',
-            isRequired: true,
-        },
-        username: {
-            label: 'Email',
-            labelHidden: false,
-            placeholder: 'Enter your email',
-            isRequired: true,
-        },
         password: {
-            labelHidden: false,
+            labelHidden: true,
             placeholder: 'Enter your password',
             isRequired: true,
-        },
-        email: {
-            hidden: true,
         },
         confirm_password: {
             labelHidden: false,
             label: 'Confirm password',
         },
         given_name: {
-            label: 'First name',
+            label: 'First Name',
             labelHidden: false,
             placeholder: 'Enter your first name',
         },
         family_name: {
-            label: 'Last name',
+            label: 'Last Name',
             labelHidden: false,
             placeholder: 'Enter your last name',
         },
-        birthdate: {
-            label: 'Date of birth',
-            type: "datetime",
+        phone_number: {
+            label: 'Phone Number',
             labelHidden: false,
-            placeholder: 'Enter your birthdate',
+            placeholder: 'Enter your phone number',
+            defaultCountryCode: "+84"
         },
+        birthdate:{
+            label: 'BirthDate',
+            labelHidden: false,
+        }
     },
     forceNewPassword: {
         password: {
@@ -224,8 +211,8 @@ function Admin() {
 
     // Function for retrieving data
     async function fetchNotes() {
-        const apiData = await API.graphql({ query: listTodos });
-        setNotes(apiData.data.listTodos.items);
+        const apiData = await API.graphql({ query: listNotes });
+        setNotes(apiData.data.listNotes.items);
     }
 
     async function createNote() {
