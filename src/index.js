@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Admin from "./components/Admin";
+import NoMatch from "./components/NoMatch";
 
 import reportWebVitals from './reportWebVitals';
 import {
@@ -22,6 +23,8 @@ root.render(
           <Routes>
               <Route path="/" element={<App />}/>
               <Route path="/admin" element={<Admin />} />
+              <Route path="*" element={<NoMatch />} />
+
           </Routes>
       </BrowserRouter>
   </React.StrictMode>

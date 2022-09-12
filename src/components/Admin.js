@@ -2,7 +2,7 @@ import awsExports from '../aws-exports';
 import React, { useState, useEffect } from 'react';
 import { Amplify } from 'aws-amplify';
 import { API } from 'aws-amplify';
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import {
     Authenticator,
@@ -30,7 +30,6 @@ const components = {
 
         return (
             <div>
-                {/*<Link to={"/"}>Go back to main page</Link>*/}
                 <View textAlign="center" padding={tokens.space.large}>
 
                     <Image style={{"pointerEvents": "none"}}
@@ -247,9 +246,10 @@ function Admin() {
 
     useLink("css/App.css", "admin")
 
-
     return (
-        <Authenticator  components= {components} formFields={formFields}
+        <div>
+            <Link to={"/"}>Go back to main page</Link>
+            <Authenticator  components= {components} formFields={formFields}
                         services={{
                             async validateCustomSignUp(formData) {
                                 if (!formData.acknowledgement) {
@@ -289,6 +289,7 @@ function Admin() {
                 </div>
             )}
         </Authenticator>
+        </div>
     );
 }
 

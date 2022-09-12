@@ -254,7 +254,7 @@ const App = props => {
                 </div>
             </header>
 
-            <div>
+            <div className="p-b-100">
                 <img className="img-fluid" src="images/myducshopsign.jpg" alt="IMG"/>
             </div>
             {/*/!*Cart*!/*/}
@@ -345,36 +345,10 @@ const App = props => {
             {/*</div>*/}
 
             {/*Slider*/}
-            <section className="section-slide">
+            <section className="section-slide p-b-100">
                 <div className="wrap-slick1">
                     <div className="slick1">
-                        <div className="item-slick1" style={{backgroundImage: "url(images/dental1-1.jpg)"}}>
-                            <div className="container h-full">
-                                <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                                    <div className="layer-slick1 animated visible-false" data-appear="fadeInDown"
-                                         data-delay="0">
-								<span className="ltext-201 cl2 respon2">
-									Dịch vụ chất lượng
-								</span>
-                                    </div>
 
-                                    {/*<div className="layer-slick1 animated visible-false" data-appear="fadeInUp"*/}
-                                    {/*     data-delay="800">*/}
-                                    {/*    <h2 className="ltext-201 cl2 p-t-19 p-b-43 respon1">*/}
-                                    {/*        NEW SEASON*/}
-                                    {/*    </h2>*/}
-                                    {/*</div>*/}
-
-                                    {/*<div className="layer-slick1 animated visible-false" data-appear="zoomIn"*/}
-                                    {/*     data-delay="1600">*/}
-                                    {/*    <a href="product.html"*/}
-                                    {/*       className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">*/}
-                                    {/*        Shop Now*/}
-                                    {/*    </a>*/}
-                                    {/*</div>*/}
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="item-slick1"
                              style={{backgroundImage: "url(images/dentist1-1.jpg)", backgroundSize: "50%"}}>
@@ -405,8 +379,36 @@ const App = props => {
                             </div>
                         </div>
 
+                        <div className="item-slick1" style={{backgroundImage: "url(images/dental-care.jpg)"}}>
+                            <div className="container h-full">
+                                <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                                    <div className="layer-slick1 animated visible-false" data-appear="fadeInDown"
+                                         data-delay="0">
+								<span className="ltext-201 cl2 respon2">
+									Dịch vụ chất lượng
+								</span>
+                                    </div>
+
+                                    {/*<div className="layer-slick1 animated visible-false" data-appear="fadeInUp"*/}
+                                    {/*     data-delay="800">*/}
+                                    {/*    <h2 className="ltext-201 cl2 p-t-19 p-b-43 respon1">*/}
+                                    {/*        NEW SEASON*/}
+                                    {/*    </h2>*/}
+                                    {/*</div>*/}
+
+                                    {/*<div className="layer-slick1 animated visible-false" data-appear="zoomIn"*/}
+                                    {/*     data-delay="1600">*/}
+                                    {/*    <a href="product.html"*/}
+                                    {/*       className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">*/}
+                                    {/*        Shop Now*/}
+                                    {/*    </a>*/}
+                                    {/*</div>*/}
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="item-slick1" style={{backgroundImage: "url(images/chinhnha1.jpg)"}}>
-                            <div className="container h-full m-l-30 m-t--30">
+                            <div className="container h-full m-l-80 m-t--30">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
                                          data-delay="0">
@@ -1409,7 +1411,7 @@ const App = props => {
                                     </tr>
                                     <tr>
                                         <td className="stext-107 cl7 hov-cl1 trans-04">Chủ Nhật</td>
-                                        <td className="stext-107 cl7 hov-cl1 trans-04">Nghỉ</td>
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 11:00</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1490,9 +1492,7 @@ const App = props => {
                         </div>
 
                         <p className="stext-107 cl6 txt-center">
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script>
-                            All rights reserved
+                            Nha Khoa Mỹ Đức &copy; All rights reserved
 
                         </p>
                     </div>
