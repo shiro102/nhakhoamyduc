@@ -17,7 +17,7 @@ import {
 } from '@aws-amplify/ui-react';
 import { listNotes } from '../graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
-import useLink from "./useLink";
+import useLink from "../functions/useLink";
 // import useScript from "./useScript";
 // import useLink from "./useLink";
 
@@ -215,7 +215,7 @@ const formFields = {
     },
 };
 
-function Admin() {
+const Admin = () => {
     const [notes, setNotes] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
 

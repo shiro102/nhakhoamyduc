@@ -1,7 +1,7 @@
 import {Route} from "react-router-dom";
 import React from "react";
 
-function LandingPage() {
+const LandingPage = () => {
     // let history = matchRoutes(routes);
     // console.log(history)
     React.useEffect(() => {

@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import Admin from "./components/Admin";
 import NoMatch from "./components/NoMatch";
+import Pricing from "./components/Pricing";
+import Layout from "./layout/Layout";
 
 import reportWebVitals from './reportWebVitals';
 import {
@@ -20,12 +22,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<App />}/>
-              <Route path="/admin" element={<Admin />} />
-              <Route path="*" element={<NoMatch />} />
-
-          </Routes>
+          <App />
       </BrowserRouter>
   </React.StrictMode>
 );
