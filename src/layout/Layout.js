@@ -7,6 +7,7 @@ import useLink from "../functions/useLink";
 import scriptTextList from "../scripts/scriptText";
 import scriptUrlList from "../scripts/scriptUrl";
 import Delayed from "./Delayed";
+import Footer from "../components/Footer";
 
 const Layout = () => {
 
@@ -17,6 +18,7 @@ const Layout = () => {
             <Delayed waitBeforeShow={100}>
                 <Header/>
                 <Outlet></Outlet>
+                <Footer/>
             </Delayed>
         </Fragment>
     );
