@@ -18,7 +18,6 @@ const useLink = (url, page) => {
             document.getElementById("app").remove()
         }
         document.head.appendChild(link);
-        console.log(document.head)
         return () => {
             document.head.removeChild(link);
         }
