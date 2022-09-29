@@ -2,7 +2,7 @@ import React from "react";
 import giayphep from "../images/giayphep_1.jpg"
 import front1 from "../images/front1.jpg"
 import desk1 from "../images/desk1.jpg"
-import tramrang1 from "../images/tramrang1.JPG"
+import tramrang1 from "../images/tramrang1.jpg"
 import useScript from "../functions/useScript";
 import scriptUrlList from "../scripts/scriptUrl";
 import scriptTextList from "../scripts/scriptText";
@@ -40,17 +40,17 @@ const About = () => {
                     ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả
                     phải chăng.
                 </p>
-                <img className= "p-b-20 m-t-20" width="600" height="400" src={desk1} alt={"front"}/> <br/>
+                <img className= "p-b-20 m-t-20" width="600" height="400" src={desk1} alt={"desk1"}/> <br/>
             </div>
             <div className="about p-l-300 p-r-300 reveal">
                 <p>
                     Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách
                     sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.
                 </p>
-                <img className= "p-b-20 m-t-20" width="600" height="400" src={tramrang1} alt={"front"}/> <br/>
+                <img className= "p-b-20 m-t-20" width="600" height="400" src={tramrang1} alt={"tramrang1"}/> <br/>
             </div>
             <div className="about p-l-300 p-r-300 reveal">
-                <img className= "p-b-20 m-t-20" width="600" height="400" src={front1} alt={"front"}/>
+                <img className= "p-b-20 m-t-20" width="600" height="400" src={front1} alt={"front1"}/>
             </div>
 
             {/*<img className="img-fluid" src={giayphep} alt={"logo"}/>*/}
