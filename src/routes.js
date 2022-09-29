@@ -4,6 +4,7 @@ import NoMatch from "./components/NoMatch";
 import Pricing from "./components/Pricing";
 import Layout from "./layout/Layout";
 import Home from "./components/Home"
+import About from "./components/About";
 
 const routes = [
     {
@@ -21,6 +22,10 @@ const routes = [
             {
                 path: "/pricing",
                 element: <Pricing />,
+            },
+            {
+                path: "/about",
+                element: <About />,
             },
             { path: "*", element: <NoMatch /> },
         ],

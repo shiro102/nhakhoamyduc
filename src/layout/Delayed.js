@@ -12,7 +12,9 @@ const Delayed = ({ children, waitBeforeShow = 500 }) => {
         return () => clearTimeout(timer);
     }, [waitBeforeShow]);
 
-    return isShown ? children : null;
+    return isShown ? children :   <div className="loader-container">
+        <div className="spinner"></div>
+    </div>;
 };
 
 export default Delayed;

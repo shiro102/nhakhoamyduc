@@ -15,9 +15,6 @@ const Home = () => {
 
     return (
         <div>
-            <div>
-                <img className="img-fluid" src="images/myducshopsign.jpg" alt="IMG"/>
-            </div>
             <section className="section-slide">
                 <div className="wrap-slick1">
                     <div className="slick1">

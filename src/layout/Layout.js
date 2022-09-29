@@ -15,7 +15,7 @@ const Layout = () => {
     useLink("css/util.css", "app");
     return (
         <Fragment>
-            <Delayed waitBeforeShow={100}>
+            <Delayed waitBeforeShow={200}>
                 <Header/>
                 <Outlet></Outlet>
                 <Footer/>

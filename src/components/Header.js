@@ -95,6 +95,10 @@ const Header = () => {
                     </form>
                 </div>
             </div>
+
+            <div>
+                <img width="100%" height="20%" src="images/myducshopsign1.jpg" alt="IMG"/>
+            </div>
         </header>
     );
 };
