@@ -2216,6 +2216,11 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.666667;
 }
 
+.stext-118 {
+  font-family: Arial;
+  font-size: 15px;
+  line-height: 1.666667;
+}
 
 /*---------------------------------------------*/
 .stext-301 {
@@ -3382,7 +3387,7 @@ fadein*/
 }
 
 
-/*//////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////// reveal*/
 .reveal{
   position: relative;
   transform: translateY(150px);
@@ -3393,4 +3398,18 @@ fadein*/
 .reveal.active{
   transform: translateY(0);
   opacity: 1;
+}
+
+/*////////////////////////////////////////////////////////////////////////// box shadow*/
+.box-shadow{
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  z-index: 2;
+  background-color: antiquewhite;
+  top: 20%;
+  left: 20%;
+  box-shadow: 10px 10px 5px lightslategrey;
+  width: 20%;
+  height: 40%
 }

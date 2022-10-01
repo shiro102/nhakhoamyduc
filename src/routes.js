@@ -5,6 +5,7 @@ import Pricing from "./components/Pricing";
 import Layout from "./layout/Layout";
 import Home from "./components/Home"
 import About from "./components/About";
+import Contact from "./components/Contact";
 
 const routes = [
     {
@@ -26,6 +27,10 @@ const routes = [
             {
                 path: "/about",
                 element: <About />,
+            },
+            {
+                path: "/contact",
+                element: <Contact />,
             },
             { path: "*", element: <NoMatch /> },
         ],
