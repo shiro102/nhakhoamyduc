@@ -32,5 +32,13 @@
         }
       }
     }
+  },
+  "function": {
+    "nhakhoamyduc18eda0430": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    }
   }
 }

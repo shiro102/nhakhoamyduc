@@ -15,15 +15,18 @@ const center = {
     lng: 106.66479980
 };
 
+const aws = require('aws-sdk');
+aws.config.update({
+    region:'ap-southeast-1'
+});
 // Load the AWS SDK
-var AWS = require('aws-sdk'),
-    region = "ap-southeast-1",
+var region = "ap-southeast-1",
     secretName = "GoogleMapApi",
     secret,
     decodedBinarySecret;
 
 // Create a Secrets Manager client
-var client = new AWS.SecretsManager({
+var client = new aws.SecretsManager({
     region: region
 });
 // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
@@ -72,6 +75,22 @@ client.getSecretValue({SecretId: secretName}, function(err, data) {
 });
 
 
+// const { Parameters } = await (new aws.SSM())
+//     .getParameters({
+//         Names: ["GOOGLE_MAP_API_KEY"].map(secretName => process.env[secretName]),
+//         WithDecryption: true,
+//     })
+//     .promise();
+//
+// (async () => {
+//     await (new aws.SSM())
+//         .getParameters({
+//             Names: ["GOOGLE_MAP_API_KEY"].map(secretName => process.env[secretName]),
+//             WithDecryption: true,
+//         })
+//         .promise()
+// })()
+
 const Contact = () => {
 
     useScript(scriptUrlList, scriptTextList)
@@ -97,6 +116,9 @@ const Contact = () => {
     const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
     }, [])
+
+    console.log(process.env.secrets)
+    console.log(process.env.GOOGLE_MAP_API_KEY)
 
     return isLoaded ? (
         <div style={{position: 'relative'}}>
