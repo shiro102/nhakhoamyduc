@@ -1,11 +1,10 @@
 import React from 'react'
-import {GoogleMap, useJsApiLoader, Marker, InfoBox} from '@react-google-maps/api';
+import {GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api';
 import useScript from "../functions/useScript";
 import scriptUrlList from "../scripts/scriptUrl";
 import scriptTextList from "../scripts/scriptText";
 import useLink from "../functions/useLink";
 
-console.log(process.env.REACT_APP_GOOGLE_MAP_API_KEY)
 const containerStyle = {
     width: '100%',
     height: '550px'
@@ -16,64 +15,64 @@ const center = {
     lng: 106.66479980
 };
 
-const aws = require('aws-sdk');
-aws.config.update({
-    region:'ap-southeast-1'
-});
-// Load the AWS SDK
-var region = "ap-southeast-1",
-    secretName = "GoogleMapApi",
-    secret,
-    decodedBinarySecret;
-
-// Create a Secrets Manager client
-var client = new aws.SecretsManager({
-    region: region
-});
+// const aws = require('aws-sdk');
+// aws.config.update({
+//     region:'ap-southeast-1'
+// });
+// // Load the AWS SDK
+// var region = "ap-southeast-1",
+//     secretName = "GoogleMapApi",
+//     secret,
+//     decodedBinarySecret;
+//
+// // Create a Secrets Manager client
+// var client = new aws.SecretsManager({
+//     region: region
+// });
 // In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
 // See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
 // We rethrow the exception by default.
 
-client.getSecretValue({SecretId: secretName}, function(err, data) {
-    console.log(err, data)
-    if (err) {
-        if (err.code === 'DecryptionFailureException')
-            // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InternalServiceErrorException')
-            // An error occurred on the server side.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidParameterException')
-            // You provided an invalid value for a parameter.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidRequestException')
-            // You provided a parameter value that is not valid for the current state of the resource.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'ResourceNotFoundException')
-            // We can't find the resource that you asked for.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-    }
-    else {
-        // Decrypts secret using the associated KMS key.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        if ('SecretString' in data) {
-            secret = data.SecretString;
-            secret = JSON.parse(secret);
-        } else {
-            let buff = new Buffer(data.SecretBinary, 'base64');
-            decodedBinarySecret = buff.toString('ascii');
-        }
-    }
-
-    console.log(secret)
-    console.log(decodedBinarySecret)
-
-});
+// client.getSecretValue({SecretId: secretName}, function(err, data) {
+//     console.log(err, data)
+//     if (err) {
+//         if (err.code === 'DecryptionFailureException')
+//             // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'InternalServiceErrorException')
+//             // An error occurred on the server side.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'InvalidParameterException')
+//             // You provided an invalid value for a parameter.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'InvalidRequestException')
+//             // You provided a parameter value that is not valid for the current state of the resource.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//         else if (err.code === 'ResourceNotFoundException')
+//             // We can't find the resource that you asked for.
+//             // Deal with the exception here, and/or rethrow at your discretion.
+//             throw err;
+//     }
+//     else {
+//         // Decrypts secret using the associated KMS key.
+//         // Depending on whether the secret is a string or binary, one of these fields will be populated.
+//         if ('SecretString' in data) {
+//             secret = data.SecretString;
+//             secret = JSON.parse(secret);
+//         } else {
+//             let buff = new Buffer(data.SecretBinary, 'base64');
+//             decodedBinarySecret = buff.toString('ascii');
+//         }
+//     }
+//
+//     console.log(secret)
+//     console.log(decodedBinarySecret)
+//
+// });
 
 
 // const { Parameters } = await (new aws.SSM())
@@ -99,7 +98,7 @@ const Contact = () => {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBB1wqfMuxreCiOJY92Ak8udsqWtzGk9pA"
+        googleMapsApiKey: "process.env.REACT_APP_GOOGLE_MAP_API_KEY"
     })
 
     const options = {
