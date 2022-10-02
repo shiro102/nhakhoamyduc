@@ -22,7 +22,7 @@ const Contact = () => {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.GOOGLE_MAP_API_KEY
+        googleMapsApiKey: "AIzaSyBB1wqfMuxreCiOJY92Ak8udsqWtzGk9pA"
     })
 
     const options = {
