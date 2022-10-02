@@ -5,6 +5,7 @@ import scriptUrlList from "../scripts/scriptUrl";
 import scriptTextList from "../scripts/scriptText";
 import useLink from "../functions/useLink";
 
+console.log(process.env.REACT_APP_GOOGLE_MAP_API_KEY)
 const containerStyle = {
     width: '100%',
     height: '550px'
