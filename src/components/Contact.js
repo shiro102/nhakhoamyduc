@@ -22,11 +22,10 @@ const Contact = () => {
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBB1wqfMuxreCiOJY92Ak8udsqWtzGk9pA"
+        googleMapsApiKey: process.env.GOOGLE_MAP_API_KEY
     })
 
     const options = {
-        mapTypeControl: false,
         streetViewControl: true,
         fullscreenControl: true,
     };
@@ -34,8 +33,7 @@ const Contact = () => {
     const [map, setMap] = React.useState(null)
 
     const onLoad = React.useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
+        map.setZoom(20)
         setMap(map)
     }, [])
 
@@ -49,7 +47,7 @@ const Contact = () => {
                 mapContainerStyle={containerStyle}
                 options={options}
                 center={center}
-                zoom={20}
+                zoom={18}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
             >
