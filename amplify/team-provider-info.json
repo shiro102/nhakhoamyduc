@@ -26,11 +26,6 @@
           "unauthRoleArn": "arn:aws:iam::698713864671:role/Cognito_nhakhoamyducidentitypoolUnauth_Role",
           "unauthRoleName": "Cognito_nhakhoamyducidentitypoolUnauth_Role"
         }
-      },
-      "function": {
-        "nhakhoamyduc18eda0430": {
-          "secretsPathAmplifyAppId": "d1oa3aicm14zeg"
-        }
       }
     }
   },
