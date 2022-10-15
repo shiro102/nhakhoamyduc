@@ -40,35 +40,47 @@ const Footer = () => {
                     <div className="col-sm-6 col-lg-3 p-b-50">
                         <h5 className="stext-301 cl0 p-l-22  p-b-10">Thời gian làm việc</h5>
                         <div>
-                            <table style={{borderCollapse: "separate", borderSpacing:"2em 0em"}}>
+                            <table style={{borderCollapse: "separate", borderSpacing:"1em 0em"}}>
                                 <tbody>
                                 <tr>
+                                    <th className="stext-107 cl7 hov-cl1 trans-04"></th>
+                                    <th className="stext-107 cl7 hov-cl1 trans-04">Sáng</th>
+                                    <th className="stext-107 cl7 hov-cl1 trans-04">Chiều</th>
+                                </tr>
+                                <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 2</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 3</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 4</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 5</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 6</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 7</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 20:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">Chủ Nhật</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 11:00</td>
+                                    <td className="stext-107 cl7 hov-cl1 trans-04">Nghỉ</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -91,7 +103,8 @@ const Footer = () => {
                         </h4>
 
                         <p className="stext-107 cl7 size-201">
-                            Số điện thoại: 0913895695 <br/>
+                            Sđt đặt lịch: 02862860945 <br/>
+                            Sđt bác sĩ: 0913895695 <br/>
                             Email: nhakhoamyduchcm@gmail.com
                         </p>
 

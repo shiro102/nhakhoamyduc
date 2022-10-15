@@ -26,6 +26,12 @@
           "unauthRoleArn": "arn:aws:iam::698713864671:role/Cognito_nhakhoamyducidentitypoolUnauth_Role",
           "unauthRoleName": "Cognito_nhakhoamyducidentitypoolUnauth_Role"
         }
+      },
+      "interactions": {
+        "nhakhoamyduchatbot": {
+          "deploymentBucketName": "amplify-nhakhoamyduc1-testing-210612-deployment",
+          "s3Key": "amplify-builds/nhakhoamyduchatbot-784e6b7441614a307548-build.zip"
+        }
       }
     }
   },

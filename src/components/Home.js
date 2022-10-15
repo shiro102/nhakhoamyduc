@@ -20,13 +20,12 @@ const Home = () => {
                     <div className="slick1">
 
 
-                        <div className="item-slick1"
-                             style={{backgroundImage: "url(images/dentist1-1.jpg)", backgroundSize: "50%"}}>
+                        <div className="item-slick1 background-image-1">
                             <div className="container h-full m-t--30">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rollIn"
                                          data-delay="0">
-                                    <span className="ltext-201 cl2 respon2">
+                                    <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
                                         Bác sĩ tận tình
                                     </span>
                                     </div>
@@ -49,12 +48,12 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="item-slick1" style={{backgroundImage: "url(images/dental-care.jpg)"}}>
+                        <div className="item-slick1 background-image-2">
                             <div className="container h-full">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="fadeInDown"
                                          data-delay="0">
-                                    <span className="ltext-201 cl2 respon2">
+                                    <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
                                         Dịch vụ chất lượng
                                     </span>
                                     </div>
@@ -77,12 +76,12 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="item-slick1" style={{backgroundImage: "url(images/chinhnha1.jpg)"}}>
-                            <div className="container h-full m-l-80 m-t--30">
+                        <div className="item-slick1 background-image-3">
+                            <div className="container h-full">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
                                          data-delay="0">
-                                    <span className="ltext-201 cl2 respon2">
+                                    <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
                                         Chỉnh nha đẹp tự nhiên
                                     </span>
                                     </div>

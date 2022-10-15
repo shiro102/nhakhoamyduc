@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 const Delayed = ({ children, waitBeforeShow = 500 }) => {
+    console.log(waitBeforeShow)
     const [isShown, setIsShown] = useState(false);
 
     useEffect(() => {
@@ -13,7 +14,8 @@ const Delayed = ({ children, waitBeforeShow = 500 }) => {
     }, [waitBeforeShow]);
 
     return isShown ? children :   <div className="loader-container">
-        <div className="spinner"></div>
+        <div className="spinner">
+        </div>
     </div>;
 };
 

@@ -34,23 +34,28 @@ const About = () => {
 
     return (
         <div>
-            <div className="about p-l-300 p-r-300">
+            <div className="about">
                 <p>
                     Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa tốt nhất
                     ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả
                     phải chăng.
                 </p>
-                <img className= "p-b-20 m-t-20" width="600" height="400" src={desk1} alt={"desk1"}/> <br/>
+                <img className= "image-about" src={desk1} alt={"desk1"}/> <br/>
             </div>
-            <div className="about p-l-300 p-r-300 reveal">
+            <div className="about reveal">
                 <p>
                     Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách
                     sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.
                 </p>
-                <img className= "p-b-20 m-t-20" width="600" height="400" src={tramrang1} alt={"tramrang1"}/> <br/>
+                <img className= "image-about"src={tramrang1} alt={"tramrang1"}/> <br/>
             </div>
-            <div className="about p-l-300 p-r-300 reveal">
-                <img className= "p-b-20 m-t-20" width="600" height="400" src={front1} alt={"front1"}/>
+            <div className="about reveal">
+                <p>
+                    Một số hình ảnh về chứng chỉ & phòng khám của chúng tôi
+                </p>
+                <img className= "image-about" src={front1} alt={"front1"}/> <br/>
+                <img className="image-about-2" src={giayphep} alt={"giayphep1"}/>
+
             </div>
 
             {/*<img className="img-fluid" src={giayphep} alt={"logo"}/>*/}

@@ -1,29 +1,29 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 const Header = () => {
     return (
         <header>
             <div className="container-menu-desktop">
                 <div className="top-bar">
-                    <div className="content-topbar flex-sb-m h-full container">
+                    <div className="flex-sb-m h-full w-full container">
                         <div className="left-top-bar">
                         </div>
 
                         <div className="right-top-bar flex-w h-full">
-                            <Link to="/" className="flex-c-m trans-04 p-lr-25">
+                            <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
                                 Help & FAQs
                             </Link>
 
-                            <Link to="/admin" className="flex-c-m trans-04 p-lr-25">
+                            <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
                                 My Account (In develop)
                             </Link>
 
-                            <Link to="/" className="flex-c-m trans-04 p-lr-25">
+                            <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
                                 VI
                             </Link>
 
-                            <Link to="/" className="flex-c-m trans-04 p-lr-25">
+                            <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
                                 EN
                             </Link>
                         </div>
@@ -31,16 +31,15 @@ const Header = () => {
                 </div>
 
                 <div className="wrap-menu-desktop">
-                    <nav className="limiter-menu-desktop container">
 
+                    <nav className="limiter-menu-desktop container justify-content-center">
                         <Link to="/" className="logo">
                             <img src="images/myduclogo.jpg" alt="IMG-LOGO"/>
                         </Link>
-
                         <div className="menu-desktop">
                             <ul className="main-menu">
-                                <li className="active-menu">
-                                    <Link to="/">Home</Link>
+                                <li>
+                                    <NavLink className="main-menu-navlink" exact to="/" activeClassName="active" style={{fontSize: "1.2em"}}>HOME</NavLink>
                                     {/*<ul className="sub-menu">*/}
                                     {/*    <li><Link to="index.html">Homepage 1</Link></li>*/}
                                     {/*    <li><Link to="home-02.html">Homepage 2</Link></li>*/}
@@ -53,15 +52,15 @@ const Header = () => {
                                 {/*</li>*/}
 
                                 <li>
-                                    <Link to="/pricing">Pricing</Link >
+                                    <NavLink className="main-menu-navlink" exact to="/pricing" style={{fontSize: "1.2em"}}>PRICING</NavLink >
                                 </li>
 
                                 <li>
-                                    <Link to="/about">About</Link>
+                                    <NavLink className="main-menu-navlink" exact  to="/about" style={{fontSize: "1.2em"}}>ABOUT</NavLink>
                                 </li>
 
                                 <li>
-                                    <Link to="/contact">Contact</Link>
+                                    <NavLink className="main-menu-navlink" exact to="/contact" style={{fontSize: "1.2em"}}>CONTACT</NavLink>
                                 </li>
 
                             </ul>
@@ -76,28 +75,16 @@ const Header = () => {
                     </nav>
                 </div>
 
-                <div className="logo-mobile">
-                    <Link to="/"><img src="images/myduclogo.jpg" alt="IMG-LOGO"/></Link>
-                </div>
             </div>
 
-            <div className="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-                <div className="container-search-header">
-                    <button className="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                        <img src="images/icons/icon-close2.png" alt="CLOSE"/>
-                    </button>
-
-                    <form className="wrap-search-header flex-w p-l-15">
-                        <button className="flex-c-m trans-04">
-                            <i className="zmdi zmdi-search"></i>
-                        </button>
-                        <input className="plh3" type="text" name="search" placeholder="Search..."/>
-                    </form>
-                </div>
+            <div className="header-container">
             </div>
-
             <div>
-                <img width="100%" height="20%" src="images/myducshopsign1.jpg" alt="IMG"/>
+                <picture>
+                    <source media="(max-width:900px)" srcSet="images/myducshopsign-big.jpg"/>
+                    <img width="100%" height="20%" src="images/myducshopsign-small.jpg" alt="IMG"/>
+                </picture>
+
             </div>
         </header>
     );
