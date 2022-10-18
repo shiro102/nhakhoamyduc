@@ -1,5 +1,6 @@
 import React from "react";
-import giayphep from "../images/giayphep_1.jpg"
+import nhanhieu1 from "../images/nhanhieu_1.jpg"
+import nhanhieu2 from "../images/nhanhieu_2.jpg"
 import front1 from "../images/front1.jpg"
 import desk1 from "../images/desk1.jpg"
 import tramrang1 from "../images/tramrang1.jpg"
@@ -51,10 +52,18 @@ const About = () => {
             </div>
             <div className="about reveal">
                 <p>
-                    Một số hình ảnh về chứng chỉ & phòng khám của chúng tôi
+                    Từ năm 2010, nha khoa chúng tôi đã được cục sở hữu trí tuệ công nhận là doanh nghiệp hợp lệ duy
+                    nhất dưới thương hiệu "Nha khoa Mỹ Đức".
                 </p>
-                <img className= "image-about" src={front1} alt={"front1"}/> <br/>
-                <img className="image-about-2" src={giayphep} alt={"giayphep1"}/>
+                <img className= "image-about-2" src={nhanhieu1} alt={"nhanhieu1"}/> <br/>
+                <img className="image-about-2" src={nhanhieu2} alt={"nhanhieu2"}/>
+
+            </div>
+            <div className="about reveal">
+                <p>
+                    Một số hình ảnh về phòng khám của chúng tôi
+                </p>
+                <img className="image-about" src={front1} alt={"front1"}/> <br/>
 
             </div>
 
