@@ -39,7 +39,7 @@ const Header = () => {
                         <div className="menu-desktop">
                             <ul className="main-menu">
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact to="/" activeClassName="active" style={{fontSize: "1.2em"}}>HOME</NavLink>
+                                    <NavLink className="main-menu-navlink" exact to="/" activeClassName="active" style={{fontSize: "1.2em"}}>Trang Chủ</NavLink>
                                     {/*<ul className="sub-menu">*/}
                                     {/*    <li><Link to="index.html">Homepage 1</Link></li>*/}
                                     {/*    <li><Link to="home-02.html">Homepage 2</Link></li>*/}
@@ -52,15 +52,15 @@ const Header = () => {
                                 {/*</li>*/}
 
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact to="/pricing" style={{fontSize: "1.2em"}}>PRICING</NavLink >
+                                    <NavLink className="main-menu-navlink" exact to="/" style={{fontSize: "1.2em"}}>Bảng Giá</NavLink >
                                 </li>
 
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact  to="/about" style={{fontSize: "1.2em"}}>ABOUT</NavLink>
+                                    <NavLink className="main-menu-navlink" exact  to="/" style={{fontSize: "1.2em"}}>Giới Thiệu</NavLink>
                                 </li>
 
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact to="/contact" style={{fontSize: "1.2em"}}>CONTACT</NavLink>
+                                    <NavLink className="main-menu-navlink" exact to="/contact" style={{fontSize: "1.2em"}}>Bản Đồ</NavLink>
                                 </li>
 
                             </ul>

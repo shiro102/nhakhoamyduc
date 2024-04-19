@@ -7,37 +7,6 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 col-lg-3 p-b-50">
-                        <h4 className="stext-301 cl0 p-b-30">
-                            Dịch vụ chính
-                        </h4>
-
-                        <ul>
-                            <li className="p-b-10">
-                                <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                    Nhổ & trám răng
-                                </a>
-                            </li>
-
-                            <li className="p-b-10">
-                                <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                    Chữa tủy
-                                </a>
-                            </li>
-
-                            <li className="p-b-10">
-                                <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                    Trồng răng giả & Implant
-                                </a>
-                            </li>
-
-                            <li className="p-b-10">
-                                <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
-                                    Chỉnh nha
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-sm-6 col-lg-3 p-b-50">
                         <h5 className="stext-301 cl0 p-l-22  p-b-10">Thời gian làm việc</h5>
                         <div>
                             <table style={{borderCollapse: "separate", borderSpacing:"1em 0em"}}>

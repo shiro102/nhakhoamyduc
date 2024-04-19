@@ -76,13 +76,13 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="item-slick1 background-image-3">
+                        <div className="item-slick1 background-image-4">
                             <div className="container h-full">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
                                          data-delay="0">
                                     <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
-                                        Chỉnh nha đẹp tự nhiên
+                                        Giá cả phải chăng
                                     </span>
                                     </div>
 

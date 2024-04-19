@@ -468,6 +468,10 @@
   .background-image-3 {
     background-image: url(../images/chinhnha1.jpg);
   }
+
+  .background-image-4 {
+    background-image: url(../images/dental1-1.jpg);
+  }  
 }
 @media (max-width: 900px) {
   .background-image-1{
@@ -479,6 +483,9 @@
   .background-image-3{
     background-image: url(../images/chinhnha2.jpg);
   }
+  .background-image-4 {
+    background-image: url(../images/dental1-1.jpg);
+  }    
 }
 
 .rs1-slick1 .item-slick1 {
