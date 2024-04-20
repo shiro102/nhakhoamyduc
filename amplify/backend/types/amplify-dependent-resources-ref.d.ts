@@ -1,22 +1,21 @@
 export type AmplifyDependentResourcesAttributes = {
-    "storage": {
-        "myducstorage": {
-            "BucketName": "string",
-            "Region": "string"
-        }
-    },
-    "api": {
-        "nhakhoamyducGraphQL": {
-            "GraphQLAPIKeyOutput": "string",
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        }
-    },
-    "interactions": {
-        "nhakhoamyduchatbot": {
-            "Region": "string",
-            "BotName": "string",
-            "FunctionArn": "string"
-        }
+  "api": {
+    "nhakhoamyducGraphQL": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string"
     }
+  },
+  "interactions": {
+    "nhakhoamyduchatbot": {
+      "BotName": "string",
+      "FunctionArn": "string",
+      "Region": "string"
+    }
+  },
+  "storage": {
+    "myducstorage": {
+      "BucketName": "string",
+      "Region": "string"
+    }
+  }
 }
