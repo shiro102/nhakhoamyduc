@@ -349,7 +349,7 @@
 
 .main-menu-navlink:after {
   transition: all ease-in-out .2s;
-  margin-top: 1px;
+  margin-top: -2px;
   background: none repeat scroll 0 0 #6c7ae0;
   content: "";
   display: block;
@@ -386,18 +386,14 @@
   font-family: Poppins-Medium;
   font-size: 14px;
   color: whitesmoke;
-  padding: 2px 0px;
+  padding: 2.1px 0px;
 }
 
 .fix-menu-desktop .main-menu > li > a {
   font-family: Poppins-Medium;
-  font-size: 14px;
+  font-size: 15px;
   color: white;
-  padding: 2px 0px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  padding: 3px 0px;
 }
 
 .header-v3 .main-menu > li > a {
@@ -457,20 +453,20 @@
 
 @media (min-width: 900px) {
   .background-image-1 {
-    background-image: url(../images/dentist1-1.jpg);
-    background-size: 50%;
+    background-image: url(../images/dentist-3.jpg);
+    background-size: 110%;
   }
 
   .background-image-2 {
-    background-image: url(../images/dental-care.jpg);
+    background-image: url(../images/items.jpeg);
   }
 
   .background-image-3 {
-    background-image: url(../images/chinhnha1.jpg);
+    background-image: url(../images/smile1.jpeg);
   }
 
   .background-image-4 {
-    background-image: url(../images/dental1-1.jpg);
+    background-image: url(../images/patient.jpeg);
   }  
 }
 @media (max-width: 900px) {
@@ -1642,11 +1638,11 @@ fadein*/
   padding-left: 7em;
 
   font-size: 21px;
-  text-align: center;
-  animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
+  text-align: left;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s; /* Firefox */
+  -webkit-animation: fadein 1s; /* Safari and Chrome */
+  -o-animation: fadein 1s; /* Opera */
 }
 @media (max-width: 900px) {
   .about {
@@ -1654,11 +1650,11 @@ fadein*/
     padding-right: 1px;
     padding-left: 1px;
     font-size: 21px;
-    text-align: center;
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    text-align: left;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
   }
 }
 
@@ -1724,12 +1720,26 @@ fadein*/
   height: 180px;
 }
 .image-about{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 20px;
   margin-top: 20px;
   width: 600px;
   height: 400px;
 }
+
+.row {
+  display: flex;
+}
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
 .image-about-2{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 20px;
   margin-top: 20px;
   width: 600px;

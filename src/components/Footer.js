@@ -1,55 +1,79 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import { Translation } from "react-i18next";
 
 const Footer = () => {
     return (
         <footer className="bg3 p-t-75 p-b-32">
             <div className="container">
-                <div className="row">
+                <div className="row">                    
                     <div className="col-sm-6 col-lg-3 p-b-50">
-                        <h5 className="stext-301 cl0 p-l-22  p-b-10">Thời gian làm việc</h5>
+                        <Translation>{t =>  
+                            <h5 className="stext-301 cl0 p-l-22  p-b-10">{t('workingTime1')}</h5>}
+                        </Translation> 
+
                         <div>
                             <table style={{borderCollapse: "separate", borderSpacing:"1em 0em"}}>
                                 <tbody>
                                 <tr>
                                     <th className="stext-107 cl7 hov-cl1 trans-04"></th>
-                                    <th className="stext-107 cl7 hov-cl1 trans-04">Sáng</th>
-                                    <th className="stext-107 cl7 hov-cl1 trans-04">Chiều</th>
+                                    <Translation>{t =>  
+                                        <th className="stext-107 cl7 hov-cl1 trans-04">{t('shift1')}</th>}
+                                    </Translation> 
+                                    <Translation>{t =>  
+                                        <th className="stext-107 cl7 hov-cl1 trans-04">{t('shift2')}</th>}
+                                    </Translation>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 2</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day1')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 3</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day2')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 4</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day3')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 5</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day4')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 6</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day5')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Thứ 7</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day6')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 12:00</td>
                                     <td className="stext-107 cl7 hov-cl1 trans-04">14:00 – 20:00</td>
                                 </tr>
                                 <tr>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Chủ Nhật</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('day7')}</td>}
+                                    </Translation> 
                                     <td className="stext-107 cl7 hov-cl1 trans-04">8:00 – 11:00</td>
-                                    <td className="stext-107 cl7 hov-cl1 trans-04">Nghỉ</td>
+                                    <Translation>{t => 
+                                        <td className="stext-107 cl7 hov-cl1 trans-04">{t('shift3')}</td>}
+                                    </Translation> 
                                 </tr>
                                 </tbody>
                             </table>
@@ -57,24 +81,36 @@ const Footer = () => {
                     </div>
 
                     <div className="col-sm-6 col-lg-3 p-b-50">
-                        <h4 className="stext-301 cl0 p-b-30">
-                            Địa chỉ
-                        </h4>
+                        <Translation>{t => 
+                            <h4 className="stext-301 cl0 p-b-30">
+                                {t('address')}
+                            </h4>}
+                        </Translation>
 
+                        <Translation>{t =>         
                         <p className="stext-107 cl7 size-201">
-                            204 Thống Nhất, Phường 11, quận Gò Vấp, thành phố Hồ Chí Minh
-                        </p>
+                            {t('realAddress')}
+                        </p>}
+                        </Translation>
                     </div>
 
                     <div className="col-sm-6 col-lg-3 p-b-50">
+                        <Translation>{t =>  
                         <h4 className="stext-301 cl0 p-b-30">
-                            Thông tin liên lạc
-                        </h4>
+                            {t('contact')}
+                        </h4>}
+                        </Translation>
 
                         <p className="stext-107 cl7 size-201">
-                            Sđt đặt lịch: 02862860945 <br/>
-                            Sđt bác sĩ: 0913895695 <br/>
-                            Email: nhakhoamyduchcm@gmail.com
+                            <Translation>{t =>
+                            <span> {t('phoneNum1')}</span>}
+                            </Translation> <br/>
+                            <Translation>{t =>
+                            <span> {t('phoneNum2')}</span>}
+                            </Translation> <br/>
+                            <Translation>{t =>
+                            <span> {t('email')}</span>}
+                            </Translation> <br/>
                         </p>
 
                         <div className="p-t-27">
@@ -116,10 +152,12 @@ const Footer = () => {
 
 
                 <div className="p-t-40">
-                    <p className="stext-107 cl6 txt-center">
-                        Nha Khoa Mỹ Đức &copy; All rights reserved
-
-                    </p>
+                        <p className="stext-107 cl6 txt-center">
+                            <Translation>{t =>
+                                <span>{t('name')} </span>}
+                            </Translation>
+                            &copy; All rights reserved
+                        </p>
                 </div>
             </div>
         </footer>

@@ -6,6 +6,7 @@ import Admin from "./components/Admin";
 import NoMatch from "./components/NoMatch";
 import Pricing from "./components/Pricing";
 import Layout from "./layout/Layout";
+import i18n from "./components/LangConfig";
 
 import reportWebVitals from './reportWebVitals';
 import {
