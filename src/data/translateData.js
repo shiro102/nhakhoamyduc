@@ -77,7 +77,7 @@ const data = {
         vietnamese: "Vietnamese",
         description1: "Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa với những dịch vụ tốt nhất ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả phù hợp với mọi gia đình.",
         description2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
-        description3: "Từ năm 2010, nha khoa chúng tôi đã được cục sở hữu trí tuệ công nhận là doanh nghiệp hợp lệ duy nhất dưới thương hiệu 'Nha khoa Mỹ Đức', cùng với những thành tựu trong lĩnh vực y khoa mà chúng tôi đã đạt được trong hơn 10 năm thành lập sẽ giúp chúng tôi cung cấp cho quý khác những dịch vụ hoàn hảo nhất.",
+        description3: "Từ năm 2010, nha khoa chúng tôi đã được cục sở hữu trí tuệ công nhận là doanh nghiệp hợp lệ duy nhất dưới thương hiệu 'Nha khoa Mỹ Đức', cùng với những thành tựu trong lĩnh vực y khoa mà chúng tôi đã đạt được trong hơn 10 năm thành lập sẽ giúp chúng tôi cung cấp cho quý khách những dịch vụ hoàn hảo nhất.",
         motto: "Nụ cười của bạn chính là niềm vinh dự của chúng tôi."
     },
   };
