@@ -52,13 +52,13 @@ const Header = () => {
 
                                 <li>
                                     <Translation>{t =>
-                                        <NavLink className="main-menu-navlink" exact to="/" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('price')}</NavLink >
+                                        <NavLink className="main-menu-navlink" exact to="/pricing" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('price')}</NavLink >
                                     }</Translation>                                         
                                 </li>
 
                                 <li>
                                     <Translation>{t =>
-                                        <NavLink className="main-menu-navlink" exact  to="/" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('about')}</NavLink>
+                                        <NavLink className="main-menu-navlink" exact  to="/about" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('about')}</NavLink>
                                     }</Translation>      
                                 </li>
 

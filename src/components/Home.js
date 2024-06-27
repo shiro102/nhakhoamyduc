@@ -18,7 +18,6 @@ const Home = () => {
             <section className="section-slide">
                 <div className="wrap-slick1">
                     <div className="slick1">
-                        
                         <div className="item-slick1 background-image-1">
                             <div className="container h-full m-t--30">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">

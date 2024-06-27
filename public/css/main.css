@@ -458,15 +458,15 @@
   }
 
   .background-image-2 {
-    background-image: url(../images/items.jpeg);
+    background-image: url(../images/items.jpg);
   }
 
   .background-image-3 {
-    background-image: url(../images/smile1.jpeg);
+    background-image: url(../images/smile1.jpg);
   }
 
   .background-image-4 {
-    background-image: url(../images/patient.jpeg);
+    background-image: url(../images/patient.jpg);
   }  
 }
 @media (max-width: 900px) {
