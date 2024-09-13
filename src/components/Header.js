@@ -26,7 +26,7 @@ const Header = () => {
                             </Translation> 
                             
                             <Translation>{t =>
-                                <span className="flex-c-m" style={{paddingLeft: "1.5vw", paddingRight: "0.5vw", fontFamily: 'Times New Roman', color: '#dcdcdc', width: "20vw", maxWidth: "130px"}}>
+                                <span className="flex-c-m" style={{paddingLeft: "1.5vw", paddingRight: "0.5vw", fontFamily: 'Times New Roman', color: '#dcdcdc', width: "22vw", maxWidth: "140px"}}>
                                     {t('language')}: 
                                 </span>}
                             </Translation> 
