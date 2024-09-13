@@ -4,7 +4,7 @@ const data = {
         slogan1: "Dedicated Doctors",
         slogan2: "High-quality Services",
         slogan3: "Affordable Prices",        
-        homepage: 'HOMEPAGE',
+        homepage: 'HOME',
         price: 'PRICE',
         about: 'ABOUT',
         map:'MAP',
