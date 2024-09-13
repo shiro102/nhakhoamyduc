@@ -35,26 +35,26 @@ const About = () => {
     useLink("css/util.css", "app")
 
     return (
-        <div style={{fontFamily: 'Times New Roman'}}>
-            <div className="about">
+        <div className= "about-home" style={{fontFamily: 'Times New Roman'}}>
+            <div className="about about-text">
                 <Translation>{t =>
-                    <p>
+                    <p style={{fontSize: "1.1em"}}>
                         {t('description1')}
                     </p>}
                 </Translation> 
-                <img className= "image-about" src={desk1} alt={"desk1"}/> <br/>
+                <img className= "image-about" src={desk1} alt={"desk1"} /> <br/>
             </div>
-            <div className="about reveal">
+            <div className="about about-text reveal">
                 <Translation>{t =>
-                    <p>
+                    <p style={{fontSize: "1.1em"}}>
                         {t('description2')}
                     </p>}
                 </Translation> 
-                <img className= "image-about"src={tramrang1} alt={"tramrang1"}/> <br/>
+                <img className= "image-about" src={tramrang1} alt={"tramrang1"}/> <br/>
             </div>
-            <div className="about reveal row">
+            <div className="about about-text reveal row">
                 <Translation>{t =>
-                    <p>
+                    <p style={{fontSize: "1.1em"}}>
                         {t('description3')}    
                     </p>}
                 </Translation> 
@@ -65,7 +65,7 @@ const About = () => {
                     <img className="image-about-2" src={nhanhieu2} alt={"nhanhieu2"}/>
                 </div>
             </div>
-            <div className="about" style={{textAlign: "center", paddingBottom: "2em", fontStyle: "italic", fontWeight: "bold", fontSize: "1.5em", color: "#0000FF"}}>
+            <div className="about about-text" style={{textAlign: "center", paddingBottom: "2em", fontStyle: "italic", fontWeight: "bold", fontSize: "2.5em", color: "#04043b", fontFamily: 'Serif'}}>
                 <Translation>{t =>
                     <p>
                         {t('motto')} 

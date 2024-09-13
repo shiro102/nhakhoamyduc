@@ -8,6 +8,48 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 col-lg-3 p-b-50">
+
+                        <Translation>{t =>
+                            <h4 className="stext-301 cl0 p-b-30">
+                                {t('mainService')}
+                            </h4>}
+                        </Translation> 
+
+                        <ul>
+                            <li className="p-b-10">
+                                <Translation>{t =>
+                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
+                                        {t('mainService1')}
+                                    </a>}
+                                </Translation> 
+                            </li>
+
+                            <li className="p-b-10">
+                                <Translation>{t =>
+                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
+                                        {t('mainService2')}
+                                    </a>}
+                                </Translation> 
+                            </li>
+
+                            <li className="p-b-10">
+                                <Translation>{t =>                                
+                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
+                                        {t('mainService3')}
+                                    </a>}
+                                </Translation> 
+                            </li>
+
+                            <li className="p-b-10">
+                                <Translation>{t =>                                      
+                                    <a href="#" className="stext-107 cl7 hov-cl1 trans-04">
+                                        {t('mainService4')}
+                                    </a>}
+                                </Translation> 
+                            </li>
+                        </ul>
+                    </div>                    
+                    <div className="col-sm-6 col-lg-3 p-b-50">
                         <Translation>{t =>  
                             <h5 className="stext-301 cl0 p-l-22  p-b-10">{t('workingTime1')}</h5>}
                         </Translation> 
