@@ -72,7 +72,7 @@ const data = {
         email: "Email: nhakhoamyduchcm@gmail.com",
         name: "Nha Khoa Mỹ Đức",
         FAQ: "Trợ Giúp",
-        account: "Tài khoản của tôi (Đang phát triển)",
+        account: "Tài khoản (Đang phát triển)",
         language: "Ngôn ngữ",
         vietnamese: "Vietnamese",
         description1: "Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa với những dịch vụ tốt nhất ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả phù hợp với mọi gia đình.",
