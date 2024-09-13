@@ -65,7 +65,7 @@ const About = () => {
                     <img className="image-about-2" src={nhanhieu2} alt={"nhanhieu2"}/>
                 </div>
             </div>
-            <div className="about about-text" style={{textAlign: "center", paddingBottom: "2em", fontStyle: "italic", fontWeight: "bold", fontSize: "2.5em", color: "#04043b", fontFamily: 'Serif'}}>
+            <div className="about about-text" style={{textAlign: "center", paddingBottom: "2em", fontStyle: "italic", fontWeight: "bold", fontSize: "2.5em", color: "#07ffde", fontFamily: 'Serif'}}>
                 <Translation>{t =>
                     <p>
                         {t('motto')} 

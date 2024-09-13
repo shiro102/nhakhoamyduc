@@ -37,7 +37,7 @@ const data = {
         description1: "With over 10 years of experience in the dental field, My Duc Dental is one of the best dental clinics in Ho Chi Minh City, where you can find the best dental care services at prices suitable for every family.",
         description2: "Our professional team of doctors will ensure you have the most comfortable experience, offering free consultations and examinations to help you choose the perfect service tailored to your needs.",
         description3: "Since 2010, our dental clinic has been the exclusive provider officially recognized by the Intellectual Property Office under the 'My Duc Dental' brand. With over a decade of achievements in the medical field, we are dedicated to delivering you the highest quality services available.",
-        motto: "Your smile is our greatest pride."
+        motto: "Your Smile Is Our Greatest Pride"
     },
     /************ Vietnamese **************/
     vn: {
@@ -78,7 +78,7 @@ const data = {
         description1: "Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa với những dịch vụ tốt nhất ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả phù hợp với mọi gia đình.",
         description2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
         description3: "Từ năm 2010, nha khoa chúng tôi đã được cục sở hữu trí tuệ công nhận là doanh nghiệp hợp lệ duy nhất dưới thương hiệu 'Nha khoa Mỹ Đức', cùng với những thành tựu trong lĩnh vực y khoa mà chúng tôi đã đạt được trong hơn 10 năm thành lập sẽ giúp chúng tôi cung cấp cho quý khách những dịch vụ hoàn hảo nhất.",
-        motto: "Nụ cười của bạn chính là niềm vinh dự của chúng tôi."
+        motto: "Nụ Cười Của Bạn Chính Là Niềm Vinh Dự Của Chúng Tôi."
     },
   };
   
