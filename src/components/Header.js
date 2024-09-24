@@ -14,19 +14,19 @@ const Header = () => {
 
                         <div className="right-top-bar flex-w h-full">
                             <Translation>{t =>
-                                <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "14vw", maxWidth: "140px"}}>                                
+                                <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "20vw", maxWidth: "140px"}}>                                
                                      {t('FAQ')}
                                 </Link>}    
                             </Translation> 
 
                             <Translation>{t =>
-                                <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "22vw", maxWidth: "220px"}}>
+                                <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "24vw", maxWidth: "200px"}}>
                                     {t('account')}
                                 </Link>}
                             </Translation> 
                             
                             <Translation>{t =>
-                                <span className="flex-c-m" style={{paddingLeft: "1.5vw", paddingRight: "0.5vw", fontFamily: 'Times New Roman', color: '#dcdcdc', width: "22vw", maxWidth: "140px"}}>
+                                <span className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "0.5vw", fontFamily: 'Times New Roman', color: '#b5b5b5', width: "24vw", maxWidth: "140px"}}>
                                     {t('language')}: 
                                 </span>}
                             </Translation> 
