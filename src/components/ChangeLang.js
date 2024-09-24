@@ -18,6 +18,7 @@ export default class ChangeLang extends React.Component {
       return (
         <div>
           <select
+            style={{width: '20vw', maxWidth: '100px', marginRight: '17px'}}
             className="selectBox"
             onChange={this.langChange}
             name="lang"

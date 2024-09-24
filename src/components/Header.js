@@ -20,7 +20,7 @@ const Header = () => {
                             </Translation> 
 
                             <Translation>{t =>
-                                <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "24vw", maxWidth: "200px"}}>
+                                <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "22vw", maxWidth: "180px"}}>
                                     {t('account')}
                                 </Link>}
                             </Translation> 
