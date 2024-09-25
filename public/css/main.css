@@ -224,7 +224,7 @@
   background-color: transparent;
   width: 100%;
   height: 84px;
-  top: 65px;
+  top: 63px;
   left: 0px;
   -webkit-transition: height 0.3s, background-color 0.3s;
   -o-transition: height 0.3s, background-color 0.3s;
@@ -233,6 +233,11 @@
 
 }
 
+@media (max-width: 900px) {
+  .wrap-menu-desktop {
+    top: 65px;
+  }
+}  
 
 .header-v2 .wrap-menu-desktop {
   background-color: #fff;
