@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App';
 import {Link} from "react-router-dom";
 
@@ -7,9 +7,9 @@ import useScript from "../functions/useScript";
 import useLink from "../functions/useLink";
 import scriptTextList from "../scripts/scriptText";
 import scriptUrlList from "../scripts/scriptUrl";
+import { Translation } from "react-i18next";
 
 const Home = () => {
-
     useScript(scriptUrlList, scriptTextList)
     useLink("css/util.css", "app")
 
@@ -18,16 +18,16 @@ const Home = () => {
             <section className="section-slide">
                 <div className="wrap-slick1">
                     <div className="slick1">
-
-
                         <div className="item-slick1 background-image-1">
                             <div className="container h-full m-t--30">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rollIn"
                                          data-delay="0">
-                                    <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
-                                        Bác sĩ tận tình
-                                    </span>
+                                    <Translation>{t => 
+                                        <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
+                                            {t('slogan1')}
+                                        </span>}
+                                    </Translation>                                    
                                     </div>
 
                                     {/*<div className="layer-slick1 animated visible-false" data-appear="lightSpeedIn"*/}
@@ -53,9 +53,11 @@ const Home = () => {
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="fadeInDown"
                                          data-delay="0">
-                                    <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
-                                        Dịch vụ chất lượng
-                                    </span>
+                                    <Translation>{t => 
+                                        <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
+                                            {t('slogan2')}
+                                        </span>}
+                                    </Translation>
                                     </div>
 
                                     {/*<div className="layer-slick1 animated visible-false" data-appear="fadeInUp"*/}
@@ -76,14 +78,16 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="item-slick1 background-image-3">
+                        <div className="item-slick1 background-image-4">
                             <div className="container h-full">
                                 <div className="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                                     <div className="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
                                          data-delay="0">
-                                    <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
-                                        Chỉnh nha đẹp tự nhiên
-                                    </span>
+                                    <Translation>{t => 
+                                        <span className="ltext-201 cl2 respon2" style={{color:"#162F2E"}}>
+                                            {t('slogan3')}
+                                        </span>}
+                                    </Translation>
                                     </div>
 
                                     {/*<div className="layer-slick1 animated visible-false" data-appear="rotateInUpRight"*/}

@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
+import { Translation } from "react-i18next";
+import ChangeLang from "../components/ChangeLang";
 
 const Header = () => {
     return (
@@ -11,21 +13,25 @@ const Header = () => {
                         </div>
 
                         <div className="right-top-bar flex-w h-full">
-                            <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
-                                Help & FAQs
-                            </Link>
+                            <Translation>{t =>
+                                <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "20vw", maxWidth: "140px"}}>                                
+                                     {t('FAQ')}
+                                </Link>}    
+                            </Translation> 
 
-                            <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
-                                My Account (In develop)
-                            </Link>
-
-                            <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
-                                VI
-                            </Link>
-
-                            <Link to="/" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw"}}>
-                                EN
-                            </Link>
+                            <Translation>{t =>
+                                <Link to="/admin" className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "1.5vw", fontFamily: 'Times New Roman', width: "22vw", maxWidth: "200px"}}>
+                                    {t('account')}
+                                </Link>}
+                            </Translation> 
+                            
+                            <Translation>{t =>
+                                <span className="flex-c-m trans-04" style={{paddingLeft: "1.5vw", paddingRight: "0.5vw", fontFamily: 'Times New Roman', color: '#b5b5b5', width: "24vw", maxWidth: "140px"}}>
+                                    {t('language')}: 
+                                </span>}
+                            </Translation> 
+                            <div className="flex-c-m"><ChangeLang />  </div>
+                                      
                         </div>
                     </div>
                 </div>
@@ -39,28 +45,27 @@ const Header = () => {
                         <div className="menu-desktop">
                             <ul className="main-menu">
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact to="/" activeClassName="active" style={{fontSize: "1.2em"}}>HOME</NavLink>
-                                    {/*<ul className="sub-menu">*/}
-                                    {/*    <li><Link to="index.html">Homepage 1</Link></li>*/}
-                                    {/*    <li><Link to="home-02.html">Homepage 2</Link></li>*/}
-                                    {/*    <li><Link to="home-03.html">Homepage 3</Link></li>*/}
-                                    {/*</ul>*/}
-                                </li>
-
-                                {/*<li className="label1" data-label1="hot">*/}
-                                {/*    <Link to="shoping-cart.html">Features</Link>*/}
-                                {/*</li>*/}
-
-                                <li>
-                                    <NavLink className="main-menu-navlink" exact to="/pricing" style={{fontSize: "1.2em"}}>PRICING</NavLink >
+                                    <Translation>{t =>
+                                        <NavLink className="main-menu-navlink" exact to="/" activeClassName="active" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('homepage')}</NavLink>
+                                    }</Translation>  
                                 </li>
 
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact  to="/about" style={{fontSize: "1.2em"}}>ABOUT</NavLink>
+                                    <Translation>{t =>
+                                        <NavLink className="main-menu-navlink" exact to="/pricing" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('price')}</NavLink >
+                                    }</Translation>                                         
                                 </li>
 
                                 <li>
-                                    <NavLink className="main-menu-navlink" exact to="/contact" style={{fontSize: "1.2em"}}>CONTACT</NavLink>
+                                    <Translation>{t =>
+                                        <NavLink className="main-menu-navlink" exact  to="/about" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('about')}</NavLink>
+                                    }</Translation>      
+                                </li>
+
+                                <li>
+                                    <Translation>{t =>
+                                        <NavLink className="main-menu-navlink" exact to="/contact" style={{fontSize: "1.4em", fontFamily: 'Times New Roman'}}>{t('map')}</NavLink>
+                                    }</Translation>
                                 </li>
 
                             </ul>

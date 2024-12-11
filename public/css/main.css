@@ -180,7 +180,9 @@
 /*==================================================================
 [ Top bar ]*/
 .top-bar {
-  height: 40px;
+  height: calc(100px - 2vw);
+  min-height: 30px;
+  max-height: 65px;
   background-color: #222;
 }
 
@@ -222,7 +224,7 @@
   background-color: transparent;
   width: 100%;
   height: 84px;
-  top: 40px;
+  top: 63px;
   left: 0px;
   -webkit-transition: height 0.3s, background-color 0.3s;
   -o-transition: height 0.3s, background-color 0.3s;
@@ -231,6 +233,11 @@
 
 }
 
+@media (max-width: 900px) {
+  .wrap-menu-desktop {
+    top: 65px;
+  }
+}  
 
 .header-v2 .wrap-menu-desktop {
   background-color: #fff;
@@ -325,6 +332,7 @@
   padding: 20px 10px 20px 0px;
   margin: 0px 20px 0px 20px;
 }
+
 @media (max-width: 900px) {
   .main-menu > li {
     display: block;
@@ -338,7 +346,7 @@
     background-color: transparent;
     width: 100%;
     height: 84px;
-    top: 40px;
+    top: 65px;
     -webkit-transition: height 0.3s, background-color 0.3s;
     -o-transition: height 0.3s, background-color 0.3s;
     -moz-transition: height 0.3s, background-color 0.3s;
@@ -347,14 +355,20 @@
   }
 }
 
+.main-menu-navlink {
+  position: relative;
+}
+
 .main-menu-navlink:after {
-  transition: all ease-in-out .2s;
-  margin-top: 1px;
+  transition: all ease-in-out 0.2s;
   background: none repeat scroll 0 0 #6c7ae0;
   content: "";
   display: block;
   height: 1px;
   width: 0;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
 }
 
 .header-container{
@@ -371,11 +385,10 @@
 
 .main-menu-navlink:hover:after {
   width: 100%;
-  padding-right: 35px;
 }
 
 .main-menu-navlink:hover {
-  color: #6c7ae0;
+  color: #6c7ae0
 }
 
 .main-menu-navlink:focus {
@@ -386,18 +399,14 @@
   font-family: Poppins-Medium;
   font-size: 14px;
   color: whitesmoke;
-  padding: 2px 0px;
+  padding: 2.1px 0px;
 }
 
 .fix-menu-desktop .main-menu > li > a {
   font-family: Poppins-Medium;
-  font-size: 14px;
+  font-size: 15px;
   color: white;
-  padding: 2px 0px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  padding: 3px 0px;
 }
 
 .header-v3 .main-menu > li > a {
@@ -407,6 +416,7 @@
 .main-menu > li > a:hover {
   text-decoration: none;
   color: #6c7ae0;
+  height: 2px
 }
 
 .main-menu > li > .sub-menu:hover {
@@ -429,7 +439,7 @@
 }
 
 .header-v2 .fix-menu-desktop.container-menu-desktop {
-  height: 70px;
+  height: 100px;
 }
 
 .header-v3 .fix-menu-desktop .wrap-menu-desktop {
@@ -457,17 +467,21 @@
 
 @media (min-width: 900px) {
   .background-image-1 {
-    background-image: url(../images/dentist1-1.jpg);
-    background-size: 50%;
+    background-image: url(../images/dentist-3.jpg);
+    background-size: 110%;
   }
 
   .background-image-2 {
-    background-image: url(../images/dental-care.jpg);
+    background-image: url(../images/items.jpg);
   }
 
   .background-image-3 {
-    background-image: url(../images/chinhnha1.jpg);
+    background-image: url(../images/smile1.jpg);
   }
+
+  .background-image-4 {
+    background-image: url(../images/patient.jpg);
+  }  
 }
 @media (max-width: 900px) {
   .background-image-1{
@@ -479,6 +493,9 @@
   .background-image-3{
     background-image: url(../images/chinhnha2.jpg);
   }
+  .background-image-4 {
+    background-image: url(../images/dental1-1.jpg);
+  }    
 }
 
 .rs1-slick1 .item-slick1 {
@@ -1627,6 +1644,22 @@ loader*/
   }
 }
 
+/*//////////////////////////////////////////////////////////*/
+.about-home {
+  background-image: url(../images/consult3.png);
+  padding-top: 1em;
+  padding-bottom: 1em;  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #c3dbdb;
+}
+
+.about-text {
+  margin-left: 15vw;
+  margin-right: 15vw;
+  color: #000;
+}
+
 /*//////////////////////////////////////////////////////////////////
 fadein*/
 .about {
@@ -1635,11 +1668,11 @@ fadein*/
   padding-left: 7em;
 
   font-size: 21px;
-  text-align: center;
-  animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
+  text-align: left;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s; /* Firefox */
+  -webkit-animation: fadein 1s; /* Safari and Chrome */
+  -o-animation: fadein 1s; /* Opera */
 }
 @media (max-width: 900px) {
   .about {
@@ -1647,11 +1680,11 @@ fadein*/
     padding-right: 1px;
     padding-left: 1px;
     font-size: 21px;
-    text-align: center;
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    text-align: left;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
   }
 }
 
@@ -1714,18 +1747,34 @@ fadein*/
   left: 20%;
   box-shadow: 0.5vw 0.5vw 0.25vw lightslategrey;
   width: 300px;
-  height: 180px;
+  height: 140px;
 }
+
+.row {
+  display: flex;
+}
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
 .image-about{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 20px;
   margin-top: 20px;
-  width: 600px;
+  width: 35vw;
   height: 400px;
 }
+
 .image-about-2{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 20px;
   margin-top: 20px;
-  width: 600px;
+  width: 35vw;
   height: 700px;
 }
 @media (max-width: 900px) {
@@ -1740,11 +1789,11 @@ fadein*/
     box-shadow: 0.5vw 0.5vw 0.25vw lightslategrey;
   }
   .image-about{
-    width: 400px;
+    width: 50vw;
     height: 400px;
   }
   .image-about-2{
-    width: 400px;
+    width: 50vw;
     height: 700px;
   }
 }

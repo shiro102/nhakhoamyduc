@@ -4,6 +4,7 @@ import useScript from "../functions/useScript";
 import scriptUrlList from "../scripts/scriptUrl";
 import scriptTextList from "../scripts/scriptText";
 import useLink from "../functions/useLink";
+import { Translation } from "react-i18next";
 
 const containerStyle = {
     width: '100%',
@@ -56,15 +57,22 @@ const Contact = () => {
                 />
             </GoogleMap>
             <div className={"box-shadow"}>
-                <h3 className="stext-301 cl5">
-                    Thông tin liên lạc
-                </h3>
+                <Translation>{t =>
+                    <h3 className="stext-301 cl5">
+                        {t('contact')}
+                    </h3>}
+                </Translation>
 
                 <p className="stext-118 cl5">
-                    204 Thống Nhất, Phường 11, quận Gò Vấp, thành phố Hồ Chí Minh <br/>
-                    Sđt đặt lịch: 02862860945 <br/>
-                    Sđt bác sĩ: 0913895695 <br/>
-                    Email: nhakhoamyduchcm@gmail.com
+                    <Translation>{t =>
+                    <span> {t('phoneNum1')}</span>}
+                    </Translation> <br/>
+                    <Translation>{t =>
+                    <span> {t('phoneNum2')}</span>}
+                    </Translation> <br/>
+                    <Translation>{t =>
+                    <span> {t('email')}</span>}
+                    </Translation> <br/>
                 </p>
 
             </div>

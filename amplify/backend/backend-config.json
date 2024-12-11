@@ -1,44 +1,272 @@
 {
-  "auth": {
-    "nhakhoamyduc18a859fe8": {
-      "service": "Cognito",
-      "serviceType": "imported",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
-  "storage": {
-    "myducstorage": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
-    }
-  },
   "api": {
     "nhakhoamyducGraphQL": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "output": {
         "authConfig": {
+          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            }
-          },
-          "additionalAuthenticationProviders": []
+              "apiKeyExpirationDate": "2025-04-19T08:19:15.711Z",
+              "apiKeyExpirationDays": 365,
+              "description": "API Key for nhakhoamyduc1"
+            },
+            "authenticationType": "API_KEY"
+          }
         }
-      }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "nhakhoamyduc18a859fe8": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
     }
   },
   "function": {},
   "interactions": {
     "nhakhoamyduchatbot": {
-      "service": "Lex",
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "build": true
+      "service": "Lex"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc145f88cfd_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc145f88cfd"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc18a859fe8_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc18a859fe8"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc19337ef2f_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc19337ef2f"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc19337ef2f_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc19337ef2f"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc19337ef2f_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc19337ef2f"
+        }
+      ]
+    },
+    "AMPLIFY_auth_nhakhoamyduc19337ef2f_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "nhakhoamyduc19337ef2f"
+        }
+      ]
+    },
+    "AMPLIFY_interactions_nhakhoamyduchatbot_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "interactions",
+          "resourceName": "nhakhoamyduchatbot"
+        }
+      ]
+    },
+    "AMPLIFY_interactions_nhakhoamyduchatbot_s3Key": {
+      "usedBy": [
+        {
+          "category": "interactions",
+          "resourceName": "nhakhoamyduchatbot"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "myducstorage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }
