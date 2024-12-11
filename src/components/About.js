@@ -1,5 +1,6 @@
 import React from "react";
-import giayphep from "../images/giayphep_1.jpg"
+import nhanhieu1 from "../images/nhanhieu_1.jpg"
+import nhanhieu2 from "../images/nhanhieu_2.jpg"
 import front1 from "../images/front1.jpg"
 import desk1 from "../images/desk1.jpg"
 import tramrang1 from "../images/tramrang1.jpg"
@@ -7,6 +8,7 @@ import useScript from "../functions/useScript";
 import scriptUrlList from "../scripts/scriptUrl";
 import scriptTextList from "../scripts/scriptText";
 import useLink from "../functions/useLink";
+import { Translation } from "react-i18next";
 
 
 function reveal() {
@@ -33,31 +35,43 @@ const About = () => {
     useLink("css/util.css", "app")
 
     return (
-        <div>
-            <div className="about">
-                <p>
-                    Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa tốt nhất
-                    ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả
-                    phải chăng.
-                </p>
-                <img className= "image-about" src={desk1} alt={"desk1"}/> <br/>
+        <div className= "about-home" style={{fontFamily: 'Times New Roman'}}>
+            <div className="about about-text">
+                <Translation>{t =>
+                    <p style={{fontSize: "1.1em"}}>
+                        {t('description1')}
+                    </p>}
+                </Translation> 
+                <img className= "image-about" src={desk1} alt={"desk1"} /> <br/>
             </div>
-            <div className="about reveal">
-                <p>
-                    Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách
-                    sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.
-                </p>
-                <img className= "image-about"src={tramrang1} alt={"tramrang1"}/> <br/>
+            <div className="about about-text reveal">
+                <Translation>{t =>
+                    <p style={{fontSize: "1.1em"}}>
+                        {t('description2')}
+                    </p>}
+                </Translation> 
+                <img className= "image-about" src={tramrang1} alt={"tramrang1"}/> <br/>
             </div>
-            <div className="about reveal">
-                <p>
-                    Một số hình ảnh về chứng chỉ & phòng khám của chúng tôi
-                </p>
-                <img className= "image-about" src={front1} alt={"front1"}/> <br/>
-                <img className="image-about-2" src={giayphep} alt={"giayphep1"}/>
-
+            <div className="about about-text reveal row">
+                <Translation>{t =>
+                    <p style={{fontSize: "1.1em"}}>
+                        {t('description3')}    
+                    </p>}
+                </Translation> 
+                <div class="column">
+                    <img className= "image-about-2" src={nhanhieu1} alt={"nhanhieu1"}/> <br/>
+                </div>
+                <div class="column">
+                    <img className="image-about-2" src={nhanhieu2} alt={"nhanhieu2"}/>
+                </div>
             </div>
-
+            <div className="about about-text" style={{textAlign: "center", paddingBottom: "2em", fontStyle: "italic", fontWeight: "bold", fontSize: "2.5em", color: "#ffa338", fontFamily: 'Serif', textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>
+                <Translation>{t =>
+                    <p>
+                        {t('motto')} 
+                    </p>}
+                </Translation> 
+            </div>
             {/*<img className="img-fluid" src={giayphep} alt={"logo"}/>*/}
 
         </div>

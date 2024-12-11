@@ -13,7 +13,7 @@ const Layout = () => {
 
     useScript(scriptUrlList, scriptTextList);
     useLink("css/util.css", "app");
-    return (
+    return (        
         <Fragment>
             <Delayed waitBeforeShow={500}>
                 <Header/>
