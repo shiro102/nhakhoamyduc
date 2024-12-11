@@ -34,10 +34,7 @@ This project uses AWS Amplify production and dev branches:
 - Production: https://nhakhoamyduc.vn/
 - Dev: https://deployment.d1oa3aicm14zeg.amplifyapp.com/
 
-In addition, it is integrated with Vercel bot to build every Pull Request: ![image](https://github.com/user-attachments/assets/8b237405-8d22-4aaf-8ab3-9ef1ada254de)
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
 To learn React, check out the [React documentation](https://reactjs.org/).
