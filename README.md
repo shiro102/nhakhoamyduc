@@ -36,4 +36,4 @@ This project uses AWS Amplify production and dev branches:
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 To learn React, check out the [React documentation](https://reactjs.org/).
-More about [Amplify](https://aws.amazon.com/amplify/)
+More about [Amplify](https://aws.amazon.com/amplify/).
