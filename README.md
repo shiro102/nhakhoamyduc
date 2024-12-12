@@ -1,6 +1,6 @@
 # Getting Started
 
-This is a [React](https://github.com/facebook/create-react-app) project to build an interactive and user-friendly website for Nha Khoa My Duc Dental Clinic, which is powered by [AWS Amplify](https://aws.amazon.com/amplify/).
+This is a [React](https://github.com/facebook/create-react-app) project to build an interactive and user-friendly website for Nha Khoa My Duc Dental Clinic, powered by [AWS Amplify](https://aws.amazon.com/amplify/).
 
 ## Run the development server
 
