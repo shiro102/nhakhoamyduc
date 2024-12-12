@@ -2,7 +2,7 @@ name: 'Amplify Close PR Preview'
 on:
   pull_request_target:
     branches:
-      - master
+      - deployment
     types: [closed]
 
 jobs:
