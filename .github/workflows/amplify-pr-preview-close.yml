@@ -29,3 +29,4 @@ jobs:
         AmplifyAppId: ${{ secrets.AMPLIFYAPPID }}
         BackendEnvARN: ${{ secrets.BACKENDENVARN }}
         AWS_REGION: ${{ vars.AWS_REGION }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
