@@ -1,8 +1,6 @@
 name: 'Amplify Close PR Preview' 
 on:
   pull_request_target:
-    branches-ignore:
-      - master
     branches:
       - deployment
     types: [closed]
