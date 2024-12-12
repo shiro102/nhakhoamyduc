@@ -62,7 +62,7 @@ case $AMPLIFY_COMMAND in
     sleep 10
 
     # Call command to check if the build has finished or not
-    JOB_RESPONSE=$(aws amplify list-jobs --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME)
+    JOB_RESPONSE=$(aws amplify list-jobs --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION})
 
     # Check if jq is available for JSON parsing
     if command -v jq > /dev/null; then
