@@ -5,7 +5,7 @@ on:
       - deployment
       - '!master'
     types: [closed]
-git
+
 jobs:
   deploy:
     environment: AWS-PR-Preview
