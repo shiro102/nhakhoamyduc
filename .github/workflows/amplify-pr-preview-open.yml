@@ -19,7 +19,7 @@ jobs:
         echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF})"
 
     - name: deploy PR preview
-      uses: ./actions/Amplify-PR-Review
+      uses: ./.github/actions/Amplify-PR-Review
       with:
         branch_name: ${{ steps.setenvname.outputs.setbranchname }}
         amplify_command: deploy
