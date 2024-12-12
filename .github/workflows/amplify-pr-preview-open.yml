@@ -1,8 +1,10 @@
 name: 'Amplify Open PR Preview'
 on:
   pull_request_target:
-    branches:
+    branches-ignore:
       - master
+    branches:
+      - deployment
     types: [ opened, reopened ]
 
 jobs:
