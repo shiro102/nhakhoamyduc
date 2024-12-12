@@ -1,6 +1,6 @@
 # Getting Started
 
-This is a [React](https://github.com/facebook/create-react-app) project to build an interactive and user-friendly website for Nha Khoa My Duc Dental Clinic.
+This is a [React](https://github.com/facebook/create-react-app) project to build an interactive and user-friendly website for Nha Khoa My Duc Dental Clinic, which is powered by [AWS Amplify](https://aws.amazon.com/amplify/).
 
 ## Run the development server
 
@@ -27,17 +27,13 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ## Run the development server
 This project uses AWS Amplify production and dev branches:
 - Production: https://nhakhoamyduc.vn/
 - Dev: https://deployment.d1oa3aicm14zeg.amplifyapp.com/
 
-In addition, it is integrated with Vercel bot to build every Pull Request: ![image](https://github.com/user-attachments/assets/8b237405-8d22-4aaf-8ab3-9ef1ada254de)
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
 To learn React, check out the [React documentation](https://reactjs.org/).
+More about [Amplify](https://aws.amazon.com/amplify/).
