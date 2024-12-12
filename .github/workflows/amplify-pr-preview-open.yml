@@ -3,6 +3,7 @@ on:
   pull_request_target:
     branches:
       - deployment
+      - '!master'
     types: [ opened, reopened ]
 
 jobs:
