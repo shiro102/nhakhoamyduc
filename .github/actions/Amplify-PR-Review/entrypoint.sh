@@ -68,7 +68,30 @@ case $AMPLIFY_COMMAND in
     if command -v jq > /dev/null; then
       # Parse and extract details from the JSON response
       JOB_STATUS=$(echo "$JOB_RESPONSE" | jq -r '.jobSummaries[0].status')
-      echo "Release job started with ID: $JOB_ID and initial status: $JOB_STATUS"
+      JOB_ID=$(echo "$JOB_RESPONSE" | jq -r '.jobSummaries[0].jobId')
+      echo "Build job started with ID: $JOB_ID and initial status: $JOB_STATUS"
+
+      # Check job status in a loop
+      while [ "$JOB_STATUS" == "RUNNING" ]; do
+        echo "Job is still running. Waiting for 10 seconds..."
+        sleep 10
+        JOB_RESPONSE=$(aws amplify list-jobs --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION})
+        JOB_STATUS=$(echo "$JOB_RESPONSE" | jq -r '.jobSummaries[0].status')
+      done
+
+      if [ "$JOB_STATUS" == "SUCCEED" ]; then
+        echo "Job succeeded!"
+      else
+        if [ -z "$GITHUB_TOKEN" ] ; then
+          echo "Skipping comment as GITHUB_TOKEN not provided"
+        else 
+          SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
+          curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Failed to generate preview for Amplify website, for more info visit: https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
+        fi
+
+        echo "Unexpected job status: $JOB_STATUS"
+        exit 1
+      fi
     else
       echo "Release job response: $JOB_RESPONSE"
       echo "Consider installing jq for detailed JSON parsing."
@@ -97,5 +120,5 @@ if [ -z "$GITHUB_TOKEN" ] ; then
   echo "Skipping comment as GITHUB_TOKEN not provided"
 else 
   SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
-  curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview AWS Amplify website generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
+  curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
 fi
