@@ -33,6 +33,6 @@ There is a workflow to automatically build a new preview website for the new PR 
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).\
-To learn React, check out the [React documentation](https://reactjs.org/).\
-More about [Amplify](https://aws.amazon.com/amplify/).
+- You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).\
+- To learn React, check out the [React documentation](https://reactjs.org/).\
+- More about [Amplify](https://aws.amazon.com/amplify/).
