@@ -96,10 +96,26 @@ case $AMPLIFY_COMMAND in
       echo "Release job response: $JOB_RESPONSE"
       echo "Consider installing jq for detailed JSON parsing."
     fi
+
+    # Comment the link to the Pull Request
+    if [ -z "$GITHUB_TOKEN" ] ; then
+      echo "Skipping comment as GITHUB_TOKEN not provided"
+    else 
+      SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
+      curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com. Will be removed after PR closes."'" }'
+    fi    
     ;;
 
   delete)
     sh -c "aws amplify delete-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION}"
+
+    # Comment the status of the preview branch
+    if [ -z "$GITHUB_TOKEN" ] ; then
+      echo "Skipping comment as GITHUB_TOKEN not provided"
+    else 
+      SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
+      curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website has been removed."'" }'
+    fi    
     ;;
 
   *)
@@ -116,9 +132,3 @@ null
 text
 EOF
 
-if [ -z "$GITHUB_TOKEN" ] ; then
-  echo "Skipping comment as GITHUB_TOKEN not provided"
-else 
-  SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
-  curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
-fi
