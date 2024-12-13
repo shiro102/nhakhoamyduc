@@ -28,7 +28,8 @@ This project uses AWS Amplify production and dev branches:
 - Dev: https://deployment.d1oa3aicm14zeg.amplifyapp.com/
 
 There is a workflow to automatically build a new preview website for the new PR to the deployment branch, and delete it after the PR is closed.
-![image](https://github.com/user-attachments/assets/e9aed12c-3f1a-4f24-874a-f3ab9d58e500)
+![image](https://github.com/user-attachments/assets/7af153b7-b5c2-4234-87db-be08ff359b22)
+
 
 
 ## Learn More
