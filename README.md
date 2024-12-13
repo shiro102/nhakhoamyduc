@@ -1,6 +1,6 @@
 # Getting Started
 
-This is a [React](https://github.com/facebook/create-react-app) project to build an interactive and user-friendly website for Nha Khoa My Duc Dental Clinic, which is powered by [AWS Amplify](https://aws.amazon.com/amplify/).
+This is a [React](https://github.com/facebook/create-react-app) project to build an interactive and user-friendly website for Nha Khoa My Duc Dental Clinic, powered by [AWS Amplify](https://aws.amazon.com/amplify/).
 
 ## Run the development server
 
@@ -13,11 +13,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -32,8 +27,13 @@ This project uses AWS Amplify production and dev branches:
 - Production: https://nhakhoamyduc.vn/
 - Dev: https://deployment.d1oa3aicm14zeg.amplifyapp.com/
 
+There is a workflow to automatically build a new preview website for the new PR to the deployment branch, and delete it after the PR is closed.
+![image](https://github.com/user-attachments/assets/7af153b7-b5c2-4234-87db-be08ff359b22)
+
+
+
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-To learn React, check out the [React documentation](https://reactjs.org/).
-More about [Amplify](https://aws.amazon.com/amplify/).
+- You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).\
+- To learn React, check out the [React documentation](https://reactjs.org/).\
+- More about [Amplify](https://aws.amazon.com/amplify/).
