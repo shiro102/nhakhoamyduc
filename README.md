@@ -27,6 +27,10 @@ This project uses AWS Amplify production and dev branches:
 - Production: https://nhakhoamyduc.vn/
 - Dev: https://deployment.d1oa3aicm14zeg.amplifyapp.com/
 
+There is a workflow to automatically build a new preview website for the new PR to the deployment branch, and delete it after the PR is closed.
+ ![image](https://github.com/user-attachments/assets/cd0f960f-86b1-4d34-b884-ff3b8dc3ee3b)
+
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
