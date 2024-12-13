@@ -86,10 +86,10 @@ case $AMPLIFY_COMMAND in
           echo "Skipping comment as GITHUB_TOKEN not provided"
         else 
           SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
-          curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Failed to generate preview for Amplify website, for more info visit: https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com"'" }'
+          curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"**Failed** to generate preview for Amplify website.\nMore info in the error visit: https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com.\n"'" }'
         fi
 
-        echo "Unexpected job status: $JOB_STATUS"
+        echo "Job failed. Job status: $JOB_STATUS"
         exit 1
       fi
     else
@@ -102,20 +102,12 @@ case $AMPLIFY_COMMAND in
       echo "Skipping comment as GITHUB_TOKEN not provided"
     else 
       SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
-      curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website generated at https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com. Will be removed after PR closes."'" }'
+      curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website generated: https://$SUBDOMAIN_NAME.${AmplifyAppId}.amplifyapp.com.\n**Note**: Preview will be removed after PR closes.\n"'" }'
     fi    
     ;;
 
   delete)
-    sh -c "aws amplify delete-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION}"
-
-    # Comment the status of the preview branch
-    if [ -z "$GITHUB_TOKEN" ] ; then
-      echo "Skipping comment as GITHUB_TOKEN not provided"
-    else 
-      SUBDOMAIN_NAME=$(echo $BRANCH_NAME | sed 's/[^a-zA-Z0-9-]/-/')
-      curl -X POST $COMMENT_URL -H "Content-Type: application/json" -H "Authorization: token $GITHUB_TOKEN" --data '{ "body": "'"Preview for Amplify website has been removed."'" }'
-    fi    
+    sh -c "aws amplify delete-branch --app-id=${AmplifyAppId} --branch-name=$BRANCH_NAME --region=${AWS_REGION}"   
     ;;
 
   *)
