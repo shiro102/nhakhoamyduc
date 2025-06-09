@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "nhakhoamyducGraphQL",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2025-04-19T08:19:15.711Z",
+      "keyDescription": "API Key for nhakhoamyduc1"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}
