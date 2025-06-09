@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
-const { prisma } = require('./lib/prisma')
+const { prisma } = require('../lib/prisma')
 
 async function getLatestClientId() {
   try {

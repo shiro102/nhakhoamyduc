@@ -10,7 +10,7 @@ const introductionData = [
     id: 1,
     description: "descriptionIntroduction1",
     imageUrl:
-      "https://drive.google.com/thumbnail?id=1JLCsSSkUa9T6_dIksI8L3XWu8K0H6gKz&sz=w1000",
+      "https://drive.google.com/thumbnail?id=1JiSeoGMc3dVQ5t2TvHNu4uuGFNoDs2sV&sz=w1000",
     title: "titleIntroduction1",
   },
   {
