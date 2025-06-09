@@ -31,9 +31,11 @@
     "zod": "^3.25.56"
   },
   "scripts": {
-    "start": "vite",
+    "start": "node server.js",
+    "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prod": "yarn build && node server.js"
   },
   "eslintConfig": {
     "extends": [
