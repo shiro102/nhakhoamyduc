@@ -62,14 +62,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, 'build')));
-
-// For React Router (SPA) support:
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 // Registration endpoint
 app.post("/api/register", async (req, res) => {
   const { email, password } = req.body;
