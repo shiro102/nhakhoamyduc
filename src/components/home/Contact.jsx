@@ -10,11 +10,11 @@ const Contact = () => {
     useLink("css/util.css", "app")
 
     const location = "Nha Khoa My Duc, 204 Phan Van Tri, Phu Nhuan, Ho Chi Minh City" // lat,lng coordinates
-
+        console.log(process.env.REACT_GOOGLE_MAP_API_KEY)
     return (
         <div style={{position: 'relative'}}>
             <iframe
-                src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAP_API_KEY}&q=${location}`}
+                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&q=${location}`}
                 title="Dental Clinic Location"
                 width="100%"
                 height="550"

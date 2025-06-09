@@ -202,7 +202,7 @@ const TableHeader = ({
   sortColumn,
   sortDirection,
   columnWidths = {},
-  onColumnResize = (column: string, width: number) => {},
+  onColumnResize = (column, width) => {},
 }) => {
   const [resizingColumn, setResizingColumn] = useState(null);
   const [startX, setStartX] = useState(0);
@@ -298,15 +298,11 @@ const TableBody = ({
   onDataUpdate,
   columnWidths = {},
 }) => {
-  type EditingCell = {
-    itemId: string;
-    column: string;
-  } | null;
+  const [editingCell, setEditingCell] = useState(null);
+  const [editValue, setEditValue] = useState("");
+  const [highlightedRowId, setHighlightedRowId] = useState(null);
 
   const currentDateTime = new Date().toLocaleString();
-  const [editingCell, setEditingCell] = useState<EditingCell>(null);
-  const [editValue, setEditValue] = useState("");
-  const [highlightedRowId, setHighlightedRowId] = useState<string | null>(null);
 
   const startIdx = (currentPage - 1) * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
@@ -358,7 +354,7 @@ const TableBody = ({
           },
           body: JSON.stringify({
             id: item.id,
-            [editingCell?.column as string]: editValue,
+            [editingCell?.column]: editValue,
           }),
         });
 
@@ -366,7 +362,7 @@ const TableBody = ({
           // update the data in the UI
           const updatedData = data.map((row) =>
             row.id === item.id
-              ? { ...row, [editingCell?.column as string]: editValue }
+              ? { ...row, [editingCell?.column]: editValue }
               : row
           );
           onDataUpdate(updatedData);

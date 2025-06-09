@@ -87,10 +87,10 @@ const data = {
         vietnamese: "Vietnamese",
         nameDoctor1: "Bác sĩ Nguyễn Thị Lệ Chi",
         titleDoctor1: "Bác sĩ chuyên khoa & Giám đốc",
-        descriptionDoctor1: "Là người thành lập nha khoa Mỹ Đức, bác sĩ Chi có kinh nghiệm chuyên môn dày dặn để hướng để luôn sẵn sàng hướng dẫn các bác sĩ khác mang đến những dịch vụ chăm sóc răng miệng tốt nhất cho quý khách.",
+        descriptionDoctor1: "Là người thành lập nha khoa Mỹ Đức, bác sĩ Chi đã có trong mình những kinh nghiệm chuyên môn dày dặn để hướng để luôn sẵn sàng hướng dẫn các bác sĩ khác mang đến những dịch vụ chăm sóc răng miệng tốt nhất cho quý khách.",
         nameDoctor2: "Bác sĩ Nguyễn Thị Mỹ",
         titleDoctor2: "Bác sĩ nha khoa",
-        descriptionDoctor2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
+        descriptionDoctor2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách những trải nghiệm nhẹ nhàng và chu đáo nhất Đồng thời, quý khách sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
         description1: "Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa với những dịch vụ tốt nhất ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả phù hợp với mọi gia đình.",
         description2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
         description3: "Từ năm 2010, nha khoa chúng tôi đã được cục sở hữu trí tuệ công nhận là doanh nghiệp hợp lệ duy nhất dưới thương hiệu 'Nha khoa Mỹ Đức', cùng với những thành tựu trong lĩnh vực y khoa mà chúng tôi đã đạt được trong hơn 10 năm thành lập sẽ giúp chúng tôi cung cấp cho quý khách những dịch vụ hoàn hảo nhất.",
@@ -98,8 +98,8 @@ const data = {
         titleMeetOurDoctors: "Danh Sách Bác Sĩ",
         titleIntroduction1: "Giới thiệu",
         titleIntroduction2: "Dịch vụ",
-        descriptionIntroduction1: "Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là một trong những nha khoa với những dịch vụ tốt nhất ở thành phố Hồ Chí Minh - nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả phù hợp với mọi gia đình.",
-        descriptionIntroduction2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách trải nghiệm thoái mái nhất, đồng thời quý khách sẽ được tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
+        descriptionIntroduction1: "Với hơn 10 năm kinh nghiệm trong ngành răng hàm mặt, nha khoa Mỹ Đức là nơi quý khách có thể tìm thấy những dịch vụ chăm sóc răng miệng tốt nhất với giá cả phù hợp với mọi gia đình.",
+        descriptionIntroduction2: "Đội ngũ bác sĩ chuyên nghiệp của chúng tôi sẽ đem đến cho quý khách những trải nghiệm nhẹ nhàng và chu đáo cùng với dịch vụ tư vấn và khám bệnh miễn phí để quý khách có thể chọn lựa dịch vụ phù hợp với bản thân nhất.",
     },
 };
 

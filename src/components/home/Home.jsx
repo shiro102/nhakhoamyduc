@@ -17,7 +17,7 @@ const introductionData = [
     id: 2,
     description: "descriptionIntroduction2",
     imageUrl:
-      "https://drive.google.com/thumbnail?id=1KZAEFIBNqDXd-HjNB6oLnf6zN6MvCjyj&sz=w1000",
+      "https://drive.google.com/thumbnail?id=1YQf5mQwEo3VQjtY8khu6nIeoDPfz3rPt&sz=w1000",
     title: "titleIntroduction2",
   },
 ];
@@ -33,9 +33,9 @@ const Home = () => {
         {introductionData.map((item) => (
           <div key={item.id}>
             {item.id % 2 === 0 ? (
-              <div className="!flex !flex-col-reverse md:!grid md:!grid-cols-[50%_50%] p-4 gap-x-20  justify-center items-center gap-y-10">
+              <div className="!flex !flex-col-reverse md:!grid md:!grid-cols-[50%_50%] p-4 gap-x-20 justify-center items-center gap-y-10">
                 <div className="flex flex-col md:max-w-96 md:justify-self-end  justify-center items-center">
-                  <p className="text-2xl font-bold text-[#3f4041]">
+                  <p className="text-2xl font-bold text-[#3f4041] pb-3">
                     <Translation>{(t) => t(item.title)}</Translation>
                   </p>
                   <p className="text-lg">
@@ -56,7 +56,7 @@ const Home = () => {
                   className="md:justify-self-end rounded-lg object-cover w-[350px] aspect-[4/3]"
                 />
                 <div className="flex flex-col md:max-w-96 justify-center items-center">
-                  <p className="text-2xl font-bold pb-2 text-[#3f4041]">
+                  <p className="text-2xl font-bold pb-3 text-[#3f4041]">
                     <Translation>{(t) => t(item.title)}</Translation>
                   </p>
                   <p className="text-lg">
@@ -70,19 +70,19 @@ const Home = () => {
       </div>
 
       {/* Separator */}
-      <div className="mx-auto mt-12 w-2/3 border-b border-[#6c7ae0] md:w-1/2"></div>
+      {/* <div className="mx-auto mt-12 w-2/3 border-b border-[#6c7ae0] md:w-1/2"></div> */}
 
       {/* Meet our team */}
-      <div className="flex flex-col mx-auto justify-center items-center gap-y-10 py-10">
-        <h1 className="text-4xl font-bold text-[#3f4041]">
+      <div className="flex flex-col mx-auto justify-center items-center gap-y-10 py-20 bg-gray-50">
+        <h1 className="text-4xl font-bold text-[#383737]">
           <Translation>{(t) => t("titleMeetOurDoctors")}</Translation>
         </h1>
-        <div className="!flex !flex-col mx-auto justify-center items-center py-10 md:!grid md:!grid-cols-[50%_50%]">
+        <div className="!flex !flex-col mx-auto justify-center items-center py-10">
           {/* First Director */}
           <div className="!flex !flex-col justify-center items-center w-full gap-y-3 md:!flex-row md:justify-end md:gap-x-5 md:pr-2">
             <img
-              src="https://drive.google.com/thumbnail?id=150ts6Imd6vEJDJIu9BSLaoD9xm-FC_4u&sz=w1000"
-              alt="Trong Nguyen"
+              src="https://drive.google.com/thumbnail?id=150ts6Imr6vEJDJIu9BSLaoD9xm-FC_4u&sz=w1000"
+              alt="Bac si Chi"
               width={200}
               height={50}
               className="h-[140px] w-[140px] rounded-full object-cover"
@@ -91,7 +91,7 @@ const Home = () => {
               <span className="header-font-black text-xl font-bold">
                 <Translation>{(t) => t("nameDoctor1")}</Translation>
               </span>
-              <span className="header-font-black text-sm font-semibold text-textColor-brand">
+              <span className="header-font-black text-sm font-semibold text-textColor-brand italic">
                 <Translation>{(t) => t("titleDoctor1")}</Translation>
               </span>
               <span className="max-w-[300px] text-center text-sm md:!text-left">
@@ -100,7 +100,7 @@ const Home = () => {
             </div>
           </div>
           {/* Second Director */}
-          <div className="!flex !flex-col justify-center items-center w-full gap-x-5 gap-y-3 md:!flex-row md:justify-start md:pl-4">
+          {/* <div className="!flex !flex-col justify-center items-center w-full gap-x-5 gap-y-3 md:!flex-row md:justify-start md:pl-4">
             <img
               src="https://drive.google.com/thumbnail?id=14oie7aYFMkMRwPYx9Ngty7B7wx-2NczG&sz=w1000"
               alt="Eattle Nguyen"
@@ -119,12 +119,12 @@ const Home = () => {
                 <Translation>{(t) => t("descriptionDoctor2")}</Translation>
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Separator */}
-      <div className="mx-auto mt-12 w-2/3 border-b border-[#6c7ae0] md:w-1/2"></div>
+      {/* <div className="mx-auto mt-12 w-2/3 border-b border-[#6c7ae0] md:w-1/2"></div> */}
 
       {/* Map */}
       <div className="flex flex-col mx-auto justify-center items-center py-10">
