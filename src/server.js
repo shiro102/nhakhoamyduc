@@ -106,6 +106,8 @@ app.post("/api/login", async (req, res) => {
       domain: process.env.COOKIE_DOMAIN || undefined, //Render environment variables
     });
 
+    console.log(req.cookies);
+
     res.json({
       message: "Login successful",
       user: { id: user.id, email: user.email },
@@ -117,6 +119,7 @@ app.post("/api/login", async (req, res) => {
 
 // Check authentication status
 app.get("/api/check-auth", async (req, res) => {
+  console.log(req.cookies);
   const userId = req.cookies.userId;
   if (!userId) {
     return res.status(401).json({ error: "Not authenticated" });
