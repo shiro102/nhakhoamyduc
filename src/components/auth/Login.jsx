@@ -33,7 +33,7 @@ const Login = () => {
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://nhakhoamyduc-api.onrender.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -82,7 +82,7 @@ const Login = () => {
 
   const onSignup = async (data) => {
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch('https://nhakhoamyduc-api.onrender.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

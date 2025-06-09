@@ -12,7 +12,7 @@ const Admin = () => {
   const [tableData, setTableData] = useState([]); // Initial data
 
   const fetchClients = async () => {
-    const response = await fetch("http://localhost:5000/api/clients");
+    const response = await fetch("https://nhakhoamyduc-api.onrender.com/api/clients");
     const data = await response.json();
     setTableData(data);
     setLoading(false);

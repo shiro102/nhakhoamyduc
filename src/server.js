@@ -39,7 +39,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173", // Development
   "http://localhost:3000", // Alternative development port
-  process.env.FRONTEND_URL, // Production URL from environment variable
+  process.env.FRONTEND_URL || "https://nhakhoamyduc.vn", // Production URL from environment variable
+  "https://www.nhakhoamyduc.vn",
 ].filter(Boolean); // Remove any undefined values
 
 app.use(
@@ -99,9 +100,10 @@ app.post("/api/login", async (req, res) => {
     // Set a cookie with the user's ID
     res.cookie("userId", user.id, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true, // Always use secure in production
+      sameSite: "none", // Allow cross-site cookies
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      domain: process.env.COOKIE_DOMAIN || undefined, //Render environment variables
     });
 
     res.json({
