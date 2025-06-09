@@ -38,7 +38,7 @@ const AddClientForm = ({ setShowAddClientModal }) => {
   const currentDateTime = new Date().toLocaleString();
 
   const onSubmit = async (data) => {
-    const response = await fetch("http://localhost:5000/api/clients", {
+    const response = await fetch("https://nhakhoamyduc.onrender.com/api/clients", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -632,7 +632,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const handleSearchDatabase = () => {
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/clients?search=${searchDatabase}`
+        `https://nhakhoamyduc.onrender.com/api/clients?search=${searchDatabase}`
       );
       if (response.ok) {
         const newData = await response.json();
