@@ -32,9 +32,9 @@
   },
   "scripts": {
     "build": "vite build",
-    "start": "node custom-server.js",
+    "start": "node server.js",
     "dev": "vite",
-    "prod": "yarn build && node custom-server.js"
+    "prod": "yarn build && node server.js"
   },
   "eslintConfig": {
     "extends": [
