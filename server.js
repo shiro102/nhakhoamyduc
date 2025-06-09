@@ -3,6 +3,7 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const { prisma } = require('./lib/prisma')
+const path = require('path');
 
 async function getLatestClientId() {
   try {
@@ -34,6 +35,12 @@ async function getLatestClientId() {
 
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // CORS configuration
 const allowedOrigins = [
