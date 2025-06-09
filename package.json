@@ -31,7 +31,7 @@
     "zod": "^3.25.56"
   },
   "scripts": {
-    "build": "vite build --base=./",
+    "build": "vite build --base=/",
     "start": "node server.js",
     "dev": "vite",
     "prod": "yarn build && node server.js"
