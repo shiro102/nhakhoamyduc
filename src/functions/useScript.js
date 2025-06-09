@@ -14,7 +14,6 @@ const useScript = (url, text) => {
             }
             document.body.appendChild(script);
             document.body.removeChild(script);
-
         }
         return () => {
             // document.body.removeChild(script);
