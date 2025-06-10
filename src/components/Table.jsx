@@ -16,7 +16,7 @@ const addClientSchema = z.object({
   clientDocument: z.string().or(z.literal("")),
 });
 
-const AddClientForm = ({ setShowAddClientModal }) => {
+const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   const {
     register,
     handleSubmit,
@@ -58,6 +58,13 @@ const AddClientForm = ({ setShowAddClientModal }) => {
       });
       reset();
       setShowAddClientModal(false);
+      
+      // Refresh data without page reload
+      const refreshResponse = await fetch("https://nhakhoamyduc-api.onrender.com/api/clients");
+      if (refreshResponse.ok) {
+        const newData = await refreshResponse.json();
+        onDataUpdate(newData);
+      }
     } else {
       toast.error("Failed to add client", {
         description: (
@@ -648,11 +655,6 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
     setShowAddClientModal(true);
   };
 
-  const handleAddClientSubmit = (e) => {
-    e.preventDefault();
-    console.log("Add client");
-  };
-
   const handleColumnResize = (column, width) => {
     setColumnWidths(prev => ({
       ...prev,
@@ -779,7 +781,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
 
       {/* Add Client Modal */}
       {showAddClientModal && (
-        <AddClientForm setShowAddClientModal={setShowAddClientModal} />
+        <AddClientForm setShowAddClientModal={setShowAddClientModal} onDataUpdate={onDataUpdate} />
       )}
     </div>
   );

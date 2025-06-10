@@ -14,7 +14,7 @@ model Client {
   firstName        String
   birthYear        Int
   birthYearAndName String
-  email            String?  @unique
+  email            String?
   age              String?
   phone            String?
   address          String?

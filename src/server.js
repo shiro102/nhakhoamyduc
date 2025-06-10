@@ -39,7 +39,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173", // Development
   "http://localhost:3000", // Alternative development port
-  process.env.FRONTEND_URL || "https://nhakhoamyduc.vn", // Production URL from environment variable
+  "https://nhakhoamyduc.vn", // Production URL from environment variable
   "https://www.nhakhoamyduc.vn",
 ].filter(Boolean); // Remove any undefined values
 
