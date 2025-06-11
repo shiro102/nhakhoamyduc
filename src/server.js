@@ -107,7 +107,6 @@ app.post("/api/login", async (req, res) => {
     });
 
     console.log("process.env.COOKIE_DOMAIN", process.env.COOKIE_DOMAIN);
-    console.log("process.env.FRONTEND_URL", process.env.FRONTEND_URL);
     console.log("Login req cookies", req.cookies);
 
     res.json({
@@ -140,7 +139,9 @@ app.get("/api/check-auth", async (req, res) => {
 
 // Logout endpoint
 app.post("/api/logout", (req, res) => {
+  console.log("Received request to /api/logout");
   res.clearCookie("userId");
+  console.log("Log out res cookies", res.cookies);
   res.json({ message: "Logged out successfully" });
 });
 
@@ -155,13 +156,13 @@ app.get("/api/clients", async (req, res) => {
       const searchInt = parseInt(search);
       const isNumeric = !isNaN(searchInt);
       const orConditions = [
-        { fullName: { contains: search } },
-        { birthYearAndName: { contains: search } },
-        { email: { contains: search } },
-        { phone: { contains: search } },
-        { address: { contains: search } },
-        { clientDocument: { contains: search } },
-        { clientId: { contains: search } },
+        { fullName: { contains: search, mode: 'insensitive' } },
+        { birthYearAndName: { contains: search, mode: 'insensitive' } },
+        { email: { contains: search, mode: 'insensitive' } },
+        { phone: { contains: search, mode: 'insensitive' } },
+        { address: { contains: search, mode: 'insensitive' } },
+        { clientDocument: { contains: search, mode: 'insensitive' } },
+        { clientId: { contains: search, mode: 'insensitive' } },
       ];
       if (isNumeric) {
         orConditions.push({ birthYear: { equals: searchInt } });
