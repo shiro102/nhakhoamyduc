@@ -70,7 +70,7 @@ const data = {
     loadingMessage:
       "Logging in, please wait... It will take 1-2 minutes if you have not used the app for a while.",
     addClientFormNote:
-      "*Note: After updating a field, please wait until the page is updated or the notification is shown.",
+      "*Note: After updating a field, please wait until the page is updated or the notification is shown (if the server is inactive for 1h, it will sleep, so it will take 1-2 minutes to update the next time).",
   },
   /************ Vietnamese **************/
   vn: {
@@ -147,7 +147,7 @@ const data = {
     loadingMessage:
       "Đang đăng nhập, vui lòng đợi... Sẽ mất 1-2 phút nếu bạn chưa sử dụng ứng dụng trong một thời gian.",
     addClientFormNote:
-      "*Lưu ý: Sau khi cập nhật một thông tin, vui lòng đợi cho đến khi thông tin đó được cập nhật trên bảng hoặc thông báo được hiển thị.",
+      "*Lưu ý: Sau khi cập nhật thông tin, vui lòng đợi cho đến khi thông tin đó được cập nhật trên bảng (nếu ko hoạt động trong 1h thì server sẽ ngủ, nên sẽ mất 1-2 phút để server hoạt động lại).",
   },
 };
 
