@@ -107,7 +107,7 @@ app.post("/api/login", async (req, res) => {
     });
 
     console.log("process.env.COOKIE_DOMAIN", process.env.COOKIE_DOMAIN);
-    console.log("Login req cookies", req.cookies);
+    console.log("Login req cookies", res.cookies);
 
     res.json({
       message: "Login successful",
@@ -121,6 +121,7 @@ app.post("/api/login", async (req, res) => {
 // Check authentication status
 app.get("/api/check-auth", async (req, res) => {
   console.log("Check auth req cookies", req.cookies);
+  console.log("All cookies:", JSON.stringify(req.cookies, null, 2));
   const userId = req.cookies.userId;
   if (!userId) {
     return res.status(401).json({ error: "Not authenticated" });
@@ -140,7 +141,12 @@ app.get("/api/check-auth", async (req, res) => {
 // Logout endpoint
 app.post("/api/logout", (req, res) => {
   console.log("Received request to /api/logout");
-  res.clearCookie("userId");
+  res.clearCookie("userId", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    domain: process.env.COOKIE_DOMAIN || undefined
+  });
   console.log("Log out res cookies", res.cookies);
   res.json({ message: "Logged out successfully" });
 });
