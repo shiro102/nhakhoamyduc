@@ -10,7 +10,7 @@ const Contact = () => {
     useLink("css/util.css", "app")
 
     const location = "Nha Khoa My Duc, 204 Phan Van Tri, Phu Nhuan, Ho Chi Minh City" // lat,lng coordinates
-        console.log(process.env.REACT_GOOGLE_MAP_API_KEY)
+
     return (
         <div style={{position: 'relative'}}>
             <iframe

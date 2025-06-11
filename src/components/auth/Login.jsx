@@ -3,8 +3,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Eye } from "lucide-react";
-import { toast } from 'sonner'
+import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { Translation, useTranslation } from "react-i18next";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -15,6 +16,7 @@ const schema = z.object({
 const currentDateTime = new Date().toLocaleString();
 
 const Login = () => {
+  const { t } = useTranslation();
   const [tab, setTab] = useState("login");
   const {
     register,
@@ -30,86 +32,106 @@ const Login = () => {
   });
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const onSubmit = async (data) => {
+    setIsLoading(true);
+
     try {
-      const response = await fetch('https://nhakhoamyduc-api.onrender.com/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://nhakhoamyduc-api.onrender.com/api/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
       const result = await response.json();
       if (response.ok) {
-        toast.success("Login successful!", {
+        toast.success(<Translation>{(t) => t("loginSuccess")}</Translation>, {
           description: (
             <span style={{ color: "var(--muted-foreground)" }}>
               {currentDateTime}
             </span>
           ),
           style: {
-            color: '#22c55e' // green-500 color
-          }
-        })
-
-        // You can redirect or set auth state here
-        navigate('/admin');
+            color: "#22c55e",
+          },
+        });
+        navigate("/admin");
       } else {
-        toast.error(result.error || 'Login failed', {
-          description: (
-            <span style={{ color: "var(--muted-foreground)" }}>
-              {currentDateTime}
-            </span>
-          ),
-          style: {
-            color: '#ef4444' // red-500 color
+        toast.error(
+          <Translation>{(t) => t(result.error || "loginFailed")}</Translation>,
+          {
+            description: (
+              <span style={{ color: "var(--muted-foreground)" }}>
+                {currentDateTime}
+              </span>
+            ),
+            style: {
+              color: "#ef4444",
+            },
           }
-        })
+        );
       }
     } catch (error) {
-      toast.error('An error occurred while logging in.', {
+      toast.error(<Translation>{(t) => t("loginError")}</Translation>, {
         description: (
           <span style={{ color: "var(--muted-foreground)" }}>
             {currentDateTime}
           </span>
         ),
         style: {
-          color: '#ef4444' // red-500 color
-        }
+          color: "#ef4444",
+        },
       });
     }
+    setIsLoading(false);
   };
 
   const onSignup = async (data) => {
     try {
-      const response = await fetch('https://nhakhoamyduc-api.onrender.com/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://nhakhoamyduc-api.onrender.com/api/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
       const result = await response.json();
       if (response.ok) {
-        toast.success("Registration successful! You can now log in.", {
-          description: (
-            <span style={{ color: "var(--muted-foreground)" }}>
-              {currentDateTime}
-            </span>
-          ),
-        });
+        toast.success(
+          <Translation>{(t) => t("registrationSuccess")}</Translation>,
+          {
+            description: (
+              <span style={{ color: "var(--muted-foreground)" }}>
+                {currentDateTime}
+              </span>
+            ),
+          }
+        );
         reset();
         setTab("login");
       } else {
-        toast.error(result.error || 'Registration failed', {
-          description: (
-            <span style={{ color: "var(--muted-foreground)" }}>
-              {currentDateTime}
-            </span>
-          ),
-        });
+        toast.error(
+          <Translation>
+            {(t) => t(result.error || "registrationFailed")}
+          </Translation>,
+          {
+            description: (
+              <span style={{ color: "var(--muted-foreground)" }}>
+                {currentDateTime}
+              </span>
+            ),
+          }
+        );
       }
     } catch (error) {
-      toast.error('An error occurred while registering.', {
+      toast.error(<Translation>{(t) => t("registrationError")}</Translation>, {
         description: (
           <span style={{ color: "var(--muted-foreground)" }}>
             {currentDateTime}
@@ -121,6 +143,17 @@ const Login = () => {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-gray-50">
+      {/* Loading Spinner */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex flex-col gap-y-4 justify-center items-center z-[99999]">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+          <h1 className="text-2xl font-bold text-white">
+            {t("loadingMessage")}
+          </h1>
+        </div>
+      )}
+
+      {/* Login Form */}
       <div className="flex flex-col items-center justify-center border border-gray-300 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 bg-white m-3">
         <img
           src="images/myduclogo.jpg"
@@ -139,7 +172,7 @@ const Login = () => {
               setMessage("");
             }}
           >
-            Login
+            {t("login")}
           </button>
           <button
             className={`flex-1 py-2 rounded-t-md ${
@@ -152,7 +185,7 @@ const Login = () => {
               setMessage("");
             }}
           >
-            Sign Up
+            {t("signup")}
           </button>
         </div>
         {message && (
@@ -168,12 +201,12 @@ const Login = () => {
                 htmlFor="email"
                 className="text-sm font-medium text-gray-700"
               >
-                Email
+                {t("loginEmail")}
               </label>
               <input
                 id="email"
                 type="text"
-                placeholder="example@domain.com"
+                placeholder={t("enterEmail")}
                 autoComplete="off"
                 {...register("email")}
                 className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -190,17 +223,20 @@ const Login = () => {
                 htmlFor="password"
                 className="text-sm font-medium text-gray-700"
               >
-                Password
+                {t("password")}
               </label>
               <div className="relative">
-              <input
-                id="password"
-                {...register("password")}
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-              />
-              <Eye className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}/>
+                <input
+                  id="password"
+                  {...register("password")}
+                  type={showPassword ? "text" : "password"}
+                  placeholder={t("enterPassword")}
+                  className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                />
+                <Eye
+                  className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
               </div>
 
               {errors.password && (
@@ -214,7 +250,7 @@ const Login = () => {
               className="h-11 bg-blue-600 hover:bg-blue-700 transition text-white font-semibold rounded-md"
               type="submit"
             >
-              Login
+              {t("login")}
             </button>
           </form>
         ) : (
@@ -227,12 +263,12 @@ const Login = () => {
                 htmlFor="signup-email"
                 className="text-sm font-medium text-gray-700"
               >
-                Email
+                {t("loginEmail")}
               </label>
               <input
                 id="signup-email"
                 type="text"
-                placeholder="example@domain.com"
+                placeholder={t("enterEmail")}
                 autoComplete="off"
                 {...register("email")}
                 className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -249,19 +285,22 @@ const Login = () => {
                 htmlFor="signup-password"
                 className="text-sm font-medium text-gray-700"
               >
-                Password
+                {t("password")}
               </label>
               <div className="relative">
-              <input
-                id="signup-password"
-                {...register("password")}
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-              />
-              <Eye className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}/>
+                <input
+                  id="signup-password"
+                  {...register("password")}
+                  type={showPassword ? "text" : "password"}
+                  placeholder={t("enterPassword")}
+                  className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                />
+                <Eye
+                  className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
               </div>
-                {errors.password && (
+              {errors.password && (
                 <span className="text-red-500 text-sm">
                   {errors.password.message}
                 </span>
@@ -272,7 +311,7 @@ const Login = () => {
               className="h-11 bg-blue-600 hover:bg-blue-700 transition text-white font-semibold rounded-md"
               type="submit"
             >
-              Sign Up
+              {t("signup")}
             </button>
           </form>
         )}

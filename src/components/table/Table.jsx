@@ -1,10 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Search } from "lucide-react";
-import { ArrowUpAZ, ArrowDownAZ, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
+import { useTranslation } from "react-i18next";
 
 const addClientSchema = z.object({
   fullName: z.string().min(1),
@@ -16,6 +19,9 @@ const addClientSchema = z.object({
   clientDocument: z.string().or(z.literal("")),
 });
 
+////////////////////////////////////////////////////////////
+// Add Client Form
+////////////////////////////////////////////////////////////
 const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   const {
     register,
@@ -38,13 +44,16 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   const currentDateTime = new Date().toLocaleString();
 
   const onSubmit = async (data) => {
-    const response = await fetch("https://nhakhoamyduc-api.onrender.com/api/clients", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "https://nhakhoamyduc-api.onrender.com/api/clients",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     if (response.ok) {
       toast.success("Client added successfully", {
         description: (
@@ -58,9 +67,11 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
       });
       reset();
       setShowAddClientModal(false);
-      
+
       // Refresh data without page reload
-      const refreshResponse = await fetch("https://nhakhoamyduc-api.onrender.com/api/clients");
+      const refreshResponse = await fetch(
+        "https://nhakhoamyduc-api.onrender.com/api/clients"
+      );
       if (refreshResponse.ok) {
         const newData = await refreshResponse.json();
         onDataUpdate(newData);
@@ -86,9 +97,23 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   };
 
   return (
-    <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center" onClick={handleOverlayClick}>
-      <div className="bg-white p-4 rounded-md" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-2xl font-bold mb-4">Add Client</h2>
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+      onClick={handleOverlayClick}
+    >
+      <div
+        className="bg-white p-6 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">Add Client</h2>
+          <button
+            onClick={() => setShowAddClientModal(false)}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            ✕
+          </button>
+        </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col md:!grid md:!grid-cols-2 gap-4"
@@ -97,7 +122,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
             <label className="block text-sm font-medium mb-1">Full Name*</label>
             <input
               type="text"
-              className="w-full border rounded px-3 py-1 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("fullName")}
             />
             {errors.fullName && (
@@ -112,7 +137,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
             </label>
             <input
               type="text"
-              className="w-full border rounded px-3 py-1 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("firstName")}
             />
             {errors.firstName && (
@@ -127,7 +152,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
             </label>
             <input
               type="number"
-              className="w-full border rounded px-3 py-1 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("birthYear", { valueAsNumber: true })}
             />
             {errors.birthYear && (
@@ -140,7 +165,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
               type="email"
-              className="w-full border rounded px-3 py-1 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("email")}
             />
             {errors.email && (
@@ -153,7 +178,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
             <label className="block text-sm font-medium mb-1">Phone</label>
             <input
               type="tel"
-              className="w-full border rounded px-3 py-1 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("phone")}
             />
             {errors.phone && (
@@ -166,7 +191,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
             <label className="block text-sm font-medium mb-1">Address</label>
             <input
               type="text"
-              className="w-full border rounded px-3 py-1 text-sm"
+              className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("address")}
             />
             {errors.address && (
@@ -180,7 +205,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
               Client Document
             </label>
             <textarea
-              className="w-full border rounded px-3 py-1 text-sm min-h-[100px] resize-y"
+              className="w-full border rounded px-3 py-2 text-sm min-h-[100px] resize-y focus:outline-none focus:ring-1 focus:ring-blue-400"
               {...register("clientDocument")}
             />
             {errors.clientDocument && (
@@ -189,10 +214,17 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
               </span>
             )}
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 flex justify-end gap-2 mt-4">
+            <button
+              type="button"
+              onClick={() => setShowAddClientModal(false)}
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
             >
               Add Client
             </button>
@@ -203,301 +235,9 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   );
 };
 
-const TableHeader = ({
-  headers,
-  onSortColumnChange,
-  sortColumn,
-  sortDirection,
-  columnWidths = {},
-  onColumnResize = (column, width) => {},
-}) => {
-  const [resizingColumn, setResizingColumn] = useState(null);
-  const [startX, setStartX] = useState(0);
-  const [startWidth, setStartWidth] = useState(0);
-
-  const handleHeaderClick = (column) => {
-    onSortColumnChange(column);
-  };
-
-  const handleResizeStart = (e, column) => {
-    e.preventDefault();
-    setResizingColumn(column);
-    setStartX(e.pageX);
-    setStartWidth(columnWidths[column] || 150); // Default width if not set
-  };
-
-  const handleResizeMove = (e) => {
-    if (!resizingColumn) return;
-
-    const diff = e.pageX - startX;
-    const newWidth = Math.max(50, startWidth + diff); // Minimum width of 50px
-    onColumnResize(resizingColumn, newWidth);
-  };
-
-  const handleResizeEnd = () => {
-    setResizingColumn(null);
-  };
-
-  React.useEffect(() => {
-    if (resizingColumn) {
-      window.addEventListener('mousemove', handleResizeMove);
-      window.addEventListener('mouseup', handleResizeEnd);
-      return () => {
-        window.removeEventListener('mousemove', handleResizeMove);
-        window.removeEventListener('mouseup', handleResizeEnd);
-      };
-    }
-  }, [resizingColumn, startX, startWidth]);
-
-  return (
-    <thead className="bg-gray-100">
-      <tr>
-        {headers.map((header) => (
-          <th
-            key={header.column}
-            className="px-4 py-2 text-left cursor-pointer select-none border-r last:border-r-0 border-gray-200 relative"
-            style={{ width: columnWidths[header.column] || 'auto' }}
-            onClick={() => handleHeaderClick(header.column)}
-          >
-            <div className="flex items-center justify-between">
-              {header.label}
-              <span className="absolute right-1">
-                {sortDirection === "desc" && (
-                  <ArrowUpAZ
-                    className={`w-4 h-4 ${
-                      sortColumn === header.column
-                        ? "text-blue-500"
-                        : "text-gray-400"
-                    }`}
-                  />
-                )}
-                {sortDirection === "asc" && (
-                  <ArrowDownAZ
-                    className={`w-4 h-4 ${
-                      sortColumn === header.column
-                        ? "text-blue-500"
-                        : "text-gray-400"
-                    }`}
-                  />
-                )}
-              </span>
-            </div>
-            <div
-              className="absolute right-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-500"
-              onMouseDown={(e) => handleResizeStart(e, header.column)}
-            />
-          </th>
-        ))}
-      </tr>
-    </thead>
-  );
-};
-
-const TableBody = ({
-  headers,
-  data,
-  currentPage,
-  itemsPerPage,
-  sortColumn,
-  sortDirection,
-  isLoading,
-  loadingTag,
-  onDataUpdate,
-  columnWidths = {},
-}) => {
-  const [editingCell, setEditingCell] = useState(null);
-  const [editValue, setEditValue] = useState("");
-  const [highlightedRowId, setHighlightedRowId] = useState(null);
-
-  const currentDateTime = new Date().toLocaleString();
-
-  const startIdx = (currentPage - 1) * itemsPerPage;
-  const endIdx = startIdx + itemsPerPage;
-
-  const sortedData = [...data].sort((a, b) => {
-    const valA = a[sortColumn];
-    const valB = b[sortColumn];
-
-    if (valA < valB) return sortDirection === "asc" ? -1 : 1;
-    if (valA > valB) return sortDirection === "asc" ? 1 : -1;
-    return 0;
-  });
-
-  const paginatedData = sortedData.slice(startIdx, endIdx);
-
-  const handleCellClick = (itemId, column, value) => {
-    if (column === "clientId") {
-      setHighlightedRowId(highlightedRowId === itemId ? null : itemId);
-      console.log(highlightedRowId);
-      return;
-    }
-    if (column === "updatedAt") {
-      return;
-    }
-    console.log("Cell clicked:", { itemId, column, value }); // Debug log
-    setEditingCell({ itemId, column });
-    setEditValue(value?.toString() || "");
-  };
-
-  const handleInputChange = (e) => {
-    setEditValue(e.target.value);
-  };
-
-  const handleInputBlur = () => {
-    setEditingCell(null);
-  };
-
-  const handleInputKeyDown = async (e, item) => {
-    if (e.key === "Enter") {
-      setEditingCell(null);
-      // update cell value
-      console.log(editValue);
-
-      try {
-        const response = await fetch(`https://nhakhoamyduc-api.onrender.com/api/clients`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: item.id,
-            [editingCell?.column]: editValue,
-          }),
-        });
-
-        if (response.ok) {
-          // update the data in the UI
-          const updatedData = data.map((row) =>
-            row.id === item.id
-              ? { ...row, [editingCell?.column]: editValue }
-              : row
-          );
-          onDataUpdate(updatedData);
-
-          // show success toast
-          toast.success("Client info updated successfully", {
-            description: (
-              <span style={{ color: "var(--muted-foreground)" }}>
-                {currentDateTime}
-              </span>
-            ),
-            style: {
-              color: "#22c55e", // green-500 color
-            },
-          });
-        } else {
-          toast.error(
-            "Failed to update client info. Please note that clientId and email should be unique.",
-            {
-              description: (
-                <span style={{ color: "var(--muted-foreground)" }}>
-                  {currentDateTime}
-                </span>
-              ),
-              style: {
-                color: "#ef4444", // red-500 color
-              },
-            }
-          );
-        }
-      } catch (error) {
-        console.error("Error in /api/clients:", error);
-        toast.error(
-          "Failed to update client info. Please note that clientId and email should be unique.",
-          {
-            description: (
-              <span style={{ color: "var(--muted-foreground)" }}>
-                {currentDateTime}
-              </span>
-            ),
-            style: {
-              color: "#ef4444", // red-500 color
-            },
-          }
-        );
-      }
-    }
-  };
-
-  return (
-    <tbody>
-      {!isLoading ? (
-        paginatedData.map((item) => (
-          <tr
-            key={item.id}
-            className={`${
-              highlightedRowId === item.id
-                ? "!bg-blue-50 hover:!bg-blue-100"
-                : "odd:bg-white even:bg-gray-50 hover:bg-gray-100"
-            } transition-colors duration-200`}
-          >
-            {headers.map((header) => {
-              const isEditing =
-                editingCell?.itemId === item.id &&
-                editingCell?.column === header.column;
-
-              return (
-                <td
-                  key={header.column}
-                  className={`px-4 py-2 border-r last:border-r-0 border-gray-200 cursor-pointer ${
-                    highlightedRowId === item.id
-                      ? "!bg-blue-50 hover:!bg-blue-100"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    handleCellClick(item.id, header.column, item[header.column])
-                  }
-                >
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={editValue}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      onKeyDown={(e) => handleInputKeyDown(e, item)}
-                      className="w-full px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
-                      autoFocus
-                    />
-                  ) : (
-                    <div className="min-h-[24px]">
-                      {header.column === "updatedAt"
-                        ? new Date(item[header.column]).toLocaleDateString(
-                            "en-GB",
-                            {
-                              day: "2-digit",
-                              month: "2-digit",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                              second: "2-digit",
-                              hour12: false,
-                            }
-                          )
-                        : header.column === "clientDocument"
-                        ? (
-                            <div className="whitespace-pre-wrap break-words">
-                              {item[header.column]?.toString() || ""}
-                            </div>
-                          )
-                        : item[header.column]?.toString() || ""}
-                    </div>
-                  )}
-                </td>
-              );
-            })}
-          </tr>
-        ))
-      ) : (
-        <tr>
-          <td colSpan={headers.length} className="text-center px-4 py-4">
-            {loadingTag}
-          </td>
-        </tr>
-      )}
-    </tbody>
-  );
-};
-
+////////////////////////////////////////////////////////////
+// Pagination
+////////////////////////////////////////////////////////////
 const Pagination = ({
   currentPage,
   totalNumberOfPages,
@@ -592,6 +332,9 @@ const Pagination = ({
   );
 };
 
+////////////////////////////////////////////////////////////
+// Table
+////////////////////////////////////////////////////////////
 const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
@@ -601,6 +344,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const [sortDirection, setSortDirection] = useState("desc");
   const [showAddClientModal, setShowAddClientModal] = useState(false);
   const [columnWidths, setColumnWidths] = useState({});
+  const { t } = useTranslation();
 
   const filteredData = useMemo(() => {
     return data.filter((item) =>
@@ -617,6 +361,17 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  // Set initial widths for columns
+  React.useEffect(() => {
+    const initialWidths = {};
+    headers.forEach((header) => {
+      if (header.initialWidth) {
+        initialWidths[header.column] = header.initialWidth;
+      }
+    });
+    setColumnWidths(initialWidths);
+  }, [headers]);
 
   const handleSortColumnChange = (column) => {
     if (sortColumn === column) {
@@ -656,9 +411,9 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   };
 
   const handleColumnResize = (column, width) => {
-    setColumnWidths(prev => ({
+    setColumnWidths((prev) => ({
       ...prev,
-      [column]: width
+      [column]: width,
     }));
   };
 
@@ -739,6 +494,10 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
         </button>
       </div>
 
+      <span className="text-sm text-gray-400 italic">
+        {t("addClientFormNote")}
+      </span>
+      
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-200 text-sm">
@@ -781,7 +540,10 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
 
       {/* Add Client Modal */}
       {showAddClientModal && (
-        <AddClientForm setShowAddClientModal={setShowAddClientModal} onDataUpdate={onDataUpdate} />
+        <AddClientForm
+          setShowAddClientModal={setShowAddClientModal}
+          onDataUpdate={onDataUpdate}
+        />
       )}
     </div>
   );
