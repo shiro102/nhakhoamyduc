@@ -69,7 +69,7 @@ const TableHeader = ({
                 <span className="absolute right-1">
                   {sortDirection === "desc" && (
                     <ArrowUpAZ
-                      className={`w-4 h-4 ${
+                      className={`w-4 h-4 hover:text-blue-400 ${
                         sortColumn === header.column
                           ? "text-blue-500"
                           : "text-gray-400"

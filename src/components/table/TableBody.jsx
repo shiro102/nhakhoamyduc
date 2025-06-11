@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { Undo2 } from "lucide-react";
 
 ////////////////////////////////////////////////////////////
 // Document Modal
@@ -30,7 +31,7 @@ const DocumentModal = ({
       onClick={handleClose}
     >
       <div
-        className="bg-white p-6 rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+        className="bg-white p-6 rounded-lg shadow-xl max-w-3xl w-full mx-4 h-[80vh] overflow-y-auto flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center mb-6">
@@ -44,11 +45,11 @@ const DocumentModal = ({
             ✕
           </button>
         </div>
-        <div className="mb-4">
+        <div className="flex-1 mb-4">
           <textarea
             value={document}
             onChange={(e) => setEditValue(e.target.value)}
-            className="w-full border rounded px-3 py-2 text-sm min-h-[300px] resize-y focus:outline-none focus:ring-1 focus:ring-blue-400"
+            className="w-full h-full border rounded px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-blue-400"
             placeholder="Enter client document details..."
           />
         </div>
@@ -93,6 +94,9 @@ const TableBody = ({
   const [highlightedRowId, setHighlightedRowId] = useState(null);
   const [documentModalOpen, setDocumentModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [expandedCells, setExpandedCells] = useState(new Set());
+  const [lastEditedCell, setLastEditedCell] = useState(null);
+  const [lastEditedValue, setLastEditedValue] = useState(null);
 
   const currentDateTime = new Date().toLocaleString();
 
@@ -135,11 +139,8 @@ const TableBody = ({
       return;
     }
     if (column === "clientDocument") {
-      setEditingCell({ itemId, column });
       setSelectedItem(item);
       setDocumentModalOpen(true);
-      setEditValue(value?.toString() || "");
-      return;
     }
     setEditingCell({ itemId, column });
     setEditValue(value?.toString() || "");
@@ -177,6 +178,11 @@ const TableBody = ({
         );
 
         if (response.ok) {
+          setLastEditedCell({ column: editingCell?.column, itemId: item.id });
+          setLastEditedValue(
+            data.find((row) => row.id === item.id)[editingCell?.column]
+          );
+
           const updatedData = data.map((row) =>
             row.id === item.id
               ? { ...row, [editingCell?.column]: editValue }
@@ -255,7 +261,7 @@ const TableBody = ({
               return (
                 <td
                   key={header.column}
-                  className={`px-4 py-2 border-r last:border-r-0 border-gray-200 cursor-pointer ${
+                  className={`px-4 py-2 border-r last:border-r-0 border-gray-200 cursor-pointer relative ${
                     highlightedRowId === item.id
                       ? "!bg-blue-50 hover:!bg-blue-100"
                       : ""
@@ -274,6 +280,30 @@ const TableBody = ({
                     )
                   }
                 >
+                  {/* Last edited value */}
+                  {lastEditedCell?.column === header.column &&
+                    lastEditedCell?.itemId === item.id &&
+                    lastEditedValue !== item[header.column] && (
+                      <div className="absolute top-0 right-0 z-10 bg-white/80 backdrop-blur-sm rounded-bl-lg p-1">
+                        <button
+                          className="text-blue-500 hover:text-blue-700 font-medium flex items-center gap-1"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEditingCell({
+                              itemId: item.id,
+                              column: header.column,
+                            });
+                            setEditValue(lastEditedValue);
+                            handleInputKeyDown({ key: "undoCellEdit" }, item);
+                          }}
+                        >
+                          <Undo2 className="w-3 h-3" />
+                          <span className="text-[10px]">Undo</span>
+                        </button>
+                      </div>
+                    )}
+
+                  {/* Editing cell */}
                   {isEditing ? (
                     header.column !== "clientDocument" && (
                       <input
@@ -282,7 +312,7 @@ const TableBody = ({
                         onChange={handleInputChange}
                         onBlur={handleInputBlur}
                         onKeyDown={(e) => handleInputKeyDown(e, item)}
-                        className="w-full px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
+                        className="w-full h-12 px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
                         autoFocus
                       />
                     )
@@ -302,8 +332,49 @@ const TableBody = ({
                           }
                         )
                       ) : header.column === "clientDocument" ? (
-                        <div className="whitespace-pre-wrap break-words cursor-pointer hover:text-blue-500">
-                          {item[header.column]?.toString()}
+                        <div className="whitespace-pre-wrap break-words">
+                          <div className="cursor-pointer hover:text-blue-500 flex flex-col gap-2">
+                            {expandedCells.has(item.id)
+                              ? item[header.column]?.toString()
+                              : item[header.column]
+                                  ?.toString()
+                                  .split("\n")
+                                  .slice(0, 8)
+                                  .join("\n")}
+                            {!expandedCells.has(item.id) &&
+                              item[header.column]?.toString().split("\n")
+                                .length > 8 && (
+                                <>
+                                  <span>...</span>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setExpandedCells(
+                                        (prev) => new Set([...prev, item.id])
+                                      );
+                                    }}
+                                    className="text-blue-500 hover:text-blue-700 font-medium underline"
+                                  >
+                                    Show more
+                                  </button>
+                                </>
+                              )}
+                            {expandedCells.has(item.id) && (
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setExpandedCells((prev) => {
+                                    const newSet = new Set(prev);
+                                    newSet.delete(item.id);
+                                    return newSet;
+                                  });
+                                }}
+                                className="text-blue-500 hover:text-blue-700 font-medium underline"
+                              >
+                                Show less
+                              </button>
+                            )}
+                          </div>
                         </div>
                       ) : (
                         item[header.column]?.toString() || ""
