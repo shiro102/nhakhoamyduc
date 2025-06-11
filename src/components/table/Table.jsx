@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
+import { useTranslation } from "react-i18next";
 
 const addClientSchema = z.object({
   fullName: z.string().min(1),
@@ -43,13 +44,16 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   const currentDateTime = new Date().toLocaleString();
 
   const onSubmit = async (data) => {
-    const response = await fetch("https://nhakhoamyduc-api.onrender.com/api/clients", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "https://nhakhoamyduc-api.onrender.com/api/clients",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     if (response.ok) {
       toast.success("Client added successfully", {
         description: (
@@ -63,9 +67,11 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
       });
       reset();
       setShowAddClientModal(false);
-      
+
       // Refresh data without page reload
-      const refreshResponse = await fetch("https://nhakhoamyduc-api.onrender.com/api/clients");
+      const refreshResponse = await fetch(
+        "https://nhakhoamyduc-api.onrender.com/api/clients"
+      );
       if (refreshResponse.ok) {
         const newData = await refreshResponse.json();
         onDataUpdate(newData);
@@ -91,11 +97,17 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" onClick={handleOverlayClick}>
-      <div className="bg-white p-6 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+      onClick={handleOverlayClick}
+    >
+      <div
+        className="bg-white p-6 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Add Client</h2>
-          <button 
+          <button
             onClick={() => setShowAddClientModal(false)}
             className="text-gray-500 hover:text-gray-700"
           >
@@ -332,6 +344,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const [sortDirection, setSortDirection] = useState("desc");
   const [showAddClientModal, setShowAddClientModal] = useState(false);
   const [columnWidths, setColumnWidths] = useState({});
+  const { t } = useTranslation();
 
   const filteredData = useMemo(() => {
     return data.filter((item) =>
@@ -398,9 +411,9 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   };
 
   const handleColumnResize = (column, width) => {
-    setColumnWidths(prev => ({
+    setColumnWidths((prev) => ({
       ...prev,
-      [column]: width
+      [column]: width,
     }));
   };
 
@@ -481,6 +494,10 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
         </button>
       </div>
 
+      <span className="text-sm text-gray-400 italic">
+        {t("addClientFormNote")}
+      </span>
+      
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-200 text-sm">
@@ -523,7 +540,10 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
 
       {/* Add Client Modal */}
       {showAddClientModal && (
-        <AddClientForm setShowAddClientModal={setShowAddClientModal} onDataUpdate={onDataUpdate} />
+        <AddClientForm
+          setShowAddClientModal={setShowAddClientModal}
+          onDataUpdate={onDataUpdate}
+        />
       )}
     </div>
   );

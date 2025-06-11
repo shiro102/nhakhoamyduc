@@ -17,12 +17,17 @@ const DocumentModal = ({
     onClose();
   };
 
+  const handleClose = () => {
+    setEditValue(document); // Reset to original value
+    onClose();
+  };
+
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[99999]"
-      onClick={onClose}
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-end items-center z-[99999]"
+      onClick={handleClose}
     >
       <div
         className="bg-white p-6 rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto"
@@ -33,7 +38,7 @@ const DocumentModal = ({
             Patient Document for {item.fullName}
           </h2>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="text-gray-500 hover:text-gray-700"
           >
             ✕
@@ -50,7 +55,7 @@ const DocumentModal = ({
         <div className="flex justify-end gap-2">
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
           >
             Cancel
@@ -98,9 +103,25 @@ const TableBody = ({
     const valA = a[sortColumn];
     const valB = b[sortColumn];
 
-    if (valA < valB) return sortDirection === "asc" ? -1 : 1;
-    if (valA > valB) return sortDirection === "asc" ? 1 : -1;
-    return 0;
+    // Handle null/undefined values
+    if (valA == null) return sortDirection === "asc" ? -1 : 1;
+    if (valB == null) return sortDirection === "asc" ? 1 : -1;
+
+    // Check if values are numbers
+    const numA = Number(valA);
+    const numB = Number(valB);
+
+    if (!isNaN(numA) && !isNaN(numB)) {
+      // Numeric comparison
+      return sortDirection === "asc" ? numA - numB : numB - numA;
+    } else {
+      // String comparison
+      const strA = String(valA).toLowerCase();
+      const strB = String(valB).toLowerCase();
+      return sortDirection === "asc"
+        ? strA.localeCompare(strB)
+        : strB.localeCompare(strA);
+    }
   });
 
   const paginatedData = sortedData.slice(startIdx, endIdx);
@@ -209,6 +230,11 @@ const TableBody = ({
     }
   };
 
+  const handleModalClose = () => {
+    setDocumentModalOpen(false);
+    setEditingCell(null);
+  };
+
   return (
     <tbody>
       {!isLoading ? (
@@ -249,15 +275,17 @@ const TableBody = ({
                   }
                 >
                   {isEditing ? (
-                    <input
-                      type="text"
-                      value={editValue}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      onKeyDown={(e) => handleInputKeyDown(e, item)}
-                      className="w-full px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
-                      autoFocus
-                    />
+                    header.column !== "clientDocument" && (
+                      <input
+                        type="text"
+                        value={editValue}
+                        onChange={handleInputChange}
+                        onBlur={handleInputBlur}
+                        onKeyDown={(e) => handleInputKeyDown(e, item)}
+                        className="w-full px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
+                        autoFocus
+                      />
+                    )
                   ) : (
                     <div className="min-h-[24px]">
                       {header.column === "updatedAt" ? (
@@ -297,7 +325,7 @@ const TableBody = ({
 
       <DocumentModal
         isOpen={documentModalOpen}
-        onClose={() => setDocumentModalOpen(false)}
+        onClose={handleModalClose}
         document={editValue}
         item={selectedItem}
         handleInputKeyDown={handleInputKeyDown}

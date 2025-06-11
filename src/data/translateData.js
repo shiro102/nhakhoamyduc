@@ -69,6 +69,8 @@ const data = {
     registrationError: "An error occurred while registering.",
     loadingMessage:
       "Logging in, please wait... It will take 1-2 minutes if you have not used the app for a while.",
+    addClientFormNote:
+      "*Note: After updating a field, please wait until the page is updated or the notification is shown.",
   },
   /************ Vietnamese **************/
   vn: {
@@ -144,6 +146,8 @@ const data = {
     registrationError: "Đã xảy ra lỗi khi đăng ký.",
     loadingMessage:
       "Đang đăng nhập, vui lòng đợi... Sẽ mất 1-2 phút nếu bạn chưa sử dụng ứng dụng trong một thời gian.",
+    addClientFormNote:
+      "*Lưu ý: Sau khi cập nhật một thông tin, vui lòng đợi cho đến khi thông tin đó được cập nhật trên bảng hoặc thông báo được hiển thị.",
   },
 };
 
