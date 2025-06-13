@@ -7,6 +7,7 @@ import useLink from "../../functions/useLink";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { LogOut } from "lucide-react";
+import Loading from "../Loading";
 
 const Admin = () => {
   useScript(scriptUrlList, scriptTextList);
@@ -78,7 +79,7 @@ const Admin = () => {
         ]}
         data={tableData}
         isLoading={loading}
-        loadingTag={<h1>Loading...</h1>}
+        loadingTag={<Loading />}
         onDataUpdate={setTableData}
       />
     </div>

@@ -10,7 +10,7 @@ const introductionData = [
     id: 1,
     description: "descriptionIntroduction1",
     imageUrl:
-      "https://drive.google.com/thumbnail?id=1JiSeoGMc3dVQ5t2TvHNu4uuGFNoDs2sV&sz=w1000",
+      "https://drive.google.com/thumbnail?id=1JvEwhUPl9OUzDXBoFU0Iyhfy88Mv2NB-&sz=w1000",
     title: "titleIntroduction1",
   },
   {
@@ -81,7 +81,7 @@ const Home = () => {
           {/* First Director */}
           <div className="!flex !flex-col justify-center items-center w-full gap-y-3 md:!flex-row md:justify-end md:gap-x-5 md:pr-2">
             <img
-              src="https://drive.google.com/thumbnail?id=150ts6Imr6vEJDJIu9BSLaoD9xm-FC_4u&sz=w1000"
+              src="https://drive.google.com/thumbnail?id=1bVgQc23HwW8UPmNBgtTyUTvbEXsnvNpj&sz=w1000"
               alt="Bac si Chi"
               width={200}
               height={50}

@@ -6,6 +6,7 @@ import { Eye } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { Translation, useTranslation } from "react-i18next";
+import Loading from "../Loading";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -143,15 +144,7 @@ const Login = () => {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-gray-50">
-      {/* Loading Spinner */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex flex-col gap-y-4 justify-center items-center z-[99999]">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
-          <h1 className="text-2xl font-bold text-white">
-            {t("loadingMessage")}
-          </h1>
-        </div>
-      )}
+      {isLoading && <Loading />}
 
       {/* Login Form */}
       <div className="flex flex-col items-center justify-center border border-gray-300 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 bg-white m-3">

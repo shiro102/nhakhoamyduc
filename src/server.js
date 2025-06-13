@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
-const { prisma } = require('../lib/prisma')
+const { prisma } = require("../lib/prisma");
 
 async function getLatestClientId() {
   try {
@@ -16,7 +16,7 @@ async function getLatestClientId() {
       },
     });
     console.log("Raw query result:", client);
-    
+
     // Check if client exists and has a valid clientId
     if (client && client.clientId) {
       console.log("Client ID exists:", client.clientId);
@@ -31,7 +31,6 @@ async function getLatestClientId() {
     console.error("Error in getLatestClientId:", error);
   }
 }
-
 
 const app = express();
 
@@ -145,7 +144,7 @@ app.post("/api/logout", (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    domain: process.env.COOKIE_DOMAIN || undefined
+    domain: process.env.COOKIE_DOMAIN || undefined,
   });
   console.log("Log out res cookies", res.cookies);
   res.json({ message: "Logged out successfully" });
@@ -155,6 +154,7 @@ app.post("/api/logout", (req, res) => {
 app.get("/api/clients", async (req, res) => {
   console.log("Received request to /api/clients");
   const search = req.query.search;
+  const mode = req.query.mode;
   console.log("Search query:", search);
   try {
     if (search) {
@@ -162,13 +162,13 @@ app.get("/api/clients", async (req, res) => {
       const searchInt = parseInt(search);
       const isNumeric = !isNaN(searchInt);
       const orConditions = [
-        { fullName: { contains: search, mode: 'insensitive' } },
-        { birthYearAndName: { contains: search, mode: 'insensitive' } },
-        { email: { contains: search, mode: 'insensitive' } },
-        { phone: { contains: search, mode: 'insensitive' } },
-        { address: { contains: search, mode: 'insensitive' } },
-        { clientDocument: { contains: search, mode: 'insensitive' } },
-        { clientId: { contains: search, mode: 'insensitive' } },
+        { fullName: { contains: search, mode: "insensitive" } },
+        { birthYearAndName: { contains: search, mode: "insensitive" } },
+        { email: { contains: search, mode: "insensitive" } },
+        { phone: { contains: search, mode: "insensitive" } },
+        { address: { contains: search, mode: "insensitive" } },
+        { clientDocument: { contains: search, mode: "insensitive" } },
+        { clientId: { contains: search, mode: "insensitive" } },
       ];
       if (isNumeric) {
         orConditions.push({ birthYear: { equals: searchInt } });
@@ -181,15 +181,24 @@ app.get("/api/clients", async (req, res) => {
       console.log("Found clients:", clients.length);
       res.json(clients);
     } else {
-      console.log("Fetching all clients");
-      const clients = await prisma.client.findMany({
-        orderBy: {
-          updatedAt: "desc",
-        },
-        take: 100,
-        skip: 0,
-      });
-      console.log("Found clients:", clients.length);
+      if (mode === "all") {
+        const clients = await prisma.client.findMany({
+          orderBy: {
+            updatedAt: "desc",
+          },
+        });
+        console.log("Found clients:", clients.length);
+      } else {
+        console.log("Fetching top 100 clients");
+        const clients = await prisma.client.findMany({
+          orderBy: {
+            updatedAt: "desc",
+          },
+          take: 100,
+          skip: 0,
+        });
+        console.log("Found clients:", clients.length);
+      }
       res.json(clients);
     }
   } catch (error) {
@@ -209,13 +218,24 @@ app.put("/api/clients", async (req, res) => {
     res.json(client);
   } catch (error) {
     console.error("Error in /api/clients:", error);
-    res.status(500).json({ error: "Failed to update client info. Please note that clientId and email should be unique." });
+    res.status(500).json({
+      error:
+        "Failed to update client info. Please note that clientId and email should be unique.",
+    });
   }
 });
 
 app.post("/api/clients", async (req, res) => {
   console.log("Received request to /api/clients");
-  const { email, fullName, firstName, birthYear, phone, address, clientDocument } = req.body;
+  const {
+    email,
+    fullName,
+    firstName,
+    birthYear,
+    phone,
+    address,
+    clientDocument,
+  } = req.body;
   const newClientId = await getLatestClientId();
   console.log("New client ID:", newClientId);
   const birthYearAndName = `${fullName} ${birthYear}`;
@@ -245,4 +265,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
