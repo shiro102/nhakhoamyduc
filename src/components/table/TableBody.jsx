@@ -88,6 +88,8 @@ const TableBody = ({
   loadingTag,
   onDataUpdate,
   columnWidths = {},
+  isLoadingSave,
+  setIsLoadingSave,
 }) => {
   const [editingCell, setEditingCell] = useState(null);
   const [editValue, setEditValue] = useState("");
@@ -98,7 +100,6 @@ const TableBody = ({
   const [lastEditedCell, setLastEditedCell] = useState(null);
   const [lastEditedValue, setLastEditedValue] = useState(null);
   const [showCell, setShowCell] = useState(false);
-  const [isLoadingSave, setIsLoadingSave] = useState(false);
 
   const currentDateTime = new Date().toLocaleString();
 
