@@ -98,6 +98,7 @@ const TableBody = ({
   const [lastEditedCell, setLastEditedCell] = useState(null);
   const [lastEditedValue, setLastEditedValue] = useState(null);
   const [showEmail, setShowEmail] = useState(false);
+  const [isLoadingSave, setIsLoadingSave] = useState(false);
 
   const currentDateTime = new Date().toLocaleString();
 
@@ -164,6 +165,7 @@ const TableBody = ({
       console.log(editingCell?.column);
       console.log(editValue);
       try {
+        setIsLoadingSave(true);
         const response = await fetch(
           `https://nhakhoamyduc-api.onrender.com/api/clients`,
           {
@@ -177,6 +179,7 @@ const TableBody = ({
             }),
           }
         );
+        setIsLoadingSave(false);
 
         if (response.ok) {
           setLastEditedCell({ column: editingCell?.column, itemId: item.id });
@@ -244,7 +247,7 @@ const TableBody = ({
 
   return (
     <tbody>
-      {!isLoading ? (
+      {!isLoading && !isLoadingSave ? (
         paginatedData.map((item) => (
           <tr
             key={item.id}
