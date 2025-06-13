@@ -20,15 +20,20 @@ async function getLatestClientId() {
     // Check if client exists and has a valid clientId
     if (client && client.clientId) {
       console.log("Client ID exists:", client.clientId);
-      const nextId = parseInt(client.clientId) + 1;
-      console.log("Next client ID will be:", nextId);
-      return nextId;
+      const nextId = parseInt(client.clientId);
+      if (isNaN(nextId)) {
+        console.error("Invalid clientId format:", client.clientId);
+        return 1; // Start from 1 if current ID is invalid
+      }
+      console.log("Next client ID will be:", nextId + 1);
+      return nextId + 1;
     } else {
       console.log("No valid client found, starting with ID 1");
       return 1;
     }
   } catch (error) {
     console.error("Error in getLatestClientId:", error);
+    return 1; // Return default value on error
   }
 }
 
@@ -65,6 +70,23 @@ app.use(cookieParser());
 // Registration endpoint
 app.post("/api/register", async (req, res) => {
   const { email, password } = req.body;
+  
+  // Input validation
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "Invalid email format" });
+  }
+
+  // Password strength validation
+  if (password.length < 8) {
+    return res.status(400).json({ error: "Password must be at least 8 characters long" });
+  }
+
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -75,11 +97,12 @@ app.post("/api/register", async (req, res) => {
       data: { email, hashedPassword },
     });
     res.json({
-      message: "User registered",
+      message: "User registered successfully",
       user: { id: user.id, email: user.email },
     });
   } catch (error) {
-    res.status(500).json({ error: "Registration failed" });
+    console.error("Registration error:", error);
+    res.status(500).json({ error: "Registration failed. Please try again later." });
   }
 });
 
@@ -181,8 +204,9 @@ app.get("/api/clients", async (req, res) => {
       console.log("Found clients:", clients.length);
       res.json(clients);
     } else {
+      let clients;
       if (mode === "all") {
-        const clients = await prisma.client.findMany({
+        clients = await prisma.client.findMany({
           orderBy: {
             updatedAt: "desc",
           },
@@ -190,7 +214,7 @@ app.get("/api/clients", async (req, res) => {
         console.log("Found clients:", clients.length);
       } else {
         console.log("Fetching top 100 clients");
-        const clients = await prisma.client.findMany({
+        clients = await prisma.client.findMany({
           orderBy: {
             updatedAt: "desc",
           },
@@ -236,10 +260,35 @@ app.post("/api/clients", async (req, res) => {
     address,
     clientDocument,
   } = req.body;
+
+  // Input validation
+  if (!fullName) {
+    return res.status(400).json({ error: "Full name is required" });
+  }
+
+  if (birthYear) {
+    const currentYear = new Date().getFullYear();
+    if (isNaN(birthYear) || birthYear < 1900 || birthYear > currentYear) {
+      return res.status(400).json({ error: "Invalid birth year" });
+    }
+  }
+
+  if (email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+  }
+
+  if (phone && !/^\+?[\d\s-]{10,}$/.test(phone)) {
+    return res.status(400).json({ error: "Invalid phone number format" });
+  }
+
   const newClientId = await getLatestClientId();
   console.log("New client ID:", newClientId);
-  const birthYearAndName = `${fullName} ${birthYear}`;
+  const birthYearAndName = `${fullName} ${birthYear || ''}`.trim();
   console.log("Birth year and name:", birthYearAndName);
+
   try {
     const client = await prisma.client.create({
       data: {
@@ -257,7 +306,11 @@ app.post("/api/clients", async (req, res) => {
     res.json(client);
   } catch (error) {
     console.error("Error in /api/clients:", error);
-    res.status(500).json({ error: "Failed to create client" });
+    if (error.code === 'P2002') {
+      res.status(400).json({ error: "A client with this email or client ID already exists" });
+    } else {
+      res.status(500).json({ error: "Failed to create client. Please try again later." });
+    }
   }
 });
 

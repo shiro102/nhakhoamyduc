@@ -17,12 +17,32 @@ const Admin = () => {
   const navigate = useNavigate();
 
   const fetchClients = async () => {
-    const response = await fetch(
-      "https://nhakhoamyduc-api.onrender.com/api/clients"
-    );
-    const data = await response.json();
-    setTableData(data);
-    setLoading(false);
+    try {
+      const response = await fetch(
+        "https://nhakhoamyduc-api.onrender.com/api/clients"
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+
+      if (Array.isArray(data)) {
+        setTableData(data);
+      } else {
+        toast.error("Invalid data format", {
+          description: "Expected an array of clients",
+          style: { color: "#dc2626" },
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching clients:", error);
+      toast.error("Failed to fetch client data", {
+        description: error.message,
+        style: { color: "#dc2626" },
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogout = async () => {
@@ -39,10 +59,15 @@ const Admin = () => {
         toast.success("Logged out successfully");
         navigate("/");
       } else {
-        toast.error("Logout failed");
+        toast.error("Logout failed", {
+          style: { color: "#dc2626" },
+        });
       }
     } catch (error) {
-      toast.error("Logout failed");
+      toast.error("Logout failed", {
+        description: error.message,
+        style: { color: "#dc2626" },
+      });
     }
   };
 

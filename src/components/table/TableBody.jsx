@@ -97,7 +97,8 @@ const TableBody = ({
   const [expandedCells, setExpandedCells] = useState(new Set());
   const [lastEditedCell, setLastEditedCell] = useState(null);
   const [lastEditedValue, setLastEditedValue] = useState(null);
-  const [showEmail, setShowEmail] = useState(false);
+  const [showCell, setShowCell] = useState(false);
+  const [isLoadingSave, setIsLoadingSave] = useState(false);
 
   const currentDateTime = new Date().toLocaleString();
 
@@ -164,6 +165,7 @@ const TableBody = ({
       console.log(editingCell?.column);
       console.log(editValue);
       try {
+        setIsLoadingSave(true);
         const response = await fetch(
           `https://nhakhoamyduc-api.onrender.com/api/clients`,
           {
@@ -177,6 +179,7 @@ const TableBody = ({
             }),
           }
         );
+        setIsLoadingSave(false);
 
         if (response.ok) {
           setLastEditedCell({ column: editingCell?.column, itemId: item.id });
@@ -382,9 +385,10 @@ const TableBody = ({
                             )}
                           </div>
                         </div>
-                      ) : header.column === "email" ? (
+                      ) : header.column === "email" ||
+                        header.column === "address" ? (
                         item[header.column] ? (
-                          showEmail ? (
+                          showCell ? (
                             item[header.column].toString()
                           ) : (
                             item[header.column].toString().slice(0, 4) + "..."
@@ -396,17 +400,18 @@ const TableBody = ({
                         item[header.column]?.toString() || ""
                       )}
 
-                      {header.column === "email" &&
+                      {(header.column === "email" ||
+                        header.column === "address") &&
                         item[header.column] &&
                         item[header.column].toString().length > 4 && (
                           <button
                             className="text-blue-500 hover:text-blue-700 font-medium flex items-center gap-1 absolute top-1 right-1"
                             onClick={(e) => {
                               e.stopPropagation();
-                              setShowEmail(!showEmail);
+                              setShowCell(!showCell);
                             }}
                           >
-                            {showEmail ? (
+                            {showCell ? (
                               <EyeOff className="w-3 h-3" />
                             ) : (
                               <Eye className="w-3 h-3" />
@@ -421,6 +426,15 @@ const TableBody = ({
           </tr>
         ))
       ) : (
+        <tr>
+          <td colSpan={headers.length} className="text-center px-4 py-4">
+            {loadingTag}
+          </td>
+        </tr>
+      )}
+
+      {/* Loading tag for adding new client */}
+      {isLoadingSave && (
         <tr>
           <td colSpan={headers.length} className="text-center px-4 py-4">
             {loadingTag}
