@@ -25,16 +25,21 @@ const Admin = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setTableData(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Error fetching clients:', error);
-      toast.error(
-        "Failed to fetch client data",
-        {
-          description: error.message,
+
+      if (Array.isArray(data)) {
+        setTableData(data);
+      } else {
+        toast.error("Invalid data format", {
+          description: "Expected an array of clients",
           style: { color: "#dc2626" },
-        }
-      );
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching clients:", error);
+      toast.error("Failed to fetch client data", {
+        description: error.message,
+        style: { color: "#dc2626" },
+      });
     } finally {
       setLoading(false);
     }
@@ -54,21 +59,15 @@ const Admin = () => {
         toast.success("Logged out successfully");
         navigate("/");
       } else {
-        toast.error(
-          "Logout failed",
-          {
-            style: { color: "#dc2626" },
-          }
-        );
+        toast.error("Logout failed", {
+          style: { color: "#dc2626" },
+        });
       }
     } catch (error) {
-      toast.error(
-        "Logout failed",
-        {
-          description: error.message,
-          style: { color: "#dc2626" },
-        }
-      );
+      toast.error("Logout failed", {
+        description: error.message,
+        style: { color: "#dc2626" },
+      });
     }
   };
 

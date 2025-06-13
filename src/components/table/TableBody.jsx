@@ -385,7 +385,8 @@ const TableBody = ({
                             )}
                           </div>
                         </div>
-                      ) : header.column === "email" || header.column === "address" ? (
+                      ) : header.column === "email" ||
+                        header.column === "address" ? (
                         item[header.column] ? (
                           showCell ? (
                             item[header.column].toString()
@@ -399,7 +400,8 @@ const TableBody = ({
                         item[header.column]?.toString() || ""
                       )}
 
-                      {(header.column === "email" || header.column === "address") &&
+                      {(header.column === "email" ||
+                        header.column === "address") &&
                         item[header.column] &&
                         item[header.column].toString().length > 4 && (
                           <button
