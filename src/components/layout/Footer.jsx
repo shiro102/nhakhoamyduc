@@ -71,9 +71,8 @@ const WorkingHoursTable = memo(() => {
 const Footer = () => {
   const mainServices = ['mainService1', 'mainService2', 'mainService3', 'mainService4'];
   const socialLinks = [
-    { icon: 'facebook', href: '#' },
-    { icon: 'instagram', href: '#' },
-    { icon: 'pinterest-p', href: '#' }
+    { icon: 'facebook', href: 'https://www.facebook.com/people/Nha-Khoa-M%E1%BB%B9-%C4%90%E1%BB%A9c-G%C3%B2-V%E1%BA%A5p/61577458193223' },
+    { icon: 'instagram', href: 'https://www.instagram.com/nhakhoamyducgovap' },
   ];
 
   return (
