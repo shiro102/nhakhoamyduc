@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
-import { Undo2 } from "lucide-react";
+import { Undo2, Eye, EyeOff } from "lucide-react";
 
 ////////////////////////////////////////////////////////////
 // Document Modal
@@ -97,6 +97,7 @@ const TableBody = ({
   const [expandedCells, setExpandedCells] = useState(new Set());
   const [lastEditedCell, setLastEditedCell] = useState(null);
   const [lastEditedValue, setLastEditedValue] = useState(null);
+  const [showEmail, setShowEmail] = useState(false);
 
   const currentDateTime = new Date().toLocaleString();
 
@@ -268,7 +269,11 @@ const TableBody = ({
                   }`}
                   style={{
                     overflow: "hidden",
-                    wordBreak: "break-word",
+                    wordBreak: ["email", "phone", "address"].includes(
+                      header.column
+                    )
+                      ? "break-word"
+                      : "normal",
                     whiteSpace: "normal",
                   }}
                   onClick={() =>
@@ -317,6 +322,7 @@ const TableBody = ({
                       />
                     )
                   ) : (
+                    // Normal cell
                     <div className="min-h-[24px]">
                       {header.column === "updatedAt" ? (
                         new Date(item[header.column]).toLocaleDateString(
@@ -376,9 +382,37 @@ const TableBody = ({
                             )}
                           </div>
                         </div>
+                      ) : header.column === "email" ? (
+                        item[header.column] ? (
+                          showEmail ? (
+                            item[header.column].toString()
+                          ) : (
+                            item[header.column].toString().slice(0, 4) + "..."
+                          )
+                        ) : (
+                          ""
+                        )
                       ) : (
                         item[header.column]?.toString() || ""
                       )}
+
+                      {header.column === "email" &&
+                        item[header.column] &&
+                        item[header.column].toString().length > 4 && (
+                          <button
+                            className="text-blue-500 hover:text-blue-700 font-medium flex items-center gap-1 absolute top-1 right-1"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setShowEmail(!showEmail);
+                            }}
+                          >
+                            {showEmail ? (
+                              <EyeOff className="w-3 h-3" />
+                            ) : (
+                              <Eye className="w-3 h-3" />
+                            )}
+                          </button>
+                        )}
                     </div>
                   )}
                 </td>

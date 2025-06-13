@@ -9,7 +9,7 @@ datasource db {
 
 model Client {
   id               String   @id @default(cuid())
-  clientId         String   
+  clientId         String   @unique
   fullName         String
   firstName        String
   birthYear        Int

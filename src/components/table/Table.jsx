@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { Search } from "lucide-react";
-import { Plus } from "lucide-react";
+import React, { useState, useMemo } from "react";
+import { Search, Download, Plus, Settings, FileText } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +7,7 @@ import { useForm } from "react-hook-form";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import { useTranslation } from "react-i18next";
+import * as XLSX from 'xlsx';
 
 const addClientSchema = z.object({
   fullName: z.string().min(1),
@@ -344,6 +344,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const [sortDirection, setSortDirection] = useState("desc");
   const [showAddClientModal, setShowAddClientModal] = useState(false);
   const [columnWidths, setColumnWidths] = useState({});
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
   const { t } = useTranslation();
 
   const filteredData = useMemo(() => {
@@ -394,7 +395,6 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
       );
       if (response.ok) {
         const newData = await response.json();
-        console.log(newData);
         onDataUpdate(newData);
       } else {
         console.log(response);
@@ -415,6 +415,40 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
       ...prev,
       [column]: width,
     }));
+  };
+
+  const downloadFullData = async () => {
+    try {
+      const response = await fetch(
+        "https://nhakhoamyduc-api.onrender.com/api/clients?mode=all"
+      );
+      const data = await response.json();
+      
+      // Create a worksheet
+      const ws = XLSX.utils.json_to_sheet(data);
+      
+      // Create a workbook
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Clients");
+      
+      // Generate Excel file
+      XLSX.writeFile(wb, "clients_data.xlsx");
+      
+      toast.success("Data downloaded successfully", {
+        description: "Excel file has been downloaded",
+        style: {
+          color: "#22c55e",
+        },
+      });
+    } catch (error) {
+      console.error("Error downloading data:", error);
+      toast.error("Failed to download data", {
+        description: "Please try again later",
+        style: {
+          color: "#ef4444",
+        },
+      });
+    }
   };
 
   return (
@@ -486,7 +520,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
       {/* Add button */}
       <div className="flex justify-end mb-4">
         <button
-          className="bg-blue-400 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-blue-500"
+          className="bg-blue-400 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-500"
           onClick={handleAddClient}
         >
           <Plus className="w-4 h-4" />
@@ -497,7 +531,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
       <span className="text-sm text-gray-400 italic">
         {t("addClientFormNote")}
       </span>
-      
+
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-200 text-sm">
@@ -545,6 +579,39 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
           onDataUpdate={onDataUpdate}
         />
       )}
+
+      {/* Tools tab */}
+      <div className="flex justify-end mb-4">
+        {/* Settings Menu */}
+        {showSettingsMenu && (
+          <div className="fixed bottom-28 right-10 flex flex-col gap-4 z-50">
+            <button
+              className="bg-blue-300 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-400 transition-all transform hover:scale-110"
+              onClick={() => {
+                // Add download functionality here
+                downloadFullData();
+              }}
+            >
+              <Download className="w-4 h-4" />
+            </button>
+            {/* <button
+              className="bg-blue-300 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-400 transition-all transform hover:scale-110"
+              onClick={() => {
+                // Add functionality for the second button here
+                console.log("File text clicked");
+              }}
+            >
+              <FileText className="w-4 h-4" />
+            </button> */}
+          </div>
+        )}
+        <button
+          className="bg-blue-300 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-400 fixed bottom-10 right-10 z-50 transition-transform hover:rotate-90"
+          onClick={() => setShowSettingsMenu(!showSettingsMenu)}
+        >
+          <Settings className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 };
