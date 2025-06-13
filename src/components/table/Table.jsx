@@ -345,6 +345,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const [showAddClientModal, setShowAddClientModal] = useState(false);
   const [columnWidths, setColumnWidths] = useState({});
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+  const [isLoadingSave, setIsLoadingSave] = useState(false);
   const { t } = useTranslation();
 
   const filteredData = useMemo(() => {
@@ -554,12 +555,14 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
             loadingTag={loadingTag}
             onDataUpdate={onDataUpdate}
             columnWidths={columnWidths}
+            isLoadingSave={isLoadingSave}
+            setIsLoadingSave={setIsLoadingSave}
           />
         </table>
       </div>
 
       {/* Loading Tag (extra) */}
-      {isLoading && (
+      {(isLoading || isLoadingSave) && (
         <div className="text-center text-sm text-gray-500 mt-4">
           {loadingTag}
         </div>
@@ -587,9 +590,10 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
           <div className="fixed bottom-28 right-10 flex flex-col gap-4 z-50">
             <button
               className="bg-blue-300 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-400 transition-all transform hover:scale-110"
-              onClick={() => {
-                // Add download functionality here
-                downloadFullData();
+              onClick={async () => {
+                setIsLoadingSave(true);
+                await downloadFullData();
+                setIsLoadingSave(false);
               }}
             >
               <Download className="w-4 h-4" />
@@ -612,6 +616,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
           <Settings className="w-4 h-4" />
         </button>
       </div>
+
     </div>
   );
 };
