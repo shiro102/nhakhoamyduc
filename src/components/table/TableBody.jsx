@@ -175,7 +175,10 @@ const TableBody = ({
             },
             body: JSON.stringify({
               id: item.id,
-              [editingCell?.column]: editValue,
+              [editingCell?.column]:
+                editingCell?.column === "birthYear"
+                  ? Number(editValue)
+                  : editValue,
             }),
           }
         );
