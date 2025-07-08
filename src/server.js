@@ -53,11 +53,13 @@ app.use(
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
+      // if (allowedOrigins.indexOf(origin) === -1) {
+      //   const msg =
+      //     "The CORS policy for this site does not allow access from the specified Origin.";
+      //   return callback(new Error(msg), false);
+      // }
+      // return callback(null, true);
+      console.log("CORS request from origin:", origin);
       return callback(null, true);
     },
     credentials: true, // This is important for cookies
@@ -70,7 +72,7 @@ app.use(cookieParser());
 // Registration endpoint
 app.post("/api/register", async (req, res) => {
   const { email, password } = req.body;
-  
+
   // Input validation
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
@@ -84,7 +86,9 @@ app.post("/api/register", async (req, res) => {
 
   // Password strength validation
   if (password.length < 8) {
-    return res.status(400).json({ error: "Password must be at least 8 characters long" });
+    return res
+      .status(400)
+      .json({ error: "Password must be at least 8 characters long" });
   }
 
   try {
@@ -102,7 +106,9 @@ app.post("/api/register", async (req, res) => {
     });
   } catch (error) {
     console.error("Registration error:", error);
-    res.status(500).json({ error: "Registration failed. Please try again later." });
+    res
+      .status(500)
+      .json({ error: "Registration failed. Please try again later." });
   }
 });
 
@@ -244,7 +250,7 @@ app.put("/api/clients", async (req, res) => {
     console.error("Error in /api/clients:", error);
     res.status(500).json({
       error:
-        "Failed to update client info. Please note that clientId and email should be unique.",
+        "Failed to update client info. Please note that birthYear should be a number between 1900 and current year.",
     });
   }
 });
@@ -286,7 +292,7 @@ app.post("/api/clients", async (req, res) => {
 
   const newClientId = await getLatestClientId();
   console.log("New client ID:", newClientId);
-  const birthYearAndName = `${fullName} ${birthYear || ''}`.trim();
+  const birthYearAndName = `${fullName} ${birthYear || ""}`.trim();
   console.log("Birth year and name:", birthYearAndName);
 
   try {
@@ -306,10 +312,16 @@ app.post("/api/clients", async (req, res) => {
     res.json(client);
   } catch (error) {
     console.error("Error in /api/clients:", error);
-    if (error.code === 'P2002') {
-      res.status(400).json({ error: "A client with this email or client ID already exists" });
+    if (error.code === "P2002") {
+      res
+        .status(400)
+        .json({
+          error: "A client with this email or client ID already exists",
+        });
     } else {
-      res.status(500).json({ error: "Failed to create client. Please try again later." });
+      res
+        .status(500)
+        .json({ error: "Failed to create client. Please try again later." });
     }
   }
 });

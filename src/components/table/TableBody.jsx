@@ -176,7 +176,10 @@ const TableBody = ({
             },
             body: JSON.stringify({
               id: item.id,
-              [editingCell?.column]: editValue,
+              [editingCell?.column]:
+                editingCell?.column === "birthYear"
+                  ? Number(editValue)
+                  : editValue,
             }),
           }
         );
@@ -208,7 +211,7 @@ const TableBody = ({
           });
         } else {
           toast.error(
-            "Failed to update client info. Please note that clientId and email should be unique.",
+            "Failed to update client info. Please note that birthYear should be a number between 1900 and current year.",
             {
               description: (
                 <span style={{ color: "var(--muted-foreground)" }}>
@@ -225,7 +228,7 @@ const TableBody = ({
       } catch (error) {
         console.error("Error in /api/clients:", error);
         toast.error(
-          "Failed to update client info. Please note that clientId and email should be unique.",
+          "Failed to update client info. Please note that birthYear should be a number between 1900 and current year.",
           {
             description: (
               <span style={{ color: "var(--muted-foreground)" }}>
