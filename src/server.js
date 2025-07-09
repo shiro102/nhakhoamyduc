@@ -3,6 +3,7 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const { prisma } = require("../lib/prisma");
+const rateLimit = require('express-rate-limit');
 
 async function getLatestClientId() {
   try {
@@ -51,15 +52,15 @@ app.use(
   cors({
     origin: function (origin, callback) {
       // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-
-      // if (allowedOrigins.indexOf(origin) === -1) {
-      //   const msg =
-      //     "The CORS policy for this site does not allow access from the specified Origin.";
-      //   return callback(new Error(msg), false);
-      // }
-      // return callback(null, true);
+      // if (!origin) return callback(null, true);
       console.log("CORS request from origin:", origin);
+
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      
       return callback(null, true);
     },
     credentials: true, // This is important for cookies
@@ -179,8 +180,21 @@ app.post("/api/logout", (req, res) => {
   res.json({ message: "Logged out successfully" });
 });
 
-// Client endpoint
-app.get("/api/clients", async (req, res) => {
+// middleware to protect routes:
+function requireAuth(req, res, next) {
+  if (!req.cookies.userId) {
+    return res.status(401).json({ error: "Not authenticated" });
+  }
+  next();
+}
+
+// rate limit
+app.use(rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200 // limit each IP to 200 requests per 15 minutes
+}));
+
+app.get("/api/clients", requireAuth, async (req, res) => {
   console.log("Received request to /api/clients");
   const search = req.query.search;
   const mode = req.query.mode;
@@ -237,7 +251,7 @@ app.get("/api/clients", async (req, res) => {
   }
 });
 
-app.put("/api/clients", async (req, res) => {
+app.put("/api/clients", requireAuth, async (req, res) => {
   console.log("Received request to /api/clients");
   const { id, ...updateData } = req.body;
   try {
@@ -255,7 +269,7 @@ app.put("/api/clients", async (req, res) => {
   }
 });
 
-app.post("/api/clients", async (req, res) => {
+app.post("/api/clients", requireAuth, async (req, res) => {
   console.log("Received request to /api/clients");
   const {
     email,
