@@ -40,6 +40,9 @@ async function getLatestClientId() {
 
 const app = express();
 
+// for rate limit to work
+app.set('trust proxy', 1);
+
 // CORS configuration
 const allowedOrigins = [
   "http://localhost:5173", // Development
@@ -52,7 +55,8 @@ app.use(
   cors({
     origin: function (origin, callback) {
       // Allow requests with no origin (like mobile apps or curl requests)
-      // if (!origin) return callback(null, true);
+      if (!origin) return callback(null, true);
+
       console.log("CORS request from origin:", origin);
 
       if (allowedOrigins.indexOf(origin) === -1) {
@@ -60,7 +64,7 @@ app.use(
           "The CORS policy for this site does not allow access from the specified Origin.";
         return callback(new Error(msg), false);
       }
-      
+
       return callback(null, true);
     },
     credentials: true, // This is important for cookies
