@@ -181,6 +181,7 @@ const TableBody = ({
                   ? Number(editValue)
                   : editValue,
             }),
+            credentials: "include",
           }
         );
         setIsLoadingSave(false);

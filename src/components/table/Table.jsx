@@ -52,6 +52,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: "include",
       }
     );
     if (response.ok) {
@@ -70,7 +71,8 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
 
       // Refresh data without page reload
       const refreshResponse = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/clients"
+        "https://nhakhoamyduc-api.onrender.com/api/clients",
+        { credentials: "include" }
       );
       if (refreshResponse.ok) {
         const newData = await refreshResponse.json();
@@ -392,7 +394,8 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const handleSearchDatabase = () => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://nhakhoamyduc-api.onrender.com/api/clients?search=${searchDatabase}`
+        `https://nhakhoamyduc-api.onrender.com/api/clients?search=${searchDatabase}`,
+        { credentials: "include" }
       );
       if (response.ok) {
         const newData = await response.json();
@@ -421,7 +424,8 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const downloadFullData = async () => {
     try {
       const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/clients?mode=all"
+        "https://nhakhoamyduc-api.onrender.com/api/clients?mode=all",
+        { credentials: "include" }
       );
       const data = await response.json();
       

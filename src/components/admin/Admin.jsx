@@ -19,7 +19,8 @@ const Admin = () => {
   const fetchClients = async () => {
     try {
       const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/clients"
+        "https://nhakhoamyduc-api.onrender.com/api/clients",
+        { credentials: "include" }
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
