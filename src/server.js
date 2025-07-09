@@ -186,19 +186,24 @@ app.post("/api/logout", (req, res) => {
 
 // middleware to protect routes:
 function requireAuth(req, res, next) {
+  console.log("requireAuth middleware - cookies:", req.cookies);
+  
   if (!req.cookies.userId) {
+    console.log("requireAuth: No userId cookie found, returning 401");
     return res.status(401).json({ error: "Not authenticated" });
   }
+  
+  console.log("requireAuth: User authenticated, proceeding");
   next();
 }
 
-// rate limit
-app.use(rateLimit({
+// Create rate limiter for specific routes
+const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 200 // limit each IP to 200 requests per 15 minutes
-}));
+});
 
-app.get("/api/clients", requireAuth, async (req, res) => {
+app.get("/api/clients", apiLimiter, requireAuth, async (req, res) => {
   console.log("Received request to /api/clients");
   const search = req.query.search;
   const mode = req.query.mode;
@@ -255,7 +260,7 @@ app.get("/api/clients", requireAuth, async (req, res) => {
   }
 });
 
-app.put("/api/clients", requireAuth, async (req, res) => {
+app.put("/api/clients", apiLimiter, requireAuth, async (req, res) => {
   console.log("Received request to /api/clients");
   const { id, ...updateData } = req.body;
   try {
@@ -273,7 +278,7 @@ app.put("/api/clients", requireAuth, async (req, res) => {
   }
 });
 
-app.post("/api/clients", requireAuth, async (req, res) => {
+app.post("/api/clients", apiLimiter, requireAuth, async (req, res) => {
   console.log("Received request to /api/clients");
   const {
     email,
