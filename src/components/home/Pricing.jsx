@@ -1,5 +1,5 @@
 import React from "react";
-import banggia from "../../images/banggia2.jpg"
+import banggia from "../../images/banggia3.jpg"
 import useScript from "../../functions/useScript";
 import scriptUrlList from "../../scripts/scriptUrl";
 import scriptTextList from "../../scripts/scriptText";
