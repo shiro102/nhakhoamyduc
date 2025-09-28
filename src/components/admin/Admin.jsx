@@ -16,7 +16,7 @@ const Admin = () => {
   const [tableData, setTableData] = useState([]); // Initial data
   const navigate = useNavigate();
 
-  const fetchClients = async () => {
+  const fetchInitialClients = async () => {
     try {
       const response = await fetch(
         "https://nhakhoamyduc-api.onrender.com/api/clients",
@@ -73,7 +73,7 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    fetchClients();
+    fetchInitialClients();
   }, []);
 
   return (
@@ -107,6 +107,7 @@ const Admin = () => {
         isLoading={loading}
         loadingTag={<Loading />}
         onDataUpdate={setTableData}
+        onRefreshData={fetchInitialClients}
       />
     </div>
   );

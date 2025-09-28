@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Search, Download, Plus, Settings, FileText } from "lucide-react";
+import { Search, Download, Plus, Settings, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import { useTranslation } from "react-i18next";
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 
 const addClientSchema = z.object({
   fullName: z.string().min(1),
@@ -337,7 +337,7 @@ const Pagination = ({
 ////////////////////////////////////////////////////////////
 // Table
 ////////////////////////////////////////////////////////////
-const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
+const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [searchDatabase, setSearchDatabase] = useState("");
@@ -391,7 +391,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
     setCurrentPage(1);
   };
 
-  const handleSearchDatabase = () => {
+  const handleSearchDatabase = async () => {
     const fetchData = async () => {
       const response = await fetch(
         `https://nhakhoamyduc-api.onrender.com/api/clients?search=${searchDatabase}`,
@@ -405,8 +405,10 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
         console.error("Failed to fetch data");
       }
     };
-    fetchData();
+    setIsLoadingSave(true);
+    await fetchData();
     setCurrentPage(1);
+    setIsLoadingSave(false);
   };
 
   const handleAddClient = () => {
@@ -428,17 +430,17 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
         { credentials: "include" }
       );
       const data = await response.json();
-      
+
       // Create a worksheet
       const ws = XLSX.utils.json_to_sheet(data);
-      
+
       // Create a workbook
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Clients");
-      
+
       // Generate Excel file
       XLSX.writeFile(wb, "clients_data.xlsx");
-      
+
       toast.success("Data downloaded successfully", {
         description: "Excel file has been downloaded",
         style: {
@@ -462,8 +464,15 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
       <h1 className="text-4xl font-bold mb-4 text-center text-gray-700 mt-4">
         Client Table
       </h1>
-
       {/* Top Controls */}
+      <div className="flex justify-end mb-2">
+        <button
+          className="flex items-center justify-center gap-2 bg-blue-400 text-white px-2 py-1 rounded-md hover:bg-blue-500 transition-all duration-200 shadow-sm border border-blue-200"
+          onClick={onRefreshData}
+        >
+          <RefreshCcw className="w-4 h-4" />
+        </button>
+      </div>
       <div className="flex justify-between items-center gap-4 mb-4">
         {/* Items per page */}
         <div className="flex items-center space-x-1">
@@ -620,7 +629,6 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
           <Settings className="w-4 h-4" />
         </button>
       </div>
-
     </div>
   );
 };
