@@ -27,7 +27,7 @@ const data = {
     address: "Address",
     realAddress: "204 Thong Nhat, Ward 11, Go Vap District, Ho Chi Minh City",
     contact: "Contacts",
-    phoneNum1: "Appointment Number: 02862860945",
+    phoneNum1: "Appointment Number: 02862869045",
     phoneNum2: "Doctor Number: 0913895695",
     email: "Email: nhakhoamyduchcm@gmail.com",
     name: "My Duc Dental",
@@ -101,7 +101,7 @@ const data = {
     realAddress:
       "204 Thống Nhất, Phường 11, quận Gò Vấp, thành phố Hồ Chí Minh",
     contact: "Thông tin liên lạc",
-    phoneNum1: "SĐT đặt lịch: 02862860945",
+    phoneNum1: "SĐT đặt lịch: 02862869045",
     phoneNum2: "SĐT bác sĩ: 0913895695",
     email: "Email: nhakhoamyduchcm@gmail.com",
     name: "Nha Khoa Mỹ Đức",
