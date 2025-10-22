@@ -74,9 +74,9 @@ const Home = () => {
 
       {/* Meet our team */}
       <div className="flex flex-col mx-auto justify-center items-center gap-y-10 py-20 bg-gray-50">
-        <h1 className="text-4xl font-bold text-[#383737]">
+        {/* <h1 className="text-4xl font-bold text-[#383737]">
           <Translation>{(t) => t("titleMeetOurDoctors")}</Translation>
-        </h1>
+        </h1> */}
         <div className="!flex !flex-col mx-auto justify-center items-center py-10">
           {/* First Director */}
           <div className="!flex !flex-col justify-center items-center w-full gap-y-3 md:!flex-row md:justify-end md:gap-x-5 md:pr-2">
@@ -85,16 +85,16 @@ const Home = () => {
               alt="Bac si Chi"
               width={200}
               height={50}
-              className="h-[140px] w-[140px] rounded-full object-cover"
+              className="h-[180px] w-[180px] rounded-full object-cover"
             />
             <div className="flex flex-col justify-center items-center gap-y-2 md:items-start">
-              <span className="header-font-black text-xl font-bold">
+              <span className="text-black text-2xl font-bold">
                 <Translation>{(t) => t("nameDoctor1")}</Translation>
               </span>
-              <span className="header-font-black text-sm font-semibold text-textColor-brand italic">
+              <span className="text-md font-semibold text-textColor-brand italic">
                 <Translation>{(t) => t("titleDoctor1")}</Translation>
               </span>
-              <span className="max-w-[300px] text-center text-sm md:!text-left">
+              <span className="max-w-[300px] text-center text-md md:!text-left">
                 <Translation>{(t) => t("descriptionDoctor1")}</Translation>
               </span>
             </div>
@@ -127,11 +127,11 @@ const Home = () => {
       {/* <div className="mx-auto mt-12 w-2/3 border-b border-[#6c7ae0] md:w-1/2"></div> */}
 
       {/* Map */}
-      <div className="flex flex-col mx-auto justify-center items-center py-10">
+      {/* <div className="flex flex-col mx-auto justify-center items-center py-10">
         <h1 className="text-4xl font-bold text-[#3f4041]">
           <Translation>{(t) => t("map")}</Translation>
         </h1>
-      </div>
+      </div> */}
       <Contact />
 
       {/* Back to top */}

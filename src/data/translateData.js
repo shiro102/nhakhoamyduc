@@ -37,7 +37,7 @@ const data = {
     nameDoctor1: "Dr. Nguyen Thi Le Chi",
     titleDoctor1: "Dentist & Director",
     descriptionDoctor1:
-      "As the founder of My Duc Dental, Dr. Chi has extensive experience in the field of dentistry and always ready to guide other doctors to provide the best dental care services for customers.",
+      "As the founder of My Duc Dental, Dr. Chi has more than 20 years of experience in the field of dentistry which allows her to guide other doctors efficiently to provide the best dental care services for you dear customers.",
     nameDoctor2: "Dr. Nguyen Thi My",
     titleDoctor2: "Dentist",
     descriptionDoctor2:
@@ -112,7 +112,7 @@ const data = {
     nameDoctor1: "Bác sĩ Nguyễn Thị Lệ Chi",
     titleDoctor1: "Bác sĩ chuyên khoa & Giám đốc",
     descriptionDoctor1:
-      "Là người thành lập nha khoa Mỹ Đức, bác sĩ Chi đã có trong mình những kinh nghiệm chuyên môn dày dặn để hướng để luôn sẵn sàng hướng dẫn các bác sĩ khác mang đến những dịch vụ chăm sóc răng miệng tốt nhất cho quý khách.",
+      "Là người thành lập nha khoa Mỹ Đức, bác sĩ Chi đã có trong mình hơn 20 năm kinh nghiệm chuyên môn để luôn sẵn sàng hướng dẫn các bác sĩ & phụ tá khác mang đến những dịch vụ chăm sóc răng miệng tốt nhất cho quý khách.",
     nameDoctor2: "Bác sĩ Nguyễn Thị Mỹ",
     titleDoctor2: "Bác sĩ nha khoa",
     descriptionDoctor2:

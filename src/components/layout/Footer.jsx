@@ -5,7 +5,7 @@ import { Translation } from "react-i18next";
 const FooterSection = memo(({ title, children }) => (
   <div className="col-sm-6 col-lg-3 md:pb-[50px] pb-[20px]">
     <Translation>
-      {t => <h4 className="stext-301 cl0 md:pb-[20px] lg:pb-[30px] pb-[10px]">{t(title)}</h4>}
+      {t => <h4 className="stext-301 cl0 md:pb-[20px] pb-[10px]">{t(title)}</h4>}
     </Translation>
     {children}
   </div>
@@ -24,7 +24,7 @@ const FooterLink = memo(({ translationKey }) => (
 ));
 
 const SocialLink = memo(({ icon, href }) => (
-  <a href={href} className="fs-18 cl7 hov-cl1 trans-04 m-r-16" aria-label={`Visit our ${icon} page`}>
+  <a href={href} className="fs-18 cl7 hov-cl1 trans-04 m-r-16" aria-label={`Visit our ${icon} page`} rel="noopener noreferrer" target="_blank">
     <i className={`fa fa-${icon}`}></i>
   </a>
 ));
