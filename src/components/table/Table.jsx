@@ -9,6 +9,7 @@ import TableBody from "./TableBody";
 import { useTranslation } from "react-i18next";
 import * as XLSX from "xlsx";
 
+// Zod schema describing and validating all fields in the "Add Client" form modal
 const addClientSchema = z.object({
   fullName: z.string().min(1),
   firstName: z.string().min(1),
@@ -21,6 +22,14 @@ const addClientSchema = z.object({
 
 ////////////////////////////////////////////////////////////
 // Add Client Form
+// ---------------------------------------------------------
+// This component renders a modal dialog that lets the user
+// create a new client. It:
+// - Uses react-hook-form with a Zod schema for validation
+// - Submits the data to the backend API
+// - Shows success / error toasts
+// - Refreshes the table data via the onDataUpdate callback
+// - Closes itself when the user clicks outside the modal
 ////////////////////////////////////////////////////////////
 const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   const {
@@ -43,6 +52,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
 
   const currentDateTime = new Date().toLocaleString();
 
+  // Handle form submit: send data to API and refresh table on success
   const onSubmit = async (data) => {
     const response = await fetch(
       "https://nhakhoamyduc-api.onrender.com/api/clients",
@@ -92,6 +102,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
     }
   };
 
+  // Close the modal if the user clicks on the semi-transparent overlay
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setShowAddClientModal(false);
@@ -239,6 +250,11 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
 
 ////////////////////////////////////////////////////////////
 // Pagination
+// ---------------------------------------------------------
+// Stateless pagination control used by the main Table:
+// - Shows page numbers with optional "..." gaps
+// - Disables boundary buttons when on first / last page
+// - Delegates page changes to the parent via handlePageChange
 ////////////////////////////////////////////////////////////
 const Pagination = ({
   currentPage,
@@ -246,11 +262,13 @@ const Pagination = ({
   handlePageChange,
   maxPageNumbers = 5,
 }) => {
+  // Build an array of all page indices e.g. [1, 2, 3, ... totalNumberOfPages]
   const pageNumbers = Array.from(
     { length: totalNumberOfPages },
     (_, index) => index + 1
   );
 
+  // Compute the list of page labels to show (numbers and "..." separators)
   const renderPageNumbers = () => {
     if (totalNumberOfPages <= maxPageNumbers) {
       return pageNumbers;
@@ -336,6 +354,14 @@ const Pagination = ({
 
 ////////////////////////////////////////////////////////////
 // Table
+// ---------------------------------------------------------
+// High–level client table component responsible for:
+// - Local text search across all visible columns
+// - Remote search in the database by query string
+// - Sorting, pagination, and adjustable page size
+// - Column width persistence while resizing
+// - Triggering full data download as an Excel file
+// - Opening the "Add Client" modal and refreshing data
 ////////////////////////////////////////////////////////////
 const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshData }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -350,6 +376,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
   const [isLoadingSave, setIsLoadingSave] = useState(false);
   const { t } = useTranslation();
 
+  // Filter the in-memory data based on the local search box (searches across all headers)
   const filteredData = useMemo(() => {
     return data.filter((item) =>
       headers.some((header) =>
@@ -360,13 +387,15 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
     );
   }, [data, headers, searchValue]);
 
+  // Number of pages after filtering using the current itemsPerPage value
   const totalNumberOfPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  // When a new page is selected from the pagination component
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Set initial widths for columns
+  // Set initial widths for columns based on optional header.initialWidth
   React.useEffect(() => {
     const initialWidths = {};
     headers.forEach((header) => {
@@ -377,6 +406,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
     setColumnWidths(initialWidths);
   }, [headers]);
 
+  // Toggle sort direction if the same column is clicked, otherwise switch sort column
   const handleSortColumnChange = (column) => {
     if (sortColumn === column) {
       setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
@@ -386,11 +416,13 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
     }
   };
 
+  // Local (client-side) search input handler
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
     setCurrentPage(1);
   };
 
+  // Trigger a server-side search against the clients API using the searchDatabase value
   const handleSearchDatabase = async () => {
     const fetchData = async () => {
       const response = await fetch(
@@ -411,11 +443,13 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
     setIsLoadingSave(false);
   };
 
+  // Open the Add Client modal
   const handleAddClient = () => {
     console.log("Add client");
     setShowAddClientModal(true);
   };
 
+  // Update stored width for a given column when user resizes header
   const handleColumnResize = (column, width) => {
     setColumnWidths((prev) => ({
       ...prev,
@@ -423,6 +457,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
     }));
   };
 
+  // Fetch *all* clients from the API and export them to an .xlsx file using SheetJS
   const downloadFullData = async () => {
     try {
       const response = await fetch(
