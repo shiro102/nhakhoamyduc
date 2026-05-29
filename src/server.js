@@ -210,6 +210,10 @@ app.get("/api/clients", apiLimiter, requireAuth, async (req, res) => {
   console.log("Search query:", search);
   try {
     if (search) {
+      if (search === "pingFromAwwBot") {
+        console.log("Blocked bot ping search query");
+        return res.json([]);
+      }
       console.log("Searching with query:", search);
       const searchInt = parseInt(search);
       const isNumeric = !isNaN(searchInt);
