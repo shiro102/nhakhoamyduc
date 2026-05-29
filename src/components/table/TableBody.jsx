@@ -277,12 +277,16 @@ const TableBody = ({
                   }`}
                   style={{
                     overflow: "hidden",
-                    wordBreak: ["email", "phone", "address"].includes(
-                      header.column
-                    )
-                      ? "break-word"
-                      : "normal",
-                    whiteSpace: "normal",
+                    wordBreak:
+                      header.column === "phone"
+                        ? "normal"
+                        : ["email", "address", "updatedAt"].includes(
+                            header.column
+                          )
+                          ? "break-word"
+                          : "normal",
+                    whiteSpace:
+                      header.column === "phone" ? "nowrap" : "normal",
                   }}
                   onClick={() =>
                     handleCellClick(
@@ -339,10 +343,6 @@ const TableBody = ({
                             day: "2-digit",
                             month: "2-digit",
                             year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            second: "2-digit",
-                            hour12: false,
                           }
                         )
                       ) : header.column === "clientDocument" ? (

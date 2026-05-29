@@ -134,8 +134,8 @@ app.post("/api/login", async (req, res) => {
     // Set a cookie with the user's ID
     res.cookie("userId", user.id, {
       httpOnly: true,
-      secure: true, // Always use secure in production
-      sameSite: "none", // Allow cross-site cookies
+      secure: true,
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
       domain: process.env.COOKIE_DOMAIN || undefined, //Render environment variables
     });
@@ -211,6 +211,10 @@ app.get("/api/clients", apiLimiter, requireAuth, async (req, res) => {
   console.log("Search query:", search);
   try {
     if (search) {
+      if (search === "pingFromAwwBot") {
+        console.log("Blocked bot ping search query");
+        return res.json([]);
+      }
       console.log("Searching with query:", search);
       const searchInt = parseInt(search);
       const isNumeric = !isNaN(searchInt);

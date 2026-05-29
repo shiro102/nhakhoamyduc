@@ -1,4 +1,4 @@
-const { PrismaClient } = require("../src/generated/prisma");
+const { PrismaClient } = require("@prisma/client");
 const XLSX = require("xlsx");
 const path = require("path");
 
@@ -7,8 +7,8 @@ const prisma = new PrismaClient();
 async function importUsers() {
   try {
     // Read the Excel file
-    const workbook = XLSX.readFile(path.join(__dirname, "../users.xls"));
-    const sheetName = workbook.SheetNames[1];
+    const workbook = XLSX.readFile(path.join(__dirname, "users.xls"));
+    const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
     const data = XLSX.utils.sheet_to_json(worksheet);
 

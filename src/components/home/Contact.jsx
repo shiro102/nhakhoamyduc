@@ -17,7 +17,7 @@ const Contact = () => {
                 src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&q=${location}`}
                 title="Dental Clinic Location"
                 width="100%"
-                height="550"
+                height="650"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"

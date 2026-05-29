@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Search, Download, Plus, Settings, FileText } from "lucide-react";
+import { Search, Download, Plus, Settings, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,8 +7,9 @@ import { useForm } from "react-hook-form";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import { useTranslation } from "react-i18next";
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 
+// Zod schema describing and validating all fields in the "Add Client" form modal
 const addClientSchema = z.object({
   fullName: z.string().min(1),
   firstName: z.string().min(1),
@@ -21,6 +22,14 @@ const addClientSchema = z.object({
 
 ////////////////////////////////////////////////////////////
 // Add Client Form
+// ---------------------------------------------------------
+// This component renders a modal dialog that lets the user
+// create a new client. It:
+// - Uses react-hook-form with a Zod schema for validation
+// - Submits the data to the backend API
+// - Shows success / error toasts
+// - Refreshes the table data via the onDataUpdate callback
+// - Closes itself when the user clicks outside the modal
 ////////////////////////////////////////////////////////////
 const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
   const {
@@ -43,6 +52,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
 
   const currentDateTime = new Date().toLocaleString();
 
+  // Handle form submit: send data to API and refresh table on success
   const onSubmit = async (data) => {
     const response = await fetch(
       "https://nhakhoamyduc-api.onrender.com/api/clients",
@@ -92,6 +102,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
     }
   };
 
+  // Close the modal if the user clicks on the semi-transparent overlay
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setShowAddClientModal(false);
@@ -239,6 +250,11 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
 
 ////////////////////////////////////////////////////////////
 // Pagination
+// ---------------------------------------------------------
+// Stateless pagination control used by the main Table:
+// - Shows page numbers with optional "..." gaps
+// - Disables boundary buttons when on first / last page
+// - Delegates page changes to the parent via handlePageChange
 ////////////////////////////////////////////////////////////
 const Pagination = ({
   currentPage,
@@ -246,11 +262,13 @@ const Pagination = ({
   handlePageChange,
   maxPageNumbers = 5,
 }) => {
+  // Build an array of all page indices e.g. [1, 2, 3, ... totalNumberOfPages]
   const pageNumbers = Array.from(
     { length: totalNumberOfPages },
     (_, index) => index + 1
   );
 
+  // Compute the list of page labels to show (numbers and "..." separators)
   const renderPageNumbers = () => {
     if (totalNumberOfPages <= maxPageNumbers) {
       return pageNumbers;
@@ -336,8 +354,16 @@ const Pagination = ({
 
 ////////////////////////////////////////////////////////////
 // Table
+// ---------------------------------------------------------
+// High–level client table component responsible for:
+// - Local text search across all visible columns
+// - Remote search in the database by query string
+// - Sorting, pagination, and adjustable page size
+// - Column width persistence while resizing
+// - Triggering full data download as an Excel file
+// - Opening the "Add Client" modal and refreshing data
 ////////////////////////////////////////////////////////////
-const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
+const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [searchDatabase, setSearchDatabase] = useState("");
@@ -350,6 +376,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
   const [isLoadingSave, setIsLoadingSave] = useState(false);
   const { t } = useTranslation();
 
+  // Filter the in-memory data based on the local search box (searches across all headers)
   const filteredData = useMemo(() => {
     return data.filter((item) =>
       headers.some((header) =>
@@ -360,13 +387,15 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
     );
   }, [data, headers, searchValue]);
 
+  // Number of pages after filtering using the current itemsPerPage value
   const totalNumberOfPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  // When a new page is selected from the pagination component
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Set initial widths for columns
+  // Set initial widths for columns based on optional header.initialWidth
   React.useEffect(() => {
     const initialWidths = {};
     headers.forEach((header) => {
@@ -377,6 +406,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
     setColumnWidths(initialWidths);
   }, [headers]);
 
+  // Toggle sort direction if the same column is clicked, otherwise switch sort column
   const handleSortColumnChange = (column) => {
     if (sortColumn === column) {
       setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
@@ -386,12 +416,14 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
     }
   };
 
+  // Local (client-side) search input handler
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
     setCurrentPage(1);
   };
 
-  const handleSearchDatabase = () => {
+  // Trigger a server-side search against the clients API using the searchDatabase value
+  const handleSearchDatabase = async () => {
     const fetchData = async () => {
       const response = await fetch(
         `https://nhakhoamyduc-api.onrender.com/api/clients?search=${searchDatabase}`,
@@ -405,15 +437,19 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
         console.error("Failed to fetch data");
       }
     };
-    fetchData();
+    setIsLoadingSave(true);
+    await fetchData();
     setCurrentPage(1);
+    setIsLoadingSave(false);
   };
 
+  // Open the Add Client modal
   const handleAddClient = () => {
     console.log("Add client");
     setShowAddClientModal(true);
   };
 
+  // Update stored width for a given column when user resizes header
   const handleColumnResize = (column, width) => {
     setColumnWidths((prev) => ({
       ...prev,
@@ -421,6 +457,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
     }));
   };
 
+  // Fetch *all* clients from the API and export them to an .xlsx file using SheetJS
   const downloadFullData = async () => {
     try {
       const response = await fetch(
@@ -428,17 +465,17 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
         { credentials: "include" }
       );
       const data = await response.json();
-      
+
       // Create a worksheet
       const ws = XLSX.utils.json_to_sheet(data);
-      
+
       // Create a workbook
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Clients");
-      
+
       // Generate Excel file
       XLSX.writeFile(wb, "clients_data.xlsx");
-      
+
       toast.success("Data downloaded successfully", {
         description: "Excel file has been downloaded",
         style: {
@@ -462,8 +499,15 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
       <h1 className="text-4xl font-bold mb-4 text-center text-gray-700 mt-4">
         Client Table
       </h1>
-
       {/* Top Controls */}
+      <div className="flex justify-end mb-2">
+        <button
+          className="flex items-center justify-center gap-2 bg-blue-400 text-white px-2 py-1 rounded-md hover:bg-blue-500 transition-all duration-200 shadow-sm border border-blue-200"
+          onClick={onRefreshData}
+        >
+          <RefreshCcw className="w-4 h-4" />
+        </button>
+      </div>
       <div className="flex justify-between items-center gap-4 mb-4">
         {/* Items per page */}
         <div className="flex items-center space-x-1">
@@ -620,7 +664,6 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate }) => {
           <Settings className="w-4 h-4" />
         </button>
       </div>
-
     </div>
   );
 };
