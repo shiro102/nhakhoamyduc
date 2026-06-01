@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Undo2, Eye, EyeOff } from "lucide-react";
+import { apiUrl } from "../../config/api";
 
 ////////////////////////////////////////////////////////////
 // Document Modal
@@ -167,9 +168,7 @@ const TableBody = ({
       console.log(editValue);
       try {
         setIsLoadingSave(true);
-        const response = await fetch(
-          `https://nhakhoamyduc-api.onrender.com/api/clients`,
-          {
+        const response = await fetch(apiUrl("/api/clients"), {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

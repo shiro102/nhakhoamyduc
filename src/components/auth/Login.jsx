@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { Translation, useTranslation } from "react-i18next";
 import Loading from "../Loading";
+import { apiUrl } from "../../config/api";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -41,7 +42,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/login",
+        apiUrl("/api/login"),
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -95,7 +96,7 @@ const Login = () => {
   const onSignup = async (data) => {
     try {
       const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/register",
+        apiUrl("/api/register"),
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

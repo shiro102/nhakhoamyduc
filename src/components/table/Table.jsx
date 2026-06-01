@@ -8,6 +8,7 @@ import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import { useTranslation } from "react-i18next";
 import * as XLSX from "xlsx";
+import { apiUrl } from "../../config/api";
 
 // Zod schema describing and validating all fields in the "Add Client" form modal
 const addClientSchema = z.object({
@@ -54,9 +55,7 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
 
   // Handle form submit: send data to API and refresh table on success
   const onSubmit = async (data) => {
-    const response = await fetch(
-      "https://nhakhoamyduc-api.onrender.com/api/clients",
-      {
+    const response = await fetch(apiUrl("/api/clients"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,10 +79,9 @@ const AddClientForm = ({ setShowAddClientModal, onDataUpdate }) => {
       setShowAddClientModal(false);
 
       // Refresh data without page reload
-      const refreshResponse = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/clients",
-        { credentials: "include" }
-      );
+      const refreshResponse = await fetch(apiUrl("/api/clients"), {
+        credentials: "include",
+      });
       if (refreshResponse.ok) {
         const newData = await refreshResponse.json();
         onDataUpdate(newData);
@@ -426,7 +424,7 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
   const handleSearchDatabase = async () => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://nhakhoamyduc-api.onrender.com/api/clients?search=${searchDatabase}`,
+        apiUrl(`/api/clients?search=${encodeURIComponent(searchDatabase)}`),
         { credentials: "include" }
       );
       if (response.ok) {
@@ -460,10 +458,9 @@ const Table = ({ headers, data, isLoading, loadingTag, onDataUpdate, onRefreshDa
   // Fetch *all* clients from the API and export them to an .xlsx file using SheetJS
   const downloadFullData = async () => {
     try {
-      const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/clients?mode=all",
-        { credentials: "include" }
-      );
+      const response = await fetch(apiUrl("/api/clients?mode=all"), {
+        credentials: "include",
+      });
       const data = await response.json();
 
       // Create a worksheet

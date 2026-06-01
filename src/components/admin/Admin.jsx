@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { LogOut } from "lucide-react";
 import Loading from "../Loading";
+import { apiUrl } from "../../config/api";
 
 const Admin = () => {
   useScript(scriptUrlList, scriptTextList);
@@ -18,10 +19,9 @@ const Admin = () => {
 
   const fetchInitialClients = async () => {
     try {
-      const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/clients",
-        { credentials: "include" }
-      );
+      const response = await fetch(apiUrl("/api/clients"), {
+        credentials: "include",
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -48,13 +48,10 @@ const Admin = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(
-        "https://nhakhoamyduc-api.onrender.com/api/logout",
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(apiUrl("/api/logout"), {
+        method: "POST",
+        credentials: "include",
+      });
 
       if (response.ok) {
         toast.success("Logged out successfully");
