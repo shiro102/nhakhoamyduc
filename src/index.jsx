@@ -5,17 +5,13 @@ import App from './App';
 import {
     BrowserRouter,
 } from "react-router-dom";
-import { Amplify } from 'aws-amplify';
-import config from './aws-exports';
-import i18n from "./components/LangConfig";
-Amplify.configure(config);
-
+import "./components/LangConfig";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-      <BrowserRouter>
-          <App />
-      </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>
 );

@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import "../../App";
-import "@aws-amplify/ui-react/styles.css";
 import { Translation } from "react-i18next";
 import Contact from "./Contact";
 import Slider from "./Slider";
