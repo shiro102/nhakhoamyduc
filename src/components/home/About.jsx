@@ -1,7 +1,6 @@
 import React from "react";
 import nhanhieu1 from "../../images/nhanhieu_1.jpg"
 import nhanhieu2 from "../../images/nhanhieu_2.jpg"
-import desk1 from "../../images/desk1.jpg"
 import tramrang1 from "../../images/tramrang1.jpg"
 import useScript from "../../functions/useScript";
 import scriptUrlList from "../../scripts/scriptUrl";
@@ -41,7 +40,7 @@ const About = () => {
                         {t('description1')}
                     </p>}
                 </Translation> 
-                <img className= "image-about" src={desk1} alt={"desk1"} /> <br/>
+                <img className= "image-about" src={"https://drive.google.com/thumbnail?id=1IHm1MB1oE0li0qxNbx5LIaOeD_jRqW0r&sz=w1000"} alt={"desk1"} /> <br/>
             </div>
             <div className="about about-text reveal">
                 <Translation>{t =>
@@ -49,7 +48,7 @@ const About = () => {
                         {t('description2')}
                     </p>}
                 </Translation> 
-                <img className= "image-about" src={tramrang1} alt={"tramrang1"}/> <br/>
+                <img className= "image-about" src={"https://drive.google.com/thumbnail?id=1e9ykYxlf_OGnOt7NeZtBuJqoKUCUjb8m&sz=w1000"} alt={"tramrang1"}/> <br/>
             </div>
             <div className="about about-text reveal row">
                 <Translation>{t =>
@@ -58,10 +57,10 @@ const About = () => {
                     </p>}
                 </Translation> 
                 <div class="column">
-                    <img className= "image-about-2" src={nhanhieu1} alt={"nhanhieu1"}/> <br/>
+                    <img className= "image-about-2" src={"https://drive.google.com/thumbnail?id=1HSmhlB8vSnKKbEvN6o5Cx2zzvH7CjUpo&sz=w1000"} alt={"nhanhieu1"}/> <br/>
                 </div>
                 <div class="column">
-                    <img className="image-about-2" src={nhanhieu2} alt={"nhanhieu2"}/>
+                    <img className="image-about-2" src={"https://drive.google.com/thumbnail?id=1UGGoyBK4p8bwhP4hMs3amf0Fc1N_QOk1&sz=w1000"} alt={"nhanhieu2"}/>
                 </div>
             </div>
             <div className="about about-text" style={{textAlign: "center", paddingBottom: "2em", fontStyle: "italic", fontWeight: "bold", fontSize: "2.5em", color: "#ffa338", fontFamily: 'Serif', textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000"}}>
