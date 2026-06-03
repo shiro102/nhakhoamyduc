@@ -150,7 +150,7 @@ const Login = () => {
       {/* Login Form */}
       <div className="flex flex-col items-center justify-center border border-gray-300 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 bg-white m-3">
         <img
-          src="images/myduclogo.jpg"
+          src="/images/myduclogo.jpg"
           alt="Clinic Logo"
           className="w-24 h-24 object-contain mb-2"
         />

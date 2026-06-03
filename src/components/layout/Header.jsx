@@ -75,7 +75,7 @@ const Header = () => {
         <div className="wrap-menu-desktop">
           <nav className="limiter-menu-desktop container flex justify-center">
             <Link to="/" className="logo">
-              <img src="images/myduclogo.jpg" alt="IMG-LOGO" />
+              <img src="/images/myduclogo.jpg" alt="IMG-LOGO" />
             </Link>
             <div className="menu-desktop">
               <ul className="main-menu">
@@ -108,12 +108,12 @@ const Header = () => {
         <picture>
           <source
             media="(max-width:900px)"
-            srcSet="images/myducshopsign-big.jpg"
+            srcSet="/images/myducshopsign-big.jpg"
           />
           <img
             width="100%"
             height="20%"
-            src="images/myducshopsign-small.jpg"
+            src="/images/myducshopsign-small.jpg"
             alt="IMG"
           />
         </picture>
