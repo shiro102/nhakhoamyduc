@@ -32,16 +32,16 @@ const DocumentModal = ({
       onClick={handleClose}
     >
       <div
-        className="bg-white p-6 rounded-lg shadow-xl max-w-3xl w-full mx-4 h-[80vh] overflow-y-auto flex flex-col"
+        className="bg-white dark:!bg-[#222] p-6 rounded-lg shadow-xl max-w-3xl w-full mx-4 h-[80vh] overflow-y-auto flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-2xl font-bold dark:text-white">
             Patient Document for {item.fullName}
           </h2>
           <button
             onClick={handleClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           >
             ✕
           </button>
@@ -50,7 +50,7 @@ const DocumentModal = ({
           <textarea
             value={document}
             onChange={(e) => setEditValue(e.target.value)}
-            className="w-full h-full border rounded px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-blue-400"
+            className="w-full h-full border-solid border-[1px] border-gray-300 dark:border-gray-500 rounded px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-blue-400 !bg-white dark:!bg-black !text-black dark:!text-white"
             placeholder="Enter client document details..."
           />
         </div>
@@ -58,7 +58,7 @@ const DocumentModal = ({
           <button
             type="button"
             onClick={handleClose}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+            className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-zinc-900"
           >
             Cancel
           </button>
@@ -257,8 +257,8 @@ const TableBody = ({
             key={item.id}
             className={`${
               highlightedRowId === item.id
-                ? "!bg-blue-50 hover:!bg-blue-100"
-                : "odd:bg-white even:bg-gray-50 hover:bg-gray-100"
+                ? "!bg-blue-50 dark:!bg-blue-900/30 hover:!bg-blue-100 dark:hover:!bg-blue-900/50"
+                : "odd:bg-white even:bg-gray-50 dark:odd:bg-black dark:even:bg-zinc-950 hover:bg-gray-100 dark:hover:bg-zinc-900"
             } transition-colors duration-200`}
           >
             {headers.map((header) => {
@@ -269,9 +269,9 @@ const TableBody = ({
               return (
                 <td
                   key={header.column}
-                  className={`px-4 py-2 border-r last:border-r-0 border-gray-200 cursor-pointer relative ${
+                  className={`px-4 py-2 border-r last:border-r-0 border-gray-200 dark:border-gray-700 cursor-pointer relative dark:text-white ${
                     highlightedRowId === item.id
-                      ? "!bg-blue-50 hover:!bg-blue-100"
+                      ? "!bg-blue-50 dark:!bg-blue-900/30 hover:!bg-blue-100 dark:hover:!bg-blue-900/50"
                       : ""
                   }`}
                   style={{
@@ -300,7 +300,7 @@ const TableBody = ({
                   {lastEditedCell?.column === header.column &&
                     lastEditedCell?.itemId === item.id &&
                     lastEditedValue !== item[header.column] && (
-                      <div className="absolute top-0 right-0 z-10 bg-white/80 backdrop-blur-sm rounded-bl-lg p-1">
+                      <div className="absolute top-0 right-0 z-10 bg-white/80 dark:bg-black/80 backdrop-blur-sm rounded-bl-lg p-1">
                         <button
                           className="text-blue-500 hover:text-blue-700 font-medium flex items-center gap-1"
                           onClick={(e) => {
@@ -328,7 +328,7 @@ const TableBody = ({
                         onChange={handleInputChange}
                         onBlur={handleInputBlur}
                         onKeyDown={(e) => handleInputKeyDown(e, item)}
-                        className="w-full h-12 px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
+                        className="w-full h-12 px-2 py-1 border-solid border-[1px] border-gray-300 rounded !bg-white !text-black focus:outline-none focus:ring-1 focus:ring-blue-400 focus:!text-black"
                         autoFocus
                       />
                     )

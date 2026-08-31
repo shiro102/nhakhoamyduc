@@ -16,9 +16,11 @@ const Layout = () => {
     return (        
         <Fragment>
             <Delayed waitBeforeShow={500}>
-                <Header/>
-                <Outlet></Outlet>
-                <Footer/>
+                <div className="min-h-screen bg-white dark:bg-black dark:text-white text-black transition-colors duration-300">
+                    <Header/>
+                    <Outlet></Outlet>
+                    <Footer/>
+                </div>
             </Delayed>
         </Fragment>
     );

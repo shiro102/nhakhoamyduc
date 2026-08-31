@@ -28,13 +28,13 @@ const Home = () => {
       <Slider />
 
       {/* Introduction */}
-      <div className="flex flex-col mx-auto justify-center items-center py-10 ">
+      <div className="flex flex-col mx-auto justify-center items-center py-10 bg-white dark:!bg-[#222] text-black dark:text-white">
         {introductionData.map((item) => (
           <div key={item.id}>
             {item.id % 2 === 0 ? (
               <div className="!flex !flex-col-reverse md:!grid md:!grid-cols-[50%_50%] p-4 gap-x-20 justify-center items-center gap-y-10">
                 <div className="flex flex-col md:max-w-96 md:justify-self-end  justify-center items-center">
-                  <p className="text-2xl font-bold text-[#3f4041] pb-3">
+                  <p className="text-2xl font-bold pb-3">
                     <Translation>{(t) => t(item.title)}</Translation>
                   </p>
                   <p className="text-lg">
@@ -55,7 +55,7 @@ const Home = () => {
                   className="md:justify-self-end rounded-lg object-cover w-[350px] aspect-[4/3]"
                 />
                 <div className="flex flex-col md:max-w-96 justify-center items-center">
-                  <p className="text-2xl font-bold pb-3 text-[#3f4041]">
+                  <p className="text-2xl font-bold pb-3">
                     <Translation>{(t) => t(item.title)}</Translation>
                   </p>
                   <p className="text-lg">
@@ -72,7 +72,7 @@ const Home = () => {
       {/* <div className="mx-auto mt-12 w-2/3 border-b border-[#6c7ae0] md:w-1/2"></div> */}
 
       {/* Meet our team */}
-      <div className="flex flex-col mx-auto justify-center items-center gap-y-10 py-20 bg-gray-50">
+      <div className="flex flex-col mx-auto justify-center items-center gap-y-10 py-20 bg-gray-50 dark:bg-gray-800">
         {/* <h1 className="text-4xl font-bold text-[#383737]">
           <Translation>{(t) => t("titleMeetOurDoctors")}</Translation>
         </h1> */}
@@ -87,13 +87,13 @@ const Home = () => {
               className="h-[180px] w-[180px] rounded-full object-cover"
             />
             <div className="flex flex-col justify-center items-center gap-y-2 md:items-start">
-              <span className="text-black text-2xl font-bold">
+              <span className="text-black dark:text-white text-2xl font-bold">
                 <Translation>{(t) => t("nameDoctor1")}</Translation>
               </span>
               <span className="text-md font-semibold text-textColor-brand italic">
                 <Translation>{(t) => t("titleDoctor1")}</Translation>
               </span>
-              <span className="max-w-[300px] text-center text-md md:!text-left">
+              <span className="max-w-[300px] text-center text-md md:!text-left text-black dark:text-white">
                 <Translation>{(t) => t("descriptionDoctor1")}</Translation>
               </span>
             </div>

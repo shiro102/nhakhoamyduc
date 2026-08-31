@@ -33,8 +33,8 @@ const About = () => {
     useLink("css/util.css", "app")
 
     return (
-        <div className= "about-home" style={{fontFamily: 'Times New Roman'}}>
-            <div className="about about-text">
+        <div className="about-home !bg-white dark:!bg-[#222] text-black dark:text-white" style={{fontFamily: 'Times New Roman'}}>
+            <div className="about about-text text-black dark:!text-white">
                 <Translation>{t =>
                     <p style={{fontSize: "1.1em"}}>
                         {t('description1')}
@@ -42,7 +42,7 @@ const About = () => {
                 </Translation> 
                 <img className= "image-about" src={"https://drive.google.com/thumbnail?id=1IHm1MB1oE0li0qxNbx5LIaOeD_jRqW0r&sz=w1000"} alt={"desk1"} /> <br/>
             </div>
-            <div className="about about-text reveal">
+            <div className="about about-text text-black dark:!text-white reveal">
                 <Translation>{t =>
                     <p style={{fontSize: "1.1em"}}>
                         {t('description2')}
@@ -50,7 +50,7 @@ const About = () => {
                 </Translation> 
                 <img className= "image-about" src={"https://drive.google.com/thumbnail?id=1e9ykYxlf_OGnOt7NeZtBuJqoKUCUjb8m&sz=w1000"} alt={"tramrang1"}/> <br/>
             </div>
-            <div className="about about-text reveal row">
+            <div className="about about-text text-black dark:!text-white reveal row">
                 <Translation>{t =>
                     <p style={{fontSize: "1.1em"}}>
                         {t('description3')}    

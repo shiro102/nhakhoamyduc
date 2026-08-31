@@ -1,0 +1,115 @@
+/* Dark mode: black backgrounds, white text — with contrast preserved on dark surfaces */
+
+.dark body,
+.dark html {
+  background-color: #000 !important;
+  color: #fff;
+}
+
+/* White / light backgrounds → black */
+.dark .bg0,
+.dark .bg2,
+.dark .bg6,
+.dark .bg8,
+.dark .bg9,
+.dark .bgwhite,
+.dark .header-v2 .wrap-menu-desktop,
+.dark .header-v4 .wrap-menu-desktop {
+  background-color: #000 !important;
+}
+
+.dark .about-home {
+  background-color: #222;
+  background-blend-mode: multiply;
+}
+
+.dark .box-shadow {
+  background-color: #222 !important;
+  color: #fff;
+  box-shadow: 0.5vw 0.5vw 0.25vw #333;
+}
+
+/* Dark / black text on light backgrounds → white */
+.dark .cl2,
+.dark .cl3,
+.dark .cl5,
+.dark .cl8,
+.dark .cl10,
+.dark .clblack,
+.dark .about-text {
+  color: #fff !important;
+}
+
+.dark .cl4,
+.dark .cl9,
+.dark .cl12 {
+  color: #ccc !important;
+}
+
+/* Medium grays on light backgrounds → lighter */
+.dark .cl6 {
+  color: #aaa !important;
+}
+
+/* Preserve contrast: light text on already-dark surfaces */
+.dark .top-bar,
+.dark .top-bar a,
+.dark .top-bar span {
+  color: #b5b5b5;
+}
+
+.dark footer.bg3,
+.dark .bg3 {
+  background-color: #111 !important;
+}
+
+.dark footer.bg3 .cl0,
+.dark footer.bg3 .stext-301.cl0 {
+  color: #fff !important;
+}
+
+.dark footer.bg3 .cl7,
+.dark footer.bg3 .cl6,
+.dark footer.bg3 a.cl7,
+.dark footer.bg3 td.cl7,
+.dark footer.bg3 th.cl7,
+.dark footer.bg3 p.cl7 {
+  color: #b2b2b2 !important;
+}
+
+.dark .container-menu-desktop .main-menu > li > a {
+  color: whitesmoke !important;
+}
+
+.dark .fix-menu-desktop .main-menu > li > a,
+.dark .header-v3 .main-menu > li > a {
+  color: #fff !important;
+}
+
+.dark .fix-menu-desktop .wrap-menu-desktop,
+.dark .limiter-menu-desktop.sticky-nav {
+  background-color: #111 !important;
+}
+
+.dark .symbol-btn-back-to-top,
+.dark .btn-back-to-top .symbol-btn-back-to-top {
+  color: #fff !important;
+}
+
+.dark .selectBox {
+  background-color: #000;
+  color: #fff;
+  border-color: #555;
+}
+
+.dark .optionsMenu {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Preserve white text on colored / overlay surfaces */
+.dark .bg1,
+.dark [class*="bg-blue-"],
+.dark [class*="bg-red-"] {
+  color: inherit;
+}

@@ -23,14 +23,14 @@ const Contact = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className={"box-shadow"}>
+            <div className="box-shadow !bg-white dark:!bg-[#222] text-black dark:text-white">
                 <Translation>{t =>
-                    <h3 className="stext-301 cl5">
+                    <h3 className="stext-301">
                         {t('contact')}
                     </h3>}
                 </Translation>
 
-                <p className="stext-118 cl5">
+                <p className="stext-118">
                     <Translation>{t =>
                     <span> {t('phoneNum1')}</span>}
                     </Translation> <br/>

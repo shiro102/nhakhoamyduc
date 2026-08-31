@@ -74,11 +74,11 @@ const Admin = () => {
   }, []);
 
   return (
-    <div>
-      <div className="flex justify-start my-4 mx-4">
+    <div className="dark:text-white dark:bg-[#222]">
+      <div className="flex justify-start py-4 px-4">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 bg-red-100 text-red-600 hover:bg-red-200 hover:text-red-700 px-4 py-2 rounded-md transition-all duration-200 shadow-sm border border-red-200"
+          className="flex items-center gap-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 hover:text-red-700 dark:hover:text-red-300 px-4 py-2 rounded-md transition-all duration-200 shadow-sm border border-red-200 dark:border-red-800"
         >
           <LogOut className="w-4 h-4" />
           Logout

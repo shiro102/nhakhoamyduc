@@ -5,7 +5,7 @@ const NoMatch = () => {
 
     return (
         <div>
-            <p variant="h1">Page not found, please return to the <Link to="/">home page</Link>.</p>
+            <p variant="h1" className="dark:text-white">Page not found, please return to the <Link to="/">home page</Link>.</p>
         </div>
     )
 };

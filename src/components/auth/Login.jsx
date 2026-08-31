@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { Translation, useTranslation } from "react-i18next";
 import Loading from "../Loading";
+import ThemeToggle from "../ThemeToggle";
 import { apiUrl } from "../../config/api";
 
 const schema = z.object({
@@ -144,11 +145,14 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-gray-50">
+    <div className="w-screen h-screen flex items-center justify-center bg-gray-50 dark:bg-black relative">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       {isLoading && <Loading />}
 
       {/* Login Form */}
-      <div className="flex flex-col items-center justify-center border border-gray-300 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 bg-white m-3">
+      <div className="flex flex-col items-center justify-center border-solid border-[1px] border-gray-300 dark:border-gray-500 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 !bg-white dark:!bg-black m-3">
         <img
           src="https://drive.google.com/thumbnail?id=1sER64F-iNSy5IfluXuQV0WLLH_lGpaEP&sz=w500"
           alt="Clinic Logo"
@@ -159,7 +163,7 @@ const Login = () => {
             className={`flex-1 py-2 rounded-t-md ${
               tab === "login"
                 ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700"
+                : "bg-gray-200 dark:bg-zinc-900 text-gray-700 dark:text-white"
             }`}
             onClick={() => {
               setTab("login");
@@ -172,7 +176,7 @@ const Login = () => {
             className={`flex-1 py-2 rounded-t-md ${
               tab === "signup"
                 ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700"
+                : "bg-gray-200 dark:bg-zinc-900 text-gray-700 dark:text-white"
             }`}
             onClick={() => {
               setTab("signup");
@@ -193,7 +197,7 @@ const Login = () => {
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 {t("loginEmail")}
               </label>
@@ -203,7 +207,7 @@ const Login = () => {
                 placeholder={t("enterEmail")}
                 autoComplete="off"
                 {...register("email")}
-                className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border-solid border-[1px] border-gray-300 dark:border-gray-500 !bg-white dark:!bg-black text-gray-900 dark:text-gray-300 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {errors.email && (
                 <span className="text-red-500 text-sm">
@@ -215,7 +219,7 @@ const Login = () => {
             <div className="flex flex-col gap-y-1">
               <label
                 htmlFor="password"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 {t("password")}
               </label>
@@ -225,10 +229,10 @@ const Login = () => {
                   {...register("password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("enterPassword")}
-                  className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                  className="border-solid border-[1px] border-gray-300 dark:border-gray-500 !bg-white dark:!bg-black text-gray-900 dark:text-white h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                 />
                 <Eye
-                  className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                  className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-black"
                   onClick={() => setShowPassword(!showPassword)}
                 />
               </div>
@@ -265,7 +269,7 @@ const Login = () => {
                 placeholder={t("enterEmail")}
                 autoComplete="off"
                 {...register("email")}
-                className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border-solid border-[1px] border-gray-300 dark:border-gray-500 !bg-white dark:!bg-black text-gray-900 dark:text-white h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {errors.email && (
                 <span className="text-red-500 text-sm">
@@ -287,10 +291,10 @@ const Login = () => {
                   {...register("password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("enterPassword")}
-                  className="border border-gray-300 bg-white text-gray-900 h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                  className="border-solid border-[1px] border-gray-300 dark:border-gray-500 !bg-white dark:!bg-black text-gray-900 dark:text-white h-11 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                 />
                 <Eye
-                  className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                  className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-black"
                   onClick={() => setShowPassword(!showPassword)}
                 />
               </div>

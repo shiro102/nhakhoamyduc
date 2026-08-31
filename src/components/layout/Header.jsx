@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Translation } from "react-i18next";
 import ChangeLang from "../ChangeLang";
+import ThemeToggle from "../ThemeToggle";
 import { checkAuth } from "../../functions/checkAuth";
 
 const NAV_ITEMS = [
@@ -66,6 +67,7 @@ const Header = () => {
               </Translation>
               <div className="flex items-center justify-center">
                 <ChangeLang />
+                <ThemeToggle className="ml-2 mr-[17px]" />
               </div>
             </div>
           </div>

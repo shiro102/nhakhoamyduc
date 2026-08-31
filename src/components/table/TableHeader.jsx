@@ -50,12 +50,12 @@ const TableHeader = ({
     }, [resizingColumn, startX, startWidth]);
   
     return (
-      <thead className="bg-gray-100">
+      <thead className="bg-gray-100 dark:bg-black">
         <tr>
           {headers.map((header) => (
             <th
               key={header.column}
-              className="px-4 py-2 text-left cursor-pointer select-none border-r last:border-r-0 border-gray-200 relative"
+              className="px-4 py-2 text-left cursor-pointer select-none border-r last:border-r-0 border-gray-200 dark:border-gray-700 relative dark:text-white"
               style={{
                 width: columnWidths[header.column] || 'auto',
                 maxWidth: '100%',
