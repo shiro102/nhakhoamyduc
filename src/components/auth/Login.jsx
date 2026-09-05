@@ -152,7 +152,7 @@ const Login = () => {
       {isLoading && <Loading />}
 
       {/* Login Form */}
-      <div className="flex flex-col items-center justify-center border-solid border-[1px] border-gray-300 dark:border-gray-500 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 !bg-white dark:!bg-black m-3">
+      <div className="flex flex-col items-center justify-center border-solid border-[1px] border-gray-300 dark:border-gray-500 shadow-md rounded-xl w-full max-w-md px-8 py-10 gap-y-6 !bg-white dark:!bg-[#222] m-3">
         <img
           src="https://drive.google.com/thumbnail?id=1sER64F-iNSy5IfluXuQV0WLLH_lGpaEP&sz=w500"
           alt="Clinic Logo"
