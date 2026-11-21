@@ -49,6 +49,7 @@ const allowedOrigins = [
   "http://localhost:3000", // Alternative development port
   "https://nhakhoamyduc.vn", // Production URL from environment variable
   "https://www.nhakhoamyduc.vn",
+  "https://nhakhoamyduc-backup.d1oa3aicm14zeg.amplifyapp.com",
 ].filter(Boolean); // Remove any undefined values
 
 app.use(
